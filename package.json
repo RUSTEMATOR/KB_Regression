@@ -2,10 +2,17 @@
   "name": "kb_regression",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.4.0",
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.10.10"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "moment": "^2.30.1"
+  }
 }
