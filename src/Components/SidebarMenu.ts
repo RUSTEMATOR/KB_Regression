@@ -21,4 +21,28 @@ export default class SidebarMenu extends BaseComponent {
         this.legendTab = page.locator('#burger_legend_btn')
         this.appBtn = page.locator('div > a.header-left-desktop__app')
     }
+
+    async openPromotionsTab(): Promise<void> {
+        await this.promotionsTab.click()
+    }
+
+    async openTournamentsTab(): Promise<void> {
+        await this.tournamentsTab.click()
+    }
+
+    async openVipTab(): Promise<void> {
+        await this.vipTab.click()
+    }
+
+    async openBankingTab(): Promise<void> {
+        await this.bankingTab.click()
+    }
+
+    async openLegendTab(): Promise<void> {
+        await this.legendTab.click()
+    }
+
+    async clickAppBtn(): Promise<void> {
+        await this.appBtn.click()
+    }
 }
