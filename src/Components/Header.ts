@@ -10,6 +10,7 @@ export default class Header extends BaseComponent {
     private createAccountButton: Locator
     private signInButton: Locator
     private langDropdown: Locator
+    private langDropdownItem: (language: string) => Locator
 
 
 
@@ -24,6 +25,7 @@ export default class Header extends BaseComponent {
         this.createAccountButton = page.locator('#header_create_acc_btn')
         this.signInButton = page.locator('#header_log_in_btn')
         this.langDropdown = page.locator('#lang_dropdown')
+        this.langDropdownItem = (language: string) => page.locator('.select-language-icons-with-code__link').filter({hasText: language})
     }
 
     async openBurgerMenu(): Promise<void> {
@@ -47,5 +49,15 @@ export default class Header extends BaseComponent {
         await this.signInButton.click()
     }
 
+    async openLangDropdown(): Promise<void> {
+        await this.langDropdown.click()
+    }
 
+    async changeLanguageTo(language: string): Promise<void> {
+        await this.openLangDropdown()
+        await this.langDropdownItem(language).click()
+    }
 }
+
+
+"info@kte.kmda.gov.ua"

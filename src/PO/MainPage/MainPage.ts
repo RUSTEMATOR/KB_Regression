@@ -3,6 +3,10 @@ import {Locator, Page} from "@playwright/test";
 
 export default class MainPage extends BasePage {
     private mainPage: Page
+    private allProviders: Locator
+    private providersBlock: Locator
+
+    private categoryTitle: Locator
     private lobbyCategory: Locator
     private newCategory: Locator
     private topCategory: Locator
@@ -23,6 +27,8 @@ export default class MainPage extends BasePage {
     private tableGamesCategory: Locator
     private tableOnlineRoulette: Locator
     private recentGamesCategory: Locator
+    private provider: (index: number) => Locator
+    private showMoreButton: (index: number) => Locator
 
 
     constructor(page: Page) {
@@ -30,6 +36,10 @@ export default class MainPage extends BasePage {
 
         this.mainPage = page;
 
+        this.allProviders = page.locator('.games-filter__cell--providers')
+        this.providersBlock = page.locator('.menu-providers-select__content')
+
+        this.categoryTitle = page.locator('.games__title')
         this.lobbyCategory = page.locator('#lobby_category ')
         this.newCategory = page.locator('#new_category')
         this.topCategory = page.locator('#top_category')
@@ -50,11 +60,48 @@ export default class MainPage extends BasePage {
         this.tableGamesCategory = page.locator('#table_games_category')
         this.tableOnlineRoulette = page.locator('#table_online_roulette')
         this.recentGamesCategory = page.locator('#recent_games_category')
+        this.provider = (index) => page.locator(`#games-page-providers-filter-item-${index}`)
+        this.showMoreButton = (index) => page.locator(`.home-slider__top .home-slider__see-more-btn:nth-of-type(${index})`)
     }
 
 
      async openGameCategory(gameCategory: Locator): Promise<void> {
         await gameCategory.click()
+    }
+
+    async openShowMore(index: number): Promise<void> {
+        await this.showMoreButton(index).click()
+    }
+
+    async openAllProviders(): Promise<void> {
+        await this.allProviders.click()
+    }
+
+    async getAllProviders(): Promise<Array<string>>{
+        await this.openAllProviders()
+
+        return await this.page.evaluate(() => {
+            const allProviders = document.querySelector('.menu-providers-select__content');
+            if (!allProviders){
+                return []
+            }
+            const providersList = (allProviders as HTMLElement).innerText;
+            
+
+            return providersList.split("\n").map((provider: string) => provider.trim()).filter((provider: string) => provider !== "")
+        })
+    }
+
+    async clickOnProvider(index: number): Promise<void> {
+        await this.provider(index).click()
+    }
+
+    async getProviderName(index: number): Promise<string> {
+        return await this.provider(index).innerText()
+    }
+
+    async getCategoryTitleName(): Promise<string>{
+        return await this.categoryTitle.innerText()
     }
 
 

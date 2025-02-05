@@ -1,0 +1,8 @@
+export const providersIE: Array<string> = ["Providers", "1spin4win138", "3 Oaks98", "4theplayer35", "7mojos50", "Acerun9", "Absolute Live Gaming17", "Amatic209", "Amusnet240", "Amusnetlive2",
+    "Apparat Gaming48", "AvatarUX44", "Baddingo1", "Bangbanggames17", "Belatra109", "ICONIC2135", "BetGames13", "BGaming182", "BigTimeGaming58", "Bitpunch1", "Blueprint84", "Boomerangstudios2",
+    "Booming Games183", "Betsoft Gaming197", "Bulletproof15", "Clawbuster19", "Eagaming100", "Elcasino2", "Endorphina183", "Evolution419", "Evoplay Entertainment231", "Eyecon65", "Ezugi79", "Fazi230",
+    "Felix Gaming33", "Fugaso76", "GameArt143", "Gamebeat40", "Gamevy3", "Gamzix54", "Goldenhero15", "Habanero232", "High 5275", "Hotrisegames2", "Hungrybear7", "ISoftBet219", "Jelly11", "KA Gaming788",
+    "Lucky69", "Luckystreak10", "Mancala Gaming71", "Mascot113", "Mplay18", "Netent205", "Nolimit104", "Nucleus Gaming133", "Onlyplay108", "Orbital Gaming16", "Peter And Sons25", "Platipus138",
+    "Platipuslive2", "Play'n GO378", "Playson85", "Playtech421", "Popiplay51", "Pragmatic Play465", "Pragmatic Play Live332", "Push Gaming47", "Games Global1k+", "Quickspin114", "Red Tiger Gaming292",
+    "Reelplay53", "Reelweb1", "Reevo55", "Reflexgaming24", "Relax Gaming226", "Retrogaming70", "Slotopia43", "SmartSoft41", "Spinon9", "Spinomenal485", "Spribe10", "Swintt149", "TaDa Gaming153",
+    "Thunderkick78", "Tom Horn87", "TrueLab18", "Turbogames36", "VoltEnt272", "Tvbet11", "Winfast21", "Winfinity17", "Yggdrasil138"]
