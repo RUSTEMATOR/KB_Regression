@@ -2,7 +2,7 @@ import {Page} from "@playwright/test";
 import Header from "../../Components/Header";
 
 export default class BasePage {
-    private page: Page
+    readonly page: Page
     private welcomePageHeader: Header
 
   constructor(page: Page) {
