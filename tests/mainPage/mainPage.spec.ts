@@ -1,11 +1,13 @@
-import test, {expect} from '@playwright/test'
+import test, {expect, Locator} from '@playwright/test'
 import MainPage from "../../src/PO/MainPage/MainPage";
 import {links} from "../../src/Data/Links/Links"
 import {providersIE} from "../../src/Data/Providers/Providers";
 import {qase} from "playwright-qase-reporter";
+import {IGameCategories} from "../../src/Interfaces/gameCategories";
 
 test.describe('Main page', () => {
     let mainPage: MainPage
+    let gameCategories: IGameCategories
 
     // test.beforeAll(async ({page}) => {
     //
@@ -17,12 +19,14 @@ test.describe('Main page', () => {
     test.beforeEach(async ({page}) => {
         mainPage = new MainPage(page)
         await mainPage.navTo(links.Main)
+        gameCategories = mainPage.gameCategories
+
 
     })
 
 
 
-    test.skip(`Check "All providers" dropdown`, async () => {
+    test(`Check "All providers" dropdown`, async () => {
 
         await test.step('Click on the "All providers" dropdown and check provider names', async () => {
             const providers = await mainPage.getAllProviders()
@@ -46,13 +50,36 @@ test.describe('Main page', () => {
 
                 await mainPage.clickOnProvider(i)
 
-                qase.comment(`Clicked on ${providerName}\n\n`)
 
-                const categoryName = await mainPage.getCategoryTitleName()
-                console.log(categoryName)
+            })
 
-                expect(categoryName).toEqual(providerName)
+            await test.step('Check number of games in the provider category', async () => {
+                await mainPage.sleep(800)
+                const numberOfGames = await mainPage.getNumberOfGames()
+
+                expect(numberOfGames).toBeGreaterThan(0)
             })
         })
     }
+
+
+    //7 tests
+    test(`Check game category slider functionality`, async () => {
+        for (let [categoryName, values] of Object.entries(gameCategories)){
+            await test.step(`Check ${categoryName} category`, async () => {
+                await mainPage.openGameCategory(values.locator)
+                await mainPage.sleep(800)
+                const numberOfGames = await mainPage.getNumberOfGames()
+                const categoryTitle = await mainPage.getCategoryTitleName()
+
+                expect.soft(numberOfGames).toBeGreaterThan(0)
+                expect.soft(categoryTitle).toMatch(values.title)
+
+            })
+        }
+    })
+
+    test('Check Slots Subcategories', async() => {
+
+    })
 })
