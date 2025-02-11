@@ -2,6 +2,7 @@ import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 import {IGameCategories} from "../../Interfaces/gameCategories";
 import ICategoriesDropdowns from "../../Interfaces/CategoriesDropdowns";
+import CategoryDropdown from "./Component/CategoryDropdown";
 
 export default class MainPage extends BasePage {
     private mainPage: Page
@@ -110,8 +111,9 @@ export default class MainPage extends BasePage {
         await gameCategory.click()
     }
 
-    async clickOn(element: string){
+    async clickOnCategoryDropdown(element: string){
         await this.page.locator(element).nth(2).click()
+        return new CategoryDropdown(this.page)
     }
     async getCategoryTitleName(): Promise<string>{
         return await this.categoryTitle.innerText()

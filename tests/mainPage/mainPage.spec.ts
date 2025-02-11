@@ -4,7 +4,7 @@ import {links} from "../../src/Data/Links/Links"
 import {providersIE} from "../../src/Data/Providers/Providers";
 import {qase} from "playwright-qase-reporter";
 import {IGameCategories} from "../../src/Interfaces/gameCategories";
-import {CATEGORY_DROPDOWN_LOCATORS} from "../../src/Constants/CategoryDropdownsLocators";
+import {CATEGORY_DROPDOWN_PARAMS} from "../../src/Constants/CategoryDropdownsLocators";
 
 test.describe('Main page', () => {
     let mainPage: MainPage
@@ -80,15 +80,21 @@ test.describe('Main page', () => {
         }
     })
 
-    for (const [categoryName, dropdownLocator] of Object.entries(CATEGORY_DROPDOWN_LOCATORS)) {
+    for (const [categoryName, params] of Object.entries(CATEGORY_DROPDOWN_PARAMS) as [string, {locator: string, expectedResult: Array<string>}][]) {
         test.only(`Check ${categoryName} Subcategories`, async () => {
 
-            await test.step(`Check ${categoryName} dropdown`, async () => {
+            await test.step(`Open ${categoryName} dropdown`, async () => {
 
-                await mainPage.clickOn(dropdownLocator)
-                await mainPage.sleep(8000)
+                const gameDropdown = await mainPage.clickOnCategoryDropdown(params.locator)
+
+                const subCategories = await gameDropdown.getSubcategories()
+
+                await mainPage.sleep(300)
+
+                expect(subCategories).toEqual(params.expectedResult)
+
+
             })
-
         })
     }
 })

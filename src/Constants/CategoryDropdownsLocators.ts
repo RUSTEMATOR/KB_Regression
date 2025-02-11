@@ -1,8 +1,16 @@
-import ICategoriesDropdowns from "../Interfaces/CategoriesDropdowns";
-import {Page} from "@playwright/test";
+import {ICategoriesDropdowns} from "../Interfaces/CategoriesDropdowns";
 
-export const CATEGORY_DROPDOWN_LOCATORS: ICategoriesDropdowns = {
-        Slots: '#slots_category + .game-category-helper__btn',
-        Live: '#live_category + .game-category-helper__btn',
-        Table: '#table_games_category + .game-category-helper__btn'
+export const CATEGORY_DROPDOWN_PARAMS: ICategoriesDropdowns = {
+        Slots: {
+                locator: '#slots_category + .game-category-helper__btn',
+                expectedResult: ['Accumulating', 'Bonus buy', 'Megaways', 'Crash', 'Book', 'Exclusive']
+        },
+        Live: {
+                locator: '#live_category + .game-category-helper__btn',
+                expectedResult: ['Live blackjack', 'Live roulette', 'Live baccarat', 'Live poker']
+        },
+        Table: {
+                locator: '#table_games_category +.game-category-helper__btn',
+                expectedResult: ['Online roulette', 'Online blackjack', 'Online baccarat']
+        },
 }

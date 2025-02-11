@@ -73,7 +73,7 @@ export default class CategoryDropdown {
             const arrayOfCategoryNames = []
                 for (let element of arrayOfElements){
                     let categoryName = (element as HTMLElement).innerText
-                    arrayOfCategoryNames.push(categoryName)
+                    arrayOfCategoryNames.push(categoryName.trim())
             }
 
             return arrayOfCategoryNames

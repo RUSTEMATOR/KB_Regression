@@ -1,8 +1,10 @@
 import {Locator, Page} from "@playwright/test";
 
-
-export default interface ICategoriesDropdowns {
-    [key: string]: string
-
+export interface ICategoriesDropdowns {
+    [key: string]: {
+        locator: string;
+        expectedResult: Array<string>;
+    };
 }
+
 
