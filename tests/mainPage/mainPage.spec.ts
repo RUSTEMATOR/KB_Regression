@@ -4,6 +4,7 @@ import {links} from "../../src/Data/Links/Links"
 import {providersIE} from "../../src/Data/Providers/Providers";
 import {qase} from "playwright-qase-reporter";
 import {IGameCategories} from "../../src/Interfaces/gameCategories";
+import {CATEGORY_DROPDOWN_LOCATORS} from "../../src/Constants/CategoryDropdownsLocators";
 
 test.describe('Main page', () => {
     let mainPage: MainPage
@@ -79,7 +80,15 @@ test.describe('Main page', () => {
         }
     })
 
-    test('Check Slots Subcategories', async() => {
+    for (const [categoryName, dropdownLocator] of Object.entries(CATEGORY_DROPDOWN_LOCATORS)) {
+        test.only(`Check ${categoryName} Subcategories`, async () => {
 
-    })
+            await test.step(`Check ${categoryName} dropdown`, async () => {
+
+                await mainPage.clickOn(dropdownLocator)
+                await mainPage.sleep(8000)
+            })
+
+        })
+    }
 })

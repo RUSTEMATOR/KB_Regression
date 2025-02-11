@@ -2,6 +2,7 @@ import {Page} from "@playwright/test";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import SidebarMenu from "../../Components/SidebarMenu";
+import CategoryDropdown from "../MainPage/Component/CategoryDropdown";
 
 export default class BasePage {
   readonly page: Page
@@ -9,6 +10,7 @@ export default class BasePage {
   private header: Header
   private footer: Footer
   private sideBarMenu: SidebarMenu
+  private categoryDropdown: CategoryDropdown
 
   constructor(page: Page) {
     this.page = page;
@@ -17,6 +19,7 @@ export default class BasePage {
     this.header = new Header(this.page)
     this.footer = new Footer(this.page)
     this.sideBarMenu = new SidebarMenu(this.page)
+    this.categoryDropdown = new CategoryDropdown(this.page)
   }
 
   async navTo(url: string): Promise<void> {

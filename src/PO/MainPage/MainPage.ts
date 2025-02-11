@@ -1,6 +1,7 @@
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 import {IGameCategories} from "../../Interfaces/gameCategories";
+import ICategoriesDropdowns from "../../Interfaces/CategoriesDropdowns";
 
 export default class MainPage extends BasePage {
     private mainPage: Page
@@ -30,6 +31,8 @@ export default class MainPage extends BasePage {
     private recentGamesCategory: Locator
     private gameItem: Locator
     public gameCategories: IGameCategories
+
+    private subCategoriesDropdown: (category: Locator) => Locator
     private provider: (index: number) => Locator
     private showMoreButton: (index: number) => Locator
 
@@ -97,7 +100,7 @@ export default class MainPage extends BasePage {
             }
         }
 
-        this.subCategoriesDropdown = (category) => page.locator(`${category} + .game-category-helper__btn}`)
+        this.subCategoriesDropdown = (category: Locator) => category.locator(`.game-category-helper__btn`)
         this.provider = (index) => page.locator(`#games-page-providers-filter-item-${index}`)
         this.showMoreButton = (index) => page.locator(`.home-slider__top .home-slider__see-more-btn:nth-of-type(${index})`)
     }
@@ -107,6 +110,9 @@ export default class MainPage extends BasePage {
         await gameCategory.click()
     }
 
+    async clickOn(element: string){
+        await this.page.locator(element).nth(2).click()
+    }
     async getCategoryTitleName(): Promise<string>{
         return await this.categoryTitle.innerText()
     }
@@ -148,6 +154,11 @@ export default class MainPage extends BasePage {
 
     async getNumberOfGames(): Promise<number>{
         return await this.gameItem.count()
+    }
+
+    async openSubcategory(category: Locator): Promise<void> {
+        await this.subCategoriesDropdown(category).click()
+        // await subcategory.click()
     }
 
 
@@ -231,4 +242,5 @@ export default class MainPage extends BasePage {
     get recentGames(): Locator {
         return this.recentGamesCategory
     }
+
 }
