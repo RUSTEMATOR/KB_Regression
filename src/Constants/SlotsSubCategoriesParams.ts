@@ -1,0 +1,1 @@
+export const SLOTS_CATEGORIES_ARRAY: Array<string> = ['Accumulating', 'Bonus buy', 'Megaways', 'Crash', 'Book', 'Exclusive']
