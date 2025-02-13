@@ -23,6 +23,8 @@ export default class CategoryDropdown {
     protected slotsCategories: Array<Locator>
     protected tableCategories: Array<Locator>
 
+    private subcategory: Locator
+
     constructor(page: Page) {
         this.page = page;
 
@@ -41,6 +43,8 @@ export default class CategoryDropdown {
         this.onlineRoulette = page.locator('#table_online_roulette')
         this.onlineBlackJack = page.locator('#table_online_blackjack')
         this.onlineBaccarat = page.locator('#table_online_baccarat')
+
+        this.subcategory = page.locator('.top-games-menu__link')
 
         this.slotsCategories = [
             this.accumulatingCategory,
@@ -78,5 +82,9 @@ export default class CategoryDropdown {
 
             return arrayOfCategoryNames
         })
+    }
+
+    async selectSubcategory(subcategory: string): Promise<void>{
+        await this.subcategory.filter({hasText: subcategory}).click()
     }
 }

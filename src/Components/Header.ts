@@ -1,5 +1,6 @@
 import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
+import SignInModal from "../PO/MainPage/Component/SignInModal";
 
 export default class Header extends BaseComponent {
     private header: Page
@@ -45,8 +46,9 @@ export default class Header extends BaseComponent {
         await this.createAccountButton.click()
     }
 
-    async clickSignIn(): Promise<void> {
+    async clickSignIn(): Promise<SignInModal> {
         await this.signInButton.click()
+        return new SignInModal(this.header)
     }
 
     async openLangDropdown(): Promise<void> {

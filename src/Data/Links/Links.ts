@@ -1,8 +1,9 @@
 interface ILinks {
-    [key: string ]: string
+    Main: string,
+    Promo: string,
 }
 
-export const links: ILinks = {
+export const LINKS: ILinks = {
      Main: "/",
-
+     Promo: "https://www.kingbillycasino.com/promotions",
 }
