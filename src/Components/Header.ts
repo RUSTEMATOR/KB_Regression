@@ -1,6 +1,7 @@
 import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 import SignInModal from "../PO/MainPage/Component/SignInModal";
+import {text} from "node:stream/consumers";
 
 export default class Header extends BaseComponent {
     private header: Page
@@ -11,6 +12,10 @@ export default class Header extends BaseComponent {
     private createAccountButton: Locator
     private signInButton: Locator
     private langDropdown: Locator
+    private filterButton: Locator
+    private filterProviderButton: Locator
+    private filterCategoriesButton: Locator
+
     private langDropdownItem: (language: string) => Locator
 
 
@@ -26,6 +31,10 @@ export default class Header extends BaseComponent {
         this.createAccountButton = page.locator('#header_create_acc_btn')
         this.signInButton = page.locator('#header_log_in_btn')
         this.langDropdown = page.locator('#lang_dropdown')
+        this.filterButton = page.locator('#filter_btn')
+        this.filterProviderButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Provider$/ })
+        this.filterCategoriesButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Category$/ })
+
         this.langDropdownItem = (language: string) => page.locator('.select-language-icons-with-code__link').filter({hasText: language})
     }
 
@@ -59,7 +68,56 @@ export default class Header extends BaseComponent {
         await this.openLangDropdown()
         await this.langDropdownItem(language).click()
     }
+
+    async clickFilterButton(): Promise<void> {
+        await this.filterButton.click()
+    }
+
+    async clickFilterProviderButton(): Promise<void> {
+        await this.filterProviderButton.click()
+    }
+
+    async clickFilterCategoriesButton(): Promise<void> {
+        await this.filterCategoriesButton.click()
+    }
+
+    async getListOfFilterProviders(): Promise<Array<string>>{
+
+        return await this.page.evaluate(() => {
+            const filterProviders = document.querySelectorAll('.games-search-filter-block__header--active + div.collapse.collapse--entered  .games-search-filter-item ');
+            if (!filterProviders){
+                throw new Error('Providers not found in the filter, something went wrong, better debug')
+            }
+
+            const arrayOfHTML = Array.from(filterProviders)
+
+            const textArray:Array<string> = []
+
+            for (let element of arrayOfHTML){
+                const text = (element as HTMLElement).innerText
+                textArray.push(text)
+            }
+            return textArray
+        })
+    }
+
+    async getListOfFilterCategories(): Promise<Array<string>> {
+        return await this.page.evaluate(() => {
+            const filterCategories = document.querySelectorAll('.games-search-filter-block__header--active + div.collapse.collapse--entered .games-search-filter-block__values .games-search-filter-item');
+                if (!filterCategories){
+                    throw new Error('Providers not found in the filter, something went wrong, better debug')
+                }
+
+                const arrayOfHTML = Array.from(filterCategories)
+
+                const textArray:Array<string> = []
+
+                for (let element of arrayOfHTML){
+                    const text = (element as HTMLElement).innerText
+                    textArray.push(text)
+                }
+                return textArray
+        })
+    }
 }
 
-
-"info@kte.kmda.gov.ua"

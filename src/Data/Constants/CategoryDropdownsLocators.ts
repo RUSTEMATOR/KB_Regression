@@ -1,4 +1,4 @@
-import {ICategoriesDropdowns} from "../Interfaces/CategoriesDropdowns";
+import {ICategoriesDropdowns} from "../../Interfaces/CategoriesDropdowns";
 
 export const CATEGORY_DROPDOWN_PARAMS: ICategoriesDropdowns = {
         Slots: {

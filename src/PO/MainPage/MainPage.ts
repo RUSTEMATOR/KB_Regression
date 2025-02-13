@@ -1,6 +1,7 @@
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 import {IGameCategories} from "../../Interfaces/gameCategories";
+import SidebarMenu from "../../Components/SidebarMenu";
 
 
 export default class MainPage extends BasePage {
@@ -37,6 +38,7 @@ export default class MainPage extends BasePage {
     private gameItemSelector: string
     private getItButton: Locator
     private promoModal: Locator
+    private sidebarButton: Locator
 
 
 
@@ -80,6 +82,7 @@ export default class MainPage extends BasePage {
         this.promoShowMoreButton = page.locator('#main_pg_promo_show_more')
         this.getItButton = page.locator('.banner-slide__button ')
         this.promoModal = page.locator('.promo-modal__container')
+        this.sidebarButton = page.locator('#burger_menu_btn')
 
         this.gameCategories = {
             // this.lobby,
@@ -191,11 +194,16 @@ export default class MainPage extends BasePage {
         await this.getItButton.nth(1).click()
     }
 
+    async clickOnSidebarButton(): Promise<SidebarMenu> {
+        await this.sidebarButton.click()
+        return new SidebarMenu(this.page)
+    }
+
+    //accessors
     get getPromoModal(): Locator {
         return this.promoModal
     }
 
-    //accessors
     get lobby(): Locator {
         return this.lobbyCategory
     }

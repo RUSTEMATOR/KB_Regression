@@ -1,0 +1,2 @@
+export const CATEGORIES_FILTER = ['All', 'New', 'Top', 'Popular', 'Jackpots', 'Slots', 'Live', 'Bonus buy slots', 'Megaways slots', 'Crash slots', 'King Billy Slots', 'Books Slots',
+    'Live poker', 'Live blackjack', 'Live roulette', 'Live baccarat']

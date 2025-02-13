@@ -1,5 +1,5 @@
 export default class BaseComponent {
-    private page: any;
+    public page: any;
     constructor(page: any) {
         this.page = page;
     }
