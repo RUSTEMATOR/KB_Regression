@@ -1,8 +1,7 @@
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 import {IGameCategories} from "../../Interfaces/gameCategories";
-import ICategoriesDropdowns from "../../Interfaces/CategoriesDropdowns";
-import CategoryDropdown from "./Component/CategoryDropdown";
+
 
 export default class MainPage extends BasePage {
     private mainPage: Page
@@ -30,8 +29,16 @@ export default class MainPage extends BasePage {
     private tableGamesCategory: Locator
     private tableOnlineRoulette: Locator
     private recentGamesCategory: Locator
-    private gameItem: Locator
+    protected gameItem: Locator
     public gameCategories: IGameCategories
+    private topGamesShowMoreButton: Locator
+    private newGamesShowMoreButton: Locator
+    private promoShowMoreButton: Locator
+    private gameItemSelector: string
+    private getItButton: Locator
+    private promoModal: Locator
+
+
 
     private subCategoriesDropdown: (category: Locator) => Locator
     private provider: (index: number) => Locator
@@ -68,6 +75,11 @@ export default class MainPage extends BasePage {
         this.tableOnlineRoulette = page.locator('#table_online_roulette')
         this.recentGamesCategory = page.locator('#recent_games_category')
         this.gameItem = page.locator('.catalog__item')
+        this.topGamesShowMoreButton = page.locator('#top_show_more_btn')
+        this.newGamesShowMoreButton = page.locator('#new_show_more_btn')
+        this.promoShowMoreButton = page.locator('#main_pg_promo_show_more')
+        this.getItButton = page.locator('.banner-slide__button ')
+        this.promoModal = page.locator('.promo-modal__container')
 
         this.gameCategories = {
             // this.lobby,
@@ -101,6 +113,8 @@ export default class MainPage extends BasePage {
             }
         }
 
+        this.gameItemSelector = '.catalog__item'
+
         this.subCategoriesDropdown = (category: Locator) => category.locator(`.game-category-helper__btn`)
         this.provider = (index) => page.locator(`#games-page-providers-filter-item-${index}`)
         this.showMoreButton = (index) => page.locator(`.home-slider__top .home-slider__see-more-btn:nth-of-type(${index})`)
@@ -113,7 +127,6 @@ export default class MainPage extends BasePage {
 
     async clickOnCategoryDropdown(element: string){
         await this.page.locator(element).nth(2).click()
-        return new CategoryDropdown(this.page)
     }
     async getCategoryTitleName(): Promise<string>{
         return await this.categoryTitle.innerText()
@@ -160,9 +173,27 @@ export default class MainPage extends BasePage {
 
     async openSubcategory(category: Locator): Promise<void> {
         await this.subCategoriesDropdown(category).click()
-        // await subcategory.click()
     }
 
+    async clickOnTopShowMoreButton(): Promise<void> {
+        await this.topGamesShowMoreButton.click()
+    }
+
+    async clickOnNewShowMoreButton(): Promise<void> {
+        await this.newGamesShowMoreButton.click()
+    }
+
+    async clickOnPromoShowMoreButton(): Promise<void> {
+        await this.promoShowMoreButton.click()
+    }
+
+    async clickOnGetItButton(): Promise<void> {
+        await this.getItButton.nth(1).click()
+    }
+
+    get getPromoModal(): Locator {
+        return this.promoModal
+    }
 
     //accessors
     get lobby(): Locator {
@@ -243,6 +274,14 @@ export default class MainPage extends BasePage {
 
     get recentGames(): Locator {
         return this.recentGamesCategory
+    }
+
+    get getGameItemSelector(): string {
+        return this.gameItemSelector
+    }
+
+    get getPromoShowMoreButton(): Locator {
+        return this.promoShowMoreButton
     }
 
 }
