@@ -1,5 +1,6 @@
 import BaseComponent from "../../../Components/BaseComponent";
 import {Locator, Page} from "@playwright/test";
+import SignInModal from "./SignInModal";
 
 export default class SignUpModal extends BaseComponent{
     private emailInput: Locator
@@ -15,6 +16,7 @@ export default class SignUpModal extends BaseComponent{
     private signInLink: Locator
     private googleRegBtn: Locator
     private closeButton: Locator
+    private signUpModal: Locator
 
     constructor(page: Page) {
         super(page);
@@ -32,6 +34,7 @@ export default class SignUpModal extends BaseComponent{
         this.signInLink = page.locator('#reg_modal_sign_in_btn')
         this.googleRegBtn = page.locator('.auth-providers__icon').filter({hasText: 'Continue with Google'})
         this.closeButton = page.locator('#sign-up .modal__close-button')
+        this.signUpModal = page.locator('.modal__content > .registration-form')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -68,8 +71,9 @@ export default class SignUpModal extends BaseComponent{
         await this.creacteAccountButton.click()
     }
 
-    async clickSignInLink(): Promise<void> {
+    async clickSignInLink(): Promise<SignInModal> {
         await this.signInLink.click()
+        return new SignInModal(this.page)
     }
 
     async clickGoogleRegBtn(): Promise<void> {
@@ -78,5 +82,36 @@ export default class SignUpModal extends BaseComponent{
     
     async closeSignUpModal(): Promise<void> {
         await this.closeButton.click()
+    }
+
+    async getCurrenciesFromDropdown(): Promise<Array<string>> {
+        await this.currencyDropdown.click()
+
+        return await this.page.evaluate(() => {
+        const selectList = document.querySelector('.select__list');
+        if (!selectList) {
+            throw new Error('Select list not found');
+        }
+
+        const children = selectList.children;
+        const arrayChildren = Array.from(children);
+
+        const array: string[] = [];
+        for (const child of arrayChildren) {
+            const text = (child as HTMLElement).innerText;
+            array.push(text);
+        }
+
+        return array;
+        })
+    }
+
+
+    get getSignUpModal() {
+        return this.signUpModal;
+    }
+
+    get getEmailInput() {
+        return this.emailInput;
     }
 }

@@ -2,6 +2,7 @@ import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 import SignInModal from "../PO/MainPage/Component/SignInModal";
 import {text} from "node:stream/consumers";
+import SignUpModal from "../PO/MainPage/Component/SignUpModal";
 
 export default class Header extends BaseComponent {
     private header: Page
@@ -51,8 +52,9 @@ export default class Header extends BaseComponent {
         await this.searchField.fill(searchTerm)
     }
 
-    async clickCreateAccount(): Promise<void> {
+    async clickCreateAccount(): Promise<SignUpModal> {
         await this.createAccountButton.click()
+        return new SignUpModal(this.page)
     }
 
     async clickSignIn(): Promise<SignInModal> {
