@@ -45,6 +45,11 @@ export default class BasePage {
     await this.acceptCookiesButton.click()
   }
 
+  async waitForSelector(locator: Locator): Promise<void>{
+    const selector = await locator.waitFor({state: "visible"})
+    console.log(selector)
+  }
+
   get getScrollUpButton(): Locator {
     return this.scrollUpButton
   }
