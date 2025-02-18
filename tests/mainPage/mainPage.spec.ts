@@ -1,11 +1,13 @@
 import test, {expect} from '@playwright/test'
 import MainPage from "../../src/PO/MainPage/MainPage";
 import {LINKS} from "../../src/Data/Links/Links"
-import {providersIE} from "../../src/Data/Providers/Providers";
+import {providersIE, providersIEFilter} from "../../src/Data/Providers/Providers";
 import {qase} from "playwright-qase-reporter";
 import {IGameCategories} from "../../src/Interfaces/gameCategories";
-import {CATEGORY_DROPDOWN_PARAMS} from "../../src/Constants/CategoryDropdownsLocators";
+import {CATEGORY_DROPDOWN_PARAMS} from "../../src/Data/Constants/CategoryDropdownsLocators";
 import {MAIN_USER} from "../../src/Data/Users/mainUser";
+import SidebarMenu from "../../src/Components/SidebarMenu";
+import {CATEGORIES_FILTER} from "../../src/Data/Categories/Categories";
 
 
 
@@ -213,6 +215,85 @@ test.describe('Main page', () => {
         await expect(mainPage.getPromoModal).toBeVisible()
     })
 
+    test('Check Burger menu functionality', async () => {
+
+        let sidebar: SidebarMenu
+        await test.step('Click on the burger menu', async () => {
+            sidebar = await mainPage.clickOnSidebarButton()
+        })
+
+        await test.step('Check user info block to be visible', async () => {
+            await sidebar.page.waitForTimeout(5000)
+            await expect.soft(sidebar.getUserInfoBlock).toBeVisible()
+        })
+
+        await test.step('Check compoints block to be visible', async () => {
+            await expect.soft(sidebar.getCompointsBlock).toBeVisible()
+        })
+
+        await test.step('Check promo button to be visible', async () => {
+            await expect.soft(sidebar.getPromotionsTab).toBeVisible()
+        })
+
+        // await test.step('Check tournaments button to be visible', async () => {
+        //     await expect(sidebar.getTournamentsTab).toBeVisible()
+        // })
+
+        await test.step('Check VIP button to be visible', async () => {
+            await expect.soft(sidebar.getVipTab).toBeVisible()
+        })
+
+        await test.step('Check banking button to be visible', async () => {
+            await expect.soft(sidebar.getBankingTab).toBeVisible()
+        })
+
+        await test.step('Check legend button to be visible', async () => {
+            await expect.soft(sidebar.getLegendTab).toBeVisible()
+        })
+
+        await test.step('Check app button to be visible', async () => {
+            await expect.soft(sidebar.getAppBtn).toBeVisible()
+        })
+
+        await test.step('Visual test of the sidebar', async () => {
+            await sidebar.page.setViewportSize({width: 1010, height:870})
+            await expect.soft(sidebar.getSidebarMenu).toHaveScreenshot()
+        })
+    })
+
+    test('Check game filter provider dropdown', async () => {
+        await test.step('Click on filter button', async () => {
+            await mainPage.header.clickFilterButton()
+        })
+
+        await test.step('Open provider dropdown', async () => {
+            await mainPage.header.clickFilterProviderButton()
+            await mainPage.sleep(1000)
+        })
+
+        await test.step('Check provider names', async () => {
+            const providersArray = await mainPage.header.getListOfFilterProviders()
+
+            expect(providersArray).toEqual(providersIEFilter)
+        })
+    })
+
+    test.only('Check game filter category dropdown', async () => {
+        await test.step('Click on filter button', async () => {
+            await mainPage.header.clickFilterButton()
+        })
+
+        await test.step('Open category dropdown', async () => {
+            await mainPage.header.clickFilterCategoriesButton()
+            await mainPage.sleep(1000)
+        })
+
+        await test.step('Check category names', async () => {
+            const categoriesArray = await mainPage.header.getListOfFilterCategories()
+
+            expect(categoriesArray).toEqual(CATEGORIES_FILTER)
+        })
+    })
 
 })
 
