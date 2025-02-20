@@ -17,6 +17,9 @@ export default class SignUpModal extends BaseComponent{
     private googleRegBtn: Locator
     private closeButton: Locator
     private signUpModal: Locator
+    private passwordStateBar: Locator
+    private stateText: Locator
+    private passwordTip: Locator
 
     constructor(page: Page) {
         super(page);
@@ -35,6 +38,9 @@ export default class SignUpModal extends BaseComponent{
         this.googleRegBtn = page.locator('.auth-providers__icon').filter({hasText: 'Continue with Google'})
         this.closeButton = page.locator('#sign-up .modal__close-button')
         this.signUpModal = page.locator('.modal__content > .registration-form')
+        this.passwordStateBar = page.locator('#modal-root .password-input__strength-progress')
+        this.stateText = page.locator('#modal-root .password-input__strength-description')
+        this.passwordTip = page.locator('.registration-dynamic-form__element--password_single .form-element__error')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -106,6 +112,22 @@ export default class SignUpModal extends BaseComponent{
         })
     }
 
+    async getPassowrdStateText(): Promise<string> {
+        const isVisible = await this.passwordTip.isVisible()
+
+        let text1: string | null = ''
+        let text2: string | null = ''
+        if (isVisible){
+             text1 = await this.stateText.textContent()
+             text2 = await this.passwordTip.textContent()
+        } else {
+             text1 = await this.stateText.textContent()
+        }
+
+
+        return `${text1} ${text2}`
+    }
+
 
     get getSignUpModal() {
         return this.signUpModal;
@@ -113,5 +135,21 @@ export default class SignUpModal extends BaseComponent{
 
     get getEmailInput() {
         return this.emailInput;
+    }
+
+    get getPasswordInput() {
+        return this.passwordInput;
+    }
+
+    get getPasswordStateBar() {
+        return this.passwordStateBar;
+    }
+
+    get getStateText() {
+        return this.stateText;
+    }
+
+    get getPasswordTip() {
+        return this.passwordTip
     }
 }

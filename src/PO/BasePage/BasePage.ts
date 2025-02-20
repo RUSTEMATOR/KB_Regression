@@ -46,14 +46,10 @@ export default class BasePage {
   }
 
   async waitForSelector(locator: Locator): Promise<void>{
-    const selector = await locator.waitFor({state: "visible"})
-    console.log(selector)
+    await locator.waitFor({state: "visible"})
   }
 
   get getScrollUpButton(): Locator {
     return this.scrollUpButton
   }
-
-
-
 }

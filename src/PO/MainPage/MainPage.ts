@@ -291,5 +291,4 @@ export default class MainPage extends BasePage {
     get getPromoShowMoreButton(): Locator {
         return this.promoShowMoreButton
     }
-
 }

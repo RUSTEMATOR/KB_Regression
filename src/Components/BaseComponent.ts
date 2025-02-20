@@ -1,6 +1,8 @@
+import {Page} from "@playwright/test";
+
 export default class BaseComponent {
-    public page: any;
-    constructor(page: any) {
+    public page: Page;
+    constructor(page: Page) {
         this.page = page;
     }
 }
