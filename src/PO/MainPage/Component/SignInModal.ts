@@ -8,6 +8,7 @@ export default class SignInModal extends BaseComponent {
     private forgetPasswordLink: Locator
     private loginWithGoogleButton: Locator
     private createAccountButton: Locator
+    private signInModalForm: Locator
 
 
     constructor(page: Page) {
@@ -19,6 +20,7 @@ export default class SignInModal extends BaseComponent {
         this.forgetPasswordLink = page.locator('#forgot_pass_btn')
         this.loginWithGoogleButton = page.locator('.login-form__social .auth-providers__icon').filter({hasText: 'Continue with Google'})
         this.createAccountButton = page.locator('#login_modal_reg_btn')
+        this.signInModalForm = page.locator('.sign-in-page')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -43,5 +45,9 @@ export default class SignInModal extends BaseComponent {
 
     async clickCreateAccount(): Promise<void> {
         await this.createAccountButton.click()
+    }
+
+    get getSignInModalForm(): Locator {
+        return this.signInModalForm;
     }
 }

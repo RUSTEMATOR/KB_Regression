@@ -2,9 +2,9 @@ import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 import SignInModal from "../PO/MainPage/Component/SignInModal";
 import {text} from "node:stream/consumers";
+import SignUpModal from "../PO/MainPage/Component/SignUpModal";
 
 export default class Header extends BaseComponent {
-    private header: Page
     private burgerMenuOpenButton: Locator
     private headerLogo: Locator
     private search: Locator
@@ -23,7 +23,6 @@ export default class Header extends BaseComponent {
     constructor(page: Page) {
         super(page);
 
-        this.header = page;
         this.burgerMenuOpenButton = page.locator('#burger_menu_btn')
         this.headerLogo = page.locator('.header__logo--desktop')
         this.search = page.locator('.header__search')
@@ -51,13 +50,14 @@ export default class Header extends BaseComponent {
         await this.searchField.fill(searchTerm)
     }
 
-    async clickCreateAccount(): Promise<void> {
+    async clickCreateAccount(): Promise<SignUpModal> {
         await this.createAccountButton.click()
+        return new SignUpModal(this.page)
     }
 
     async clickSignIn(): Promise<SignInModal> {
         await this.signInButton.click()
-        return new SignInModal(this.header)
+        return new SignInModal(this.page)
     }
 
     async openLangDropdown(): Promise<void> {
