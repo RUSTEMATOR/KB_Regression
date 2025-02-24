@@ -2,6 +2,7 @@ import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 import {IGameCategories} from "../../Interfaces/gameCategories";
 import SidebarMenu from "../../Components/SidebarMenu";
+import {DepModal} from "../../Components/DepModal";
 
 
 export default class MainPage extends BasePage {
@@ -39,6 +40,8 @@ export default class MainPage extends BasePage {
     private getItButton: Locator
     private promoModal: Locator
     private sidebarButton: Locator
+    private seccessRegPopUp: Locator
+    private depositAndPlayPostReg: Locator
 
 
 
@@ -83,6 +86,8 @@ export default class MainPage extends BasePage {
         this.getItButton = page.locator('.banner-slide__button ')
         this.promoModal = page.locator('.promo-modal__container')
         this.sidebarButton = page.locator('#burger_menu_btn')
+        this.seccessRegPopUp = page.locator('.modal__content')
+        this.depositAndPlayPostReg = page.locator('#deposit_play_btn')
 
         this.gameCategories = {
             // this.lobby,
@@ -199,6 +204,11 @@ export default class MainPage extends BasePage {
         return new SidebarMenu(this.page)
     }
 
+    async clickOnDepositAndPlayPostReg(): Promise<DepModal> {
+        await this.depositAndPlayPostReg.click()
+        return new DepModal(this.page)
+    }
+
     //accessors
     get getPromoModal(): Locator {
         return this.promoModal
@@ -290,5 +300,9 @@ export default class MainPage extends BasePage {
 
     get getPromoShowMoreButton(): Locator {
         return this.promoShowMoreButton
+    }
+
+    get getSuccessRegPopUp(): Locator {
+        return this.seccessRegPopUp
     }
 }

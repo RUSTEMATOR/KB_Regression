@@ -1,6 +1,7 @@
 import BaseComponent from "../../../Components/BaseComponent";
 import {Locator, Page} from "@playwright/test";
 import SignInModal from "./SignInModal";
+import PromoPage from "../../PromoPage/PromoPage";
 
 
 export default class SignUpFormSlider extends BaseComponent{
@@ -19,6 +20,8 @@ export default class SignUpFormSlider extends BaseComponent{
     private stateText: Locator
     private passwordTip: Locator
     private termsAndConditionsLink: Locator
+    private emailInputError: Locator
+    private discoverMoreButton: Locator
 
     constructor(page: Page) {
         super(page);
@@ -32,12 +35,14 @@ export default class SignUpFormSlider extends BaseComponent{
         this.promoCheckbox = page.locator('[for=\'promos_checkbox\'] > .checkbox__point')
         this.ageCheckbox = page.locator('[for=\'age_checkbox\'] > .checkbox__point')
         this.crossSaleCheckbox = page.locator('[for=\'cross_sale_checkbox\'] .checkbox__point')
-        this.creacteAccountButton = page.locator('#reg_modal_submit_btn')
+        this.creacteAccountButton = page.locator('#main_create_acc_btn')
         this.signInLink = page.locator('.registration-form-nomodal__link')
         this.passwordStateBar = page.locator('.password-input__strength-progress')
         this.stateText = page.locator('.password-input__strength-description')
         this.passwordTip = page.locator('.form-element__error')
         this.termsAndConditionsLink = page.locator('a.terms-acceptance__terms-link')
+        this.emailInputError = page.locator('.form-element__error')
+        this.discoverMoreButton = page.locator('.registration-form-nomodal__col--promo #discover_more_btn')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -78,6 +83,14 @@ export default class SignUpFormSlider extends BaseComponent{
         await this.signInLink.click()
         return new SignInModal(this.page)
     }
+
+    async createAccount({email, password}: {email: string, password: string}): Promise<void> {
+        await this.fillEmail(email)
+        await this.fillPassword(password)
+        await this.checkAgeCheckbox()
+        await this.clickCreateAccountButton()
+    }
+
 
     async clickOnTermsAndConditionsLink(): Promise<void> {
         await this.termsAndConditionsLink.click()
@@ -143,6 +156,11 @@ export default class SignUpFormSlider extends BaseComponent{
         return `${text1} ${text2}`
     }
 
+    async clickOnDiscoverMore(): Promise<PromoPage> {
+        await this.discoverMoreButton.click()
+        return new PromoPage(this.page)
+    }
+
     get getEmailInput() {
         return this.emailInput;
     }
@@ -173,5 +191,9 @@ export default class SignUpFormSlider extends BaseComponent{
 
     get getPasswordTip() {
         return this.passwordTip
+    }
+
+    get getEmailInputError() {
+        return this.emailInputError
     }
 }

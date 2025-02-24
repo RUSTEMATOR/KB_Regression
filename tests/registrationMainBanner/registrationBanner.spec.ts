@@ -8,10 +8,14 @@ import {COUNTRIES} from "../../src/Data/Constants/countries";
 import playwrightConfig from "../../playwright.config";
 import TermsAndConditions from "../../src/PO/TermsAndConditions/TermsAndConditions";
 import SignUpFormSlider from "../../src/PO/MainPage/Component/SignUpFormSlider";
+import { NEGATIVE_EMAILS} from "../../src/Data/ParametrizedData/negativeEmails/negativeEmails";
+import PromoPage from "../../src/PO/PromoPage/PromoPage";
+import Methods from "../../src/Methods/Methods";
 
 
 test.describe('Registration Modal', () => {
     let mainPage: MainPage
+    let methods: Methods
     let signUpFormSlider: SignUpFormSlider
     let termsAndConditions: TermsAndConditions
 
@@ -21,6 +25,7 @@ test.describe('Registration Modal', () => {
         mainPage = new MainPage(page)
         termsAndConditions = new TermsAndConditions(page)
         signUpFormSlider = new SignUpFormSlider(page)
+        methods = new Methods()
 
         await mainPage.navTo(LINKS.Main)
         await mainPage.clickAcceptCookies()
@@ -124,4 +129,59 @@ test.describe('Registration Modal', () => {
             await expect.soft(termsAndConditions.getDownloadPdfButton).toBeVisible()
         })
     })
+
+
+    for (let params of Object.values(NEGATIVE_EMAILS)) {
+        test(`[Negative] Check 12 restricted email formats, ${params.email}`, async () => {
+
+            await test.step(`Enter invalid email ${params.email}`, async () => {
+                await signUpFormSlider.fillEmail(params.email)
+                await signUpFormSlider.getEmailInput.blur()
+            })
+
+            await test.step('Check error of the input field', async () => {
+                await expect.soft(signUpFormSlider.getEmailInputError).toBeVisible()
+                await expect.soft(signUpFormSlider.getEmailInputError).toHaveText(params.error)
+            })
+        })
+    }
+
+    test('Check "Discover more" button on the main banner in the registration modal', async () => {
+        let promoPage: PromoPage
+
+        await test.step('Click on the "Discover more" button', async () => {
+            promoPage = await signUpFormSlider.clickOnDiscoverMore()
+        })
+
+        await test.step('Check URL of the page a user is transferred to', async () => {
+            await promoPage.getPageUrl()
+
+            expect.soft(await promoPage.getPageUrl()).toEqual(`${LINKS.Promo}`)
+        })
+
+        await test.step('Check at least one promo card is visible', async () => {
+            await promoPage.waitForSelector(promoPage.getPromoCard)
+            expect.soft(await promoPage.getPromoCardNumber()).toBeGreaterThan(promoPage.defaultPromoIndex)
+        })
+    })
+
+    test.only('Check Registration and Post reg pop-up modal', async () => {
+        const email = await methods.generateRandomEmail(3);
+
+        await test.step('Create an account', async () => {
+            await signUpFormSlider.createAccount({ email: email, password: MAIN_USER.password });
+        });
+
+        await test.step('Check post-reg pop-up', async () => {
+            await mainPage.waitForSelector(mainPage.getSuccessRegPopUp);
+            expect.soft(await mainPage.getSuccessRegPopUp.isVisible()).toBe(true);
+        })
+
+        await test.step('Click on deposit and play button', async () => {
+            const depModal = await mainPage.clickOnDepositAndPlayPostReg();
+
+            expect.soft(await mainPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.MainPageDepModal}`);
+            await expect.soft(depModal.getDepModal).toBeVisible();
+        })
+    });
 })

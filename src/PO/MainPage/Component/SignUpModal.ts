@@ -22,6 +22,7 @@ export default class SignUpModal extends BaseComponent{
     private stateText: Locator
     private passwordTip: Locator
     private termsAndConditionsLink: Locator
+    private emailInputError: Locator
 
     constructor(page: Page) {
         super(page);
@@ -44,6 +45,7 @@ export default class SignUpModal extends BaseComponent{
         this.stateText = page.locator('#modal-root .password-input__strength-description')
         this.passwordTip = page.locator('.registration-dynamic-form__element--password_single .form-element__error')
         this.termsAndConditionsLink = page.locator('#modal-root a.terms-acceptance__terms-link')
+        this.emailInputError = page.locator('#modal-root .form-element__error')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -91,6 +93,13 @@ export default class SignUpModal extends BaseComponent{
     
     async closeSignUpModal(): Promise<void> {
         await this.closeButton.click()
+    }
+
+    async createAccount({email, password}: {email: string, password: string}): Promise<void> {
+        await this.fillEmail(email)
+        await this.fillPassword(password)
+        await this.checkAgeCheckbox()
+        await this.clickCreateAccountButton()
     }
 
     async clickOnTermsAndConditionsLink(): Promise<void> {
@@ -192,5 +201,9 @@ export default class SignUpModal extends BaseComponent{
 
     get getPasswordTip() {
         return this.passwordTip
+    }
+
+    get getEmailInputError() {
+        return this.emailInputError
     }
 }

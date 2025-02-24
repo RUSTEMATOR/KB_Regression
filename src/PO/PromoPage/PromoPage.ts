@@ -3,15 +3,18 @@ import {Locator, Page} from "@playwright/test";
 
 export default class PromoPage extends BasePage{
 
+    public defaultPromoIndex: number = 2
+
     private promoTab: Locator
     private vipTab: Locator
     private tournamentsTab: Locator
     private promoCard: Locator
     private tournamentCard: Locator
-     private showMoreButton: Locator
+    private showMoreButton: Locator
     private infoButton: (index: number) => Locator
     private getItButton: (index: number) => Locator
     private tournamentShowMoreButton: (index: number) => Locator
+
 
 
     constructor(page: Page) {
@@ -59,6 +62,11 @@ export default class PromoPage extends BasePage{
 
     async openTournament(index: number): Promise<void> {
         await this.tournamentShowMoreButton(index).click()
+    }
+
+
+    get getPromoCard(): Locator {
+        return this.promoCard.first()
     }
 
 
