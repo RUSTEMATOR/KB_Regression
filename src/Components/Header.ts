@@ -13,6 +13,7 @@ export default class Header extends BaseComponent {
     private signInButton: Locator
     private langDropdown: Locator
     private filterButton: Locator
+    private depositButton: Locator
     private filterProviderButton: Locator
     private filterCategoriesButton: Locator
 
@@ -31,6 +32,7 @@ export default class Header extends BaseComponent {
         this.signInButton = page.locator('#header_log_in_btn')
         this.langDropdown = page.locator('#lang_dropdown')
         this.filterButton = page.locator('#filter_btn')
+        this.depositButton = page.locator('#header_dep_btn')
         this.filterProviderButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Provider$/ })
         this.filterCategoriesButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Category$/ })
 
@@ -118,6 +120,10 @@ export default class Header extends BaseComponent {
                 }
                 return textArray
         })
+    }
+
+    get getDepositButton(): Locator {
+        return this.depositButton
     }
 }
 

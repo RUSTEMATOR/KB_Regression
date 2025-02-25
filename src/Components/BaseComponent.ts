@@ -1,4 +1,4 @@
-import {Page} from "@playwright/test";
+import {Locator, Page} from "@playwright/test";
 
 export default class BaseComponent {
     public page: Page;
@@ -13,4 +13,8 @@ export default class BaseComponent {
     async getPageUrl(): Promise<string>{
         return this.page.url()
     }
+
+    async waitForSelector(locator: Locator): Promise<void>{
+    await locator.waitFor({state: "visible"})
+  }
 }
