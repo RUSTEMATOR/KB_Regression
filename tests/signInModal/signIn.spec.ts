@@ -104,7 +104,7 @@ test.describe('Log In', () => {
         })
     })
 
-    test.only('Check "Sign in" functionality', async () => {
+    test('Check "Sign in" functionality', async () => {
 
         await test.step('Enter valid email', async () => {
             await signInModal.fillEmail(MAIN_USER.email)
