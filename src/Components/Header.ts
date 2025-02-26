@@ -2,9 +2,9 @@ import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 import SignInModal from "../PO/MainPage/Component/SignInModal";
 import {text} from "node:stream/consumers";
+import SignUpModal from "../PO/MainPage/Component/SignUpModal";
 
 export default class Header extends BaseComponent {
-    private header: Page
     private burgerMenuOpenButton: Locator
     private headerLogo: Locator
     private search: Locator
@@ -13,6 +13,7 @@ export default class Header extends BaseComponent {
     private signInButton: Locator
     private langDropdown: Locator
     private filterButton: Locator
+    private depositButton: Locator
     private filterProviderButton: Locator
     private filterCategoriesButton: Locator
 
@@ -23,7 +24,6 @@ export default class Header extends BaseComponent {
     constructor(page: Page) {
         super(page);
 
-        this.header = page;
         this.burgerMenuOpenButton = page.locator('#burger_menu_btn')
         this.headerLogo = page.locator('.header__logo--desktop')
         this.search = page.locator('.header__search')
@@ -32,6 +32,7 @@ export default class Header extends BaseComponent {
         this.signInButton = page.locator('#header_log_in_btn')
         this.langDropdown = page.locator('#lang_dropdown')
         this.filterButton = page.locator('#filter_btn')
+        this.depositButton = page.locator('#header_dep_btn')
         this.filterProviderButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Provider$/ })
         this.filterCategoriesButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Category$/ })
 
@@ -51,13 +52,14 @@ export default class Header extends BaseComponent {
         await this.searchField.fill(searchTerm)
     }
 
-    async clickCreateAccount(): Promise<void> {
+    async clickCreateAccount(): Promise<SignUpModal> {
         await this.createAccountButton.click()
+        return new SignUpModal(this.page)
     }
 
     async clickSignIn(): Promise<SignInModal> {
         await this.signInButton.click()
-        return new SignInModal(this.header)
+        return new SignInModal(this.page)
     }
 
     async openLangDropdown(): Promise<void> {
@@ -118,6 +120,10 @@ export default class Header extends BaseComponent {
                 }
                 return textArray
         })
+    }
+
+    get getDepositButton(): Locator {
+        return this.depositButton
     }
 }
 

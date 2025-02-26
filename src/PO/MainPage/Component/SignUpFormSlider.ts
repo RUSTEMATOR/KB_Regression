@@ -1,9 +1,10 @@
 import BaseComponent from "../../../Components/BaseComponent";
 import {Locator, Page} from "@playwright/test";
 import SignInModal from "./SignInModal";
+import PromoPage from "../../PromoPage/PromoPage";
 
 
-export default class SignUpModal extends BaseComponent{
+export default class SignUpFormSlider extends BaseComponent{
     private emailInput: Locator
     private passwordInput: Locator
     private countryDropdown: Locator
@@ -15,37 +16,33 @@ export default class SignUpModal extends BaseComponent{
     private crossSaleCheckbox: Locator
     private creacteAccountButton: Locator
     private signInLink: Locator
-    private googleRegBtn: Locator
-    private closeButton: Locator
-    private signUpModal: Locator
     private passwordStateBar: Locator
     private stateText: Locator
     private passwordTip: Locator
     private termsAndConditionsLink: Locator
     private emailInputError: Locator
+    private discoverMoreButton: Locator
 
     constructor(page: Page) {
         super(page);
 
-        this.emailInput = page.locator('#reg_modal_email_input')
-        this.passwordInput = page.locator('#reg_modal_password_input')
-        this.countryDropdown = page.locator('#reg_modal_country_dropdown')
+        this.emailInput = page.locator('#main_email_input')
+        this.passwordInput = page.locator('#main_password_input')
+        this.countryDropdown = page.locator('#main_country_dropdown')
         this.countryDropdownItem = (country: string) => page.locator('#reg_modal_country_dropdown-menu .select__option').filter({hasText: country})
-        this.currencyDropdown = page.locator('#reg_modal_currency_dropdown')
-        this.currencyDropdownItem = (currency: string) => page.locator('#reg_modal_currency_dropdown .select__option').filter({hasText: currency})
-        this.promoCheckbox = page.locator('[for=\'reg_modal_promo_checkbox\'] .checkbox__point')
-        this.ageCheckbox = page.locator('[for=\'reg_modal_age_checkbox\'] .checkbox__point')
-        this.crossSaleCheckbox = page.locator('[for=\'reg_modal_cross_sale_checkbox\'] .checkbox__point')
-        this.creacteAccountButton = page.locator('#reg_modal_submit_btn')
-        this.signInLink = page.locator('#reg_modal_sign_in_btn')
-        this.googleRegBtn = page.locator('.auth-providers__icon').filter({hasText: 'Continue with Google'})
-        this.closeButton = page.locator('#sign-up .modal__close-button')
-        this.signUpModal = page.locator('.modal__content > .registration-form')
-        this.passwordStateBar = page.locator('#modal-root .password-input__strength-progress')
-        this.stateText = page.locator('#modal-root .password-input__strength-description')
-        this.passwordTip = page.locator('.registration-dynamic-form__element--password_single .form-element__error')
-        this.termsAndConditionsLink = page.locator('#modal-root a.terms-acceptance__terms-link')
-        this.emailInputError = page.locator('#modal-root .form-element__error')
+        this.currencyDropdown = page.locator('#main_currency_dropdown')
+        this.currencyDropdownItem = (currency: string) => page.locator('#main_currency_dropdown .select__option').filter({hasText: currency})
+        this.promoCheckbox = page.locator('[for=\'promos_checkbox\'] > .checkbox__point')
+        this.ageCheckbox = page.locator('[for=\'age_checkbox\'] > .checkbox__point')
+        this.crossSaleCheckbox = page.locator('[for=\'cross_sale_checkbox\'] .checkbox__point')
+        this.creacteAccountButton = page.locator('#main_create_acc_btn')
+        this.signInLink = page.locator('.registration-form-nomodal__link')
+        this.passwordStateBar = page.locator('.password-input__strength-progress')
+        this.stateText = page.locator('.password-input__strength-description')
+        this.passwordTip = page.locator('.form-element__error')
+        this.termsAndConditionsLink = page.locator('a.terms-acceptance__terms-link')
+        this.emailInputError = page.locator('.form-element__error')
+        this.discoverMoreButton = page.locator('.registration-form-nomodal__col--promo #discover_more_btn')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -87,20 +84,13 @@ export default class SignUpModal extends BaseComponent{
         return new SignInModal(this.page)
     }
 
-    async clickGoogleRegBtn(): Promise<void> {
-        await this.googleRegBtn.click()
-    }
-    
-    async closeSignUpModal(): Promise<void> {
-        await this.closeButton.click()
-    }
-
     async createAccount({email, password}: {email: string, password: string}): Promise<void> {
         await this.fillEmail(email)
         await this.fillPassword(password)
         await this.checkAgeCheckbox()
         await this.clickCreateAccountButton()
     }
+
 
     async clickOnTermsAndConditionsLink(): Promise<void> {
         await this.termsAndConditionsLink.click()
@@ -166,9 +156,9 @@ export default class SignUpModal extends BaseComponent{
         return `${text1} ${text2}`
     }
 
-
-    get getSignUpModal() {
-        return this.signUpModal;
+    async clickOnDiscoverMore(): Promise<PromoPage> {
+        await this.discoverMoreButton.click()
+        return new PromoPage(this.page)
     }
 
     get getEmailInput() {

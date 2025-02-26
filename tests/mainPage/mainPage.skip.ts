@@ -278,7 +278,7 @@ test.describe('Main page', () => {
         })
     })
 
-    test.only('Check game filter category dropdown', async () => {
+    test('Check game filter category dropdown', async () => {
         await test.step('Click on filter button', async () => {
             await mainPage.header.clickFilterButton()
         })

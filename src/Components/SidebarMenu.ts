@@ -12,6 +12,7 @@ export default class SidebarMenu extends BaseComponent {
     private userInfoBlock: Locator
     private compointsBlock: Locator
 
+
     constructor(page: Page) {
         super(page);
 
@@ -22,7 +23,7 @@ export default class SidebarMenu extends BaseComponent {
         this.bankingTab = page.locator('#bar #burger_banking_btn')
         this.legendTab = page.locator('#bar #burger_legend_btn')
         this.appBtn = page.getByRole('link', { name: ' Mobile app' })
-        this.userInfoBlock = page.locator('.select-user-menu__section')
+        this.userInfoBlock = page.locator('#bar').locator('.select-user-menu__section')
         this.compointsBlock = page.locator('#bar').locator('.side-bar')
     }
 
