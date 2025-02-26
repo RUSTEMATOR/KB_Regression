@@ -45,7 +45,7 @@ export default class SignInModal extends BaseComponent {
         await this.signInButton.click()
     }
 
-    async clickForgetPassword(): Promise<void> {
+    async clickForgotPassword(): Promise<void> {
         await this.forgetPasswordLink.click()
     }
 

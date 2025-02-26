@@ -92,7 +92,7 @@ test.describe('Log In', () => {
     test('Check "Forgot your password" button', async () => {
 
         await test.step('Click on the "Forgot your password" button', async () => {
-            await signInModal.clickForgetPassword()
+            await signInModal.clickForgotPassword()
         })
 
         await test.step('Check page URL', async () => {
