@@ -1,5 +1,7 @@
 import {Locator, Page} from "@playwright/test";
 import BaseComponent from "../../../Components/BaseComponent";
+import SignUpModal from "./SignUpModal";
+import {PasswordRecovery} from "../../PasswordRecovery/PasswordRecovery";
 
 export default class SignInModal extends BaseComponent {
     private emailInput: Locator
@@ -8,6 +10,8 @@ export default class SignInModal extends BaseComponent {
     private forgetPasswordLink: Locator
     private loginWithGoogleButton: Locator
     private createAccountButton: Locator
+    private signInModalForm: Locator
+    private hideShowPasswordButton: Locator
 
 
     constructor(page: Page) {
@@ -19,6 +23,8 @@ export default class SignInModal extends BaseComponent {
         this.forgetPasswordLink = page.locator('#forgot_pass_btn')
         this.loginWithGoogleButton = page.locator('.login-form__social .auth-providers__icon').filter({hasText: 'Continue with Google'})
         this.createAccountButton = page.locator('#login_modal_reg_btn')
+        this.signInModalForm = page.locator('.sign-in-page')
+        this.hideShowPasswordButton = page.locator('.login-form__form-element .password-input__visibility-icon')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -41,7 +47,26 @@ export default class SignInModal extends BaseComponent {
         await this.loginWithGoogleButton.click()
     }
 
-    async clickCreateAccount(): Promise<void> {
+    async clickCreateAccount(): Promise<SignUpModal> {
         await this.createAccountButton.click()
+        return new SignUpModal(this.page)
     }
+
+    async clickOnPasswordVisibilityButton(): Promise<void> {
+        await this.hideShowPasswordButton.click()
+    }
+
+    get getSignInModalForm(): Locator {
+        return this.signInModalForm;
+    }
+
+    get getEmailInput(): Locator {
+        return this.emailInput;
+    }
+
+    get getPasswordInput(): Locator {
+        return this.passwordInput;
+    }
+
+
 }
