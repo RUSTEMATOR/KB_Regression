@@ -12,6 +12,9 @@ export default class SignInModal extends BaseComponent {
     private createAccountButton: Locator
     private signInModalForm: Locator
     private hideShowPasswordButton: Locator
+    private emailInputError: Locator
+    private passwordInputError: Locator
+    private invalidCredsError: Locator
 
 
     constructor(page: Page) {
@@ -25,6 +28,9 @@ export default class SignInModal extends BaseComponent {
         this.createAccountButton = page.locator('#login_modal_reg_btn')
         this.signInModalForm = page.locator('.sign-in-page')
         this.hideShowPasswordButton = page.locator('.login-form__form-element .password-input__visibility-icon')
+        this.emailInputError = page.locator('.sign-in-page__body .login-form__input.input + .collapse .form-element__error')
+        this.passwordInputError = page.locator('.sign-in-page__body .password-input + .collapse .form-element__error')
+        this.invalidCredsError = page.locator('.errors__error')
     }
 
     async fillEmail(email: string): Promise<void> {
@@ -39,7 +45,7 @@ export default class SignInModal extends BaseComponent {
         await this.signInButton.click()
     }
 
-    async clickForgetPassword(): Promise<void> {
+    async clickForgotPassword(): Promise<void> {
         await this.forgetPasswordLink.click()
     }
 
@@ -68,5 +74,15 @@ export default class SignInModal extends BaseComponent {
         return this.passwordInput;
     }
 
+    get getEmailInputError(): Locator {
+        return this.emailInputError;
+    }
 
+    get getpasswordInputError(): Locator {
+        return this.passwordInputError
+    }
+
+    get getInvalidCredsError(): Locator {
+        return this.invalidCredsError;
+    }
 }
