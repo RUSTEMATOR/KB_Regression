@@ -11,6 +11,7 @@ import SignUpFormSlider from "../../src/PO/MainPage/Component/SignUpFormSlider";
 import { NEGATIVE_EMAILS} from "../../src/Data/ParametrizedData/negativeEmails/negativeEmails";
 import PromoPage from "../../src/PO/PromoPage/PromoPage";
 import Methods from "../../src/Methods/Methods";
+import {as} from "@faker-js/faker/dist/airline-D6ksJFwG";
 
 
 test.describe('Registration Modal', () => {
@@ -27,11 +28,11 @@ test.describe('Registration Modal', () => {
         signUpFormSlider = new SignUpFormSlider(page)
         methods = new Methods()
 
-        await mainPage.navTo(LINKS.Main)
-        await mainPage.clickAcceptCookies()
-
-        await mainPage.waitForSelector(signUpFormSlider.getEmailInput)
-
+        await test.step('Navigate to main page', async () => {
+            await mainPage.navTo(LINKS.Main)
+            await mainPage.clickAcceptCookies()
+            await mainPage.waitForSelector(signUpFormSlider.getEmailInput)
+        })
     })
 
 
@@ -132,7 +133,7 @@ test.describe('Registration Modal', () => {
 
 
     for (let params of Object.values(NEGATIVE_EMAILS)) {
-        test(`[Negative] Check 12 restricted email formats, ${params.email}`, async () => {
+        test(`[Negative] Check 17 restricted email formats, ${params.email}`, async () => {
 
             await test.step(`Enter invalid email ${params.email}`, async () => {
                 await signUpFormSlider.fillEmail(params.email)
