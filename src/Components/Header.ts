@@ -1,7 +1,6 @@
 import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 import SignInModal from "../PO/MainPage/Component/SignInModal";
-import {text} from "node:stream/consumers";
 import SignUpModal from "../PO/MainPage/Component/SignUpModal";
 import {DepModal} from "./DepModal";
 
@@ -15,6 +14,9 @@ export default class Header extends BaseComponent {
     private langDropdown: Locator
     private filterButton: Locator
     private depositButton: Locator
+    private gameItem: Locator
+    private currenciesDropdown: Locator
+
     private filterProviderButton: Locator
     private filterCategoriesButton: Locator
 
@@ -27,13 +29,16 @@ export default class Header extends BaseComponent {
 
         this.burgerMenuOpenButton = page.locator('#burger_menu_btn')
         this.headerLogo = page.locator('.header__logo--desktop')
-        this.search = page.locator('.header__search')
-        this.searchField = page.locator('#games-search')
+        this.search = page.locator('.header__input-search')
+        this.searchField = page.locator('#header_search_input')
         this.createAccountButton = page.locator('#header_create_acc_btn')
         this.signInButton = page.locator('#header_log_in_btn')
         this.langDropdown = page.locator('#lang_dropdown')
         this.filterButton = page.locator('#filter_btn')
         this.depositButton = page.locator('#header_dep_btn')
+        this.gameItem = page.locator('.select-games-search-for-grid__option-link')
+        this.currenciesDropdown = page.locator('#header_currency_dropdown')
+
         this.filterProviderButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Provider$/ })
         this.filterCategoriesButton = page.locator('.games-search-filter-block__header').filter({ hasText: /^Category$/ })
 
@@ -126,6 +131,48 @@ export default class Header extends BaseComponent {
     async clickDepositButton(): Promise<DepModal> {
         await this.depositButton.click()
         return new DepModal(this.page)
+    }
+
+    async clickOnGameItem(){
+        await this.gameItem.hover()
+        await this.gameItem.click()
+    }
+
+    async openCurrenciesDropdown(){
+        await this.currenciesDropdown.click()
+    }
+
+    async getLangDropdownLocales(){
+        return await this.page.evaluate(() => {
+
+            const dropdownList = document.querySelector('#lang_dropdown')
+            const dropdownButton = document.querySelector('#lang_dropdown-menu')
+
+            const aText = (dropdownButton as HTMLElement).innerText
+
+            const bText = (dropdownList as HTMLElement).innerText
+
+            const allText = `${bText}\n ${aText}`
+
+            return allText.split('\n').map(code => code.trim())
+        })
+    }
+
+    async getCurrencies(){
+        return await this.page.evaluate(() => {
+            const currencyNodes = document.querySelectorAll('.balance-select__dropdown > [role= "option"] > span')
+
+            const array = []
+
+            for (let element of currencyNodes){
+
+                const text = (element as HTMLElement).innerText
+
+                array.push(text)
+            }
+
+            return array
+        })
     }
 
     get getDepositButton(): Locator {
