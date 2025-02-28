@@ -143,7 +143,7 @@ test.describe('Registration Modal', () => {
 
         await test.step('Check post-reg pop-up', async () => {
             await mainPage.waitForSelector(mainPage.getSuccessRegPopUp);
-            expect.soft(await mainPage.getSuccessRegPopUp.isVisible()).toBe(true);
+            expect.soft(mainPage.getSuccessRegPopUp).toBeVisible()
         })
 
         await test.step('Click on deposit and play button', async () => {

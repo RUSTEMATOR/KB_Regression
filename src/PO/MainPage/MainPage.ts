@@ -42,12 +42,14 @@ export default class MainPage extends BasePage {
     private sidebarButton: Locator
     private seccessRegPopUp: Locator
     private depositAndPlayPostReg: Locator
+    private topWinnersSection: Locator
 
 
 
     private subCategoriesDropdown: (category: Locator) => Locator
     private provider: (index: number) => Locator
     private showMoreButton: (index: number) => Locator
+    private topWinnerGame: (index: number) => Locator
 
 
     constructor(page: Page) {
@@ -88,6 +90,7 @@ export default class MainPage extends BasePage {
         this.sidebarButton = page.locator('#burger_menu_btn')
         this.seccessRegPopUp = page.locator('.modal__content')
         this.depositAndPlayPostReg = page.locator('#deposit_play_btn')
+        this.topWinnersSection = page.locator('.jackpot-winners-section-home')
 
         this.gameCategories = {
             // this.lobby,
@@ -126,6 +129,7 @@ export default class MainPage extends BasePage {
         this.subCategoriesDropdown = (category: Locator) => category.locator(`.game-category-helper__btn`)
         this.provider = (index) => page.locator(`#games-page-providers-filter-item-${index}`)
         this.showMoreButton = (index) => page.locator(`.home-slider__top .home-slider__see-more-btn:nth-of-type(${index})`)
+        this.topWinnerGame = (index: number) => page.locator(`.winners-game__wrap div[data-index='${index}']`)
     }
 
 
@@ -207,6 +211,24 @@ export default class MainPage extends BasePage {
     async clickOnDepositAndPlayPostReg(): Promise<DepModal> {
         await this.depositAndPlayPostReg.click()
         return new DepModal(this.page)
+    }
+
+    async getNumberOfTopWinnerGames(): Promise<number> {
+        const numberOfGames = await this.page.evaluate(() => {
+            const gameItems = document.querySelectorAll('.winners-game__item')
+
+            return gameItems.length
+        })
+        if (numberOfGames < 1){
+            throw new Error('No top winner games found')
+        }
+
+        return numberOfGames
+    }
+
+    async clickOnTopWinnersGame(index: number): Promise<void> {
+
+        await this.topWinnerGame(index).click()
     }
 
     //accessors
@@ -304,5 +326,9 @@ export default class MainPage extends BasePage {
 
     get getSuccessRegPopUp(): Locator {
         return this.seccessRegPopUp
+    }
+
+    get getTopWinnersSection(): Locator {
+        return this.topWinnersSection
     }
 }
