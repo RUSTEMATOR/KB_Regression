@@ -3,6 +3,7 @@ import {Locator, Page} from "@playwright/test";
 import SignInModal from "../PO/MainPage/Component/SignInModal";
 import {text} from "node:stream/consumers";
 import SignUpModal from "../PO/MainPage/Component/SignUpModal";
+import {DepModal} from "./DepModal";
 
 export default class Header extends BaseComponent {
     private burgerMenuOpenButton: Locator
@@ -120,6 +121,11 @@ export default class Header extends BaseComponent {
                 }
                 return textArray
         })
+    }
+
+    async clickDepositButton(): Promise<DepModal> {
+        await this.depositButton.click()
+        return new DepModal(this.page)
     }
 
     get getDepositButton(): Locator {
