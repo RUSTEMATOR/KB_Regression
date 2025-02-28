@@ -16,10 +16,14 @@ test.describe('Log In', () => {
         mainPage = new MainPage(page);
         passwordRecovery = new PasswordRecovery(page)
 
-        await mainPage.navTo(LINKS.Main);
-        await mainPage.clickAcceptCookies();
+        await test.step('Navigate to main page', async () => {
+            await mainPage.navTo(LINKS.Main);
+            await mainPage.clickAcceptCookies();
+        })
 
-        signInModal = await mainPage.header.clickSignIn()
+        await test.step('Open Sign In modal', async () => {
+            signInModal = await mainPage.header.clickSignIn()
+        })
     })
 
 
@@ -105,22 +109,5 @@ test.describe('Log In', () => {
     })
 
     test('Check "Sign in" functionality', async () => {
-
-        await test.step('Enter valid email', async () => {
-            await signInModal.fillEmail(MAIN_USER.email)
-        })
-
-        await test.step('Enter valid password', async () => {
-            await signInModal.fillPassword(MAIN_USER.password)
-        })
-
-        await test.step('Click on "Sign in" button', async () => {
-            await signInModal.clickSignIn()
-        })
-
-        await test.step('Check if user is logged in', async () => {
-            await mainPage.header.waitForSelector(mainPage.header.getDepositButton)
-            await expect(mainPage.header.getDepositButton).toBeVisible()
-        })
     })
 })

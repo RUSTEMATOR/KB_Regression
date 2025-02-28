@@ -5,6 +5,7 @@ import SignInModal from "../../src/PO/MainPage/Component/SignInModal";
 import {PasswordRecovery} from "../../src/PO/PasswordRecovery/PasswordRecovery";
 import {ERRORS} from "../../src/Data/Errors/errors";
 import {INVALID_USER} from "../../src/Data/Users/invalidUser";
+import {MAIN_USER} from "../../src/Data/Users/mainUser";
 
 
 
@@ -17,14 +18,18 @@ test.describe('Log In', () => {
         mainPage = new MainPage(page);
         passwordRecovery = new PasswordRecovery(page)
 
-        await mainPage.navTo(LINKS.Main);
-        await mainPage.clickAcceptCookies();
+        await test.step('Navigate to main page', async () => {
+            await mainPage.navTo(LINKS.Main);
+            await mainPage.clickAcceptCookies();
+        })
 
-        signInModal = await mainPage.header.clickSignIn()
+        await test.step('Open Sign in form', async () => {
+            signInModal = await mainPage.header.clickSignIn()
+        })
     })
 
 
-    test('Negative. Check password field. Empty field', async () => {
+    test('Negative. Check password field. Empty field password', async () => {
 
         await test.step('Fill in password input with an empty string', async () => {
             await signInModal.fillPassword('')
@@ -37,7 +42,7 @@ test.describe('Log In', () => {
         })
     })
 
-    test('Negative. Check email field. Empty field', async () => {
+    test('Negative. Check email field. Empty field email', async () => {
 
         await test.step('Fill in email input with an empty string', async () => {
             await signInModal.fillEmail('')
@@ -58,6 +63,25 @@ test.describe('Log In', () => {
 
         await test.step('Enter invalid password', async () => {
             await signInModal.fillPassword(INVALID_USER.password)
+        })
+
+        await test.step('Click on Sign In', async () => {
+            await signInModal.clickSignIn()
+        })
+
+        await test.step('Check invalid credentials error', async () => {
+            await expect(signInModal.getInvalidCredsError).toBeVisible()
+            await expect(signInModal.getInvalidCredsError).toContainText(ERRORS.invalidLoginCreds)
+        })
+    })
+
+    test('Negative. Check log in functionality. Correct email wrong password', async () => {
+        await test.step('Enter correct email', async () => {
+            await signInModal.fillEmail(MAIN_USER.email)
+        })
+
+        await test.step('Enter wrong password', async () => {
+            await signInModal.fillPassword(MAIN_USER.email)
         })
 
         await test.step('Click on Sign In', async () => {

@@ -121,7 +121,7 @@ test.describe('Registration Modal', () => {
     });
 
     for (let params of Object.values(NEGATIVE_EMAILS)) {
-        test(`[Negative] Check 12 restricted email formats, ${params.email}`, async () => {
+        test(`[Negative] Check 17 restricted email formats, ${params.email}`, async () => {
             await test.step(`Enter invalid email ${params.email}`, async () => {
                 await signUpModal.fillEmail(params.email);
                 await signUpModal.getEmailInput.blur();

@@ -18,15 +18,20 @@ test.describe('Main page', () => {
 
     test.beforeEach(async ({page}) => {
         mainPage = new MainPage(page)
-        await mainPage.navTo(LINKS.Main)
-        await mainPage.clickAcceptCookies()
         gameCategories = mainPage.gameCategories
 
-        const signInModal = await mainPage.header.clickSignIn()
-        await signInModal.fillEmail(MAIN_USER.email)
-        await signInModal.fillPassword(MAIN_USER.password)
-        await signInModal.clickSignIn()
+        await test.step('Navigate to main page', async () => {
+            await mainPage.navTo(LINKS.Main)
+            await mainPage.clickAcceptCookies()
+        })
 
+
+        await test.step('Sign in', async () => {
+            const signInModal = await mainPage.header.clickSignIn()
+            await signInModal.fillEmail(MAIN_USER.email)
+            await signInModal.fillPassword(MAIN_USER.password)
+            await signInModal.clickSignIn()
+        })
     })
 
 
