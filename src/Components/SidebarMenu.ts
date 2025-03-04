@@ -1,5 +1,6 @@
 import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
+import PromoPage from "../PO/PromoPage/PromoPage";
 
 export default class SidebarMenu extends BaseComponent {
     private sidebarMenu: Locator
