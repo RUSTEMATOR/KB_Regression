@@ -15,7 +15,7 @@ export default defineConfig({
   testDir: './tests',
   testMatch: '**/*.spec.ts',
   testIgnore: '**/*.skip.ts',
-  timeout: 9000000,
+  timeout: 300000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */

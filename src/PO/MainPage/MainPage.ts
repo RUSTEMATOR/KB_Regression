@@ -3,6 +3,7 @@ import {Locator, Page} from "@playwright/test";
 import {IGameCategories} from "../../Interfaces/gameCategories";
 import SidebarMenu from "../../Components/SidebarMenu";
 import {DepModal} from "../../Components/DepModal";
+import SupportMessanger from "../../Components/SupportButton";
 
 
 export default class MainPage extends BasePage {
@@ -10,6 +11,8 @@ export default class MainPage extends BasePage {
     private allProviders: Locator
     private providersBlock: Locator
 
+    private subcategoryDropdown: Locator
+    private categorySlider: Locator
     private categoryTitle: Locator
     private lobbyCategory: Locator
     private newCategory: Locator
@@ -43,6 +46,7 @@ export default class MainPage extends BasePage {
     private seccessRegPopUp: Locator
     private depositAndPlayPostReg: Locator
     private topWinnersSection: Locator
+    private supportButton: Locator
 
 
 
@@ -60,6 +64,9 @@ export default class MainPage extends BasePage {
         this.allProviders = page.locator('.games-filter__cell--providers')
         this.providersBlock = page.locator('.menu-providers-select__content')
 
+
+        this.categorySlider = page.locator('.games-filter__category')
+        this.subcategoryDropdown = page.locator('.top-games-menu')
         this.categoryTitle = page.locator('.games__title')
         this.lobbyCategory = page.locator('#lobby_category')
         this.newCategory = page.getByRole('link', { name: 'New', exact: true })
@@ -91,6 +98,7 @@ export default class MainPage extends BasePage {
         this.seccessRegPopUp = page.locator('.modal__content')
         this.depositAndPlayPostReg = page.locator('#deposit_play_btn')
         this.topWinnersSection = page.locator('.jackpot-winners-section-home')
+        this.supportButton = page.locator(`body .intercom-lightweight-app-launcher-icon-open`)
 
         this.gameCategories = {
             // this.lobby,
@@ -231,7 +239,21 @@ export default class MainPage extends BasePage {
         await this.topWinnerGame(index).click()
     }
 
+    async clickOnSupportButton(): Promise<SupportMessanger> {
+        await this.supportButton.click()
+        return new SupportMessanger(this.page)
+    }
+
     //accessors
+
+    get getCategorySlider(): Locator {
+        return this.categorySlider
+    }
+
+    get getSubCategoryDropdown(): Locator {
+        return this.subcategoryDropdown
+    }
+
     get getPromoModal(): Locator {
         return this.promoModal
     }
