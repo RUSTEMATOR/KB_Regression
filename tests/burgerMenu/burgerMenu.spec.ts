@@ -6,6 +6,8 @@ import SignInModal from "../../src/PO/MainPage/Component/SignInModal";
 import SidebarMenu from "../../src/Components/SidebarMenu";
 import PromoPage from "../../src/PO/PromoPage/PromoPage";
 import playwrightConfig from "../../playwright.config";
+import ProfilePage from "../../src/PO/ProfilePage";
+import {playerMenuButtons} from "../../src/Data/Constants/playerMenuButtons";
 
 
 
@@ -14,12 +16,14 @@ test.describe('Burger menu', () => {
     let signInModal: SignInModal
     let burgerMenu: SidebarMenu
     let promoPage: PromoPage
+    let profilePage: ProfilePage
 
 
     test.beforeEach(async ({page}) => {
 
         mainPage = new MainPage(page)
         promoPage = new PromoPage(page)
+        profilePage = new ProfilePage(page)
 
         await test.step('Navigate to the main page', async () => {
             await mainPage.navTo(LINKS.Main)
@@ -46,7 +50,7 @@ test.describe('Burger menu', () => {
         })
     })
 
-    test.only('Check "Promotions" button', async () => {
+    test('Check "Promotions" button', async () => {
 
         await test.step('Click on the promotions button', async () => {
             await burgerMenu.openPromotionsTab()
@@ -63,4 +67,52 @@ test.describe('Burger menu', () => {
         })
     })
 
+    test('Account Panel', async () => {
+
+        await test.step('Scrap user info and compare the result', async ()=> {
+            const userInfo = await burgerMenu.getUserInfo()
+            const expectedUser = () => {
+                return {
+                    username: MAIN_USER.username,
+                    currentStatus: MAIN_USER.status,
+                    nextStatus: MAIN_USER.nextStatus,
+                    statusPoints: MAIN_USER.statusPoints,
+                    statusBar: MAIN_USER.progressBarState
+                }
+            }
+
+            expect(userInfo).toEqual(expectedUser())
+        })
+    })
+
+    test('Dropdown Functionality in account block', async () => {
+
+        await test.step('Click on chevrone button', async () => {
+            await burgerMenu.unwrapPlayerPanel()
+        })
+
+        await test.step('Check class of the user menu block', async () => {
+            await expect(burgerMenu.getuserMenu).toHaveClass(burgerMenu.getOpenMenuStatusClass)
+        })
+    })
+
+    test.only('Redirects to profile info', async () => {
+        const profileTitleText = 'Profile'
+        await test.step('Click on chevrone button', async () => {
+            await burgerMenu.unwrapPlayerPanel()
+        })
+
+        await test.step('Click on Profile info', async () => {
+            await burgerMenu.clickOnUserMenuButton('Profile Info')
+            await profilePage.page.waitForLoadState()
+        })
+
+        await test.step('Check the page that opened', async () => {
+            const actualUrl = await profilePage.getPageUrl()
+
+            expect(actualUrl).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Profile}`)
+            expect(await profilePage.getProfileTitle.innerText()).toEqual(profileTitleText)
+        }
+
+    })
 })
