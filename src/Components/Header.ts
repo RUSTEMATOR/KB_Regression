@@ -178,5 +178,13 @@ export default class Header extends BaseComponent {
     get getDepositButton(): Locator {
         return this.depositButton
     }
+
+    get getCreateAccountButton(): Locator {
+        return this.createAccountButton
+    }
+
+    get getSignInButton(): Locator {
+        return this.signInButton
+    }
 }
 

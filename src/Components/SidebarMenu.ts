@@ -19,6 +19,7 @@ export default class SidebarMenu extends BaseComponent {
     private statusPoints: Locator
     private statusBar: Locator
     private userMenu: Locator
+    private logoutButton: Locator
 
     private openMenuStatusClass: string
 
@@ -34,7 +35,7 @@ export default class SidebarMenu extends BaseComponent {
         this.vipTab = page.locator('#bar #burger_vip_btn')
         this.bankingTab = page.locator('#bar #burger_banking_btn')
         this.legendTab = page.locator('#bar #burger_legend_btn')
-        this.appBtn = page.getByRole('link', { name: ' Mobile app' })
+        this.appBtn = page.locator('#bar .btn--app')
         this.userInfoBlock = page.locator('#bar').locator('.select-user-menu__section')
         this.compointsBlock = page.locator('#bar').locator('.side-bar')
         this.playerPannerWrapper = page.locator('#bar #downshift-select')
@@ -44,6 +45,8 @@ export default class SidebarMenu extends BaseComponent {
         this.statusPoints = page.locator('#bar .user-status-player__next-level')
         this.statusBar = page.locator('#bar .progress-bar__track')
         this.userMenu = page.locator('#bar .select-user-menu__dropdown')
+        this.logoutButton = page.locator('#bar .logout ')
+
         this.profileButton = (text: string) => page.locator('#bar .user-menu__link ').filter({hasText: text})
 
         this.openMenuStatusClass = 'select-user-menu__dropdown select-user-menu__dropdown--open'
@@ -103,6 +106,14 @@ export default class SidebarMenu extends BaseComponent {
 
     async clickOnUserMenuButton(string: string): Promise<void>{
         await this.profileButton(string).click()
+    }
+
+    async clickOnMobileAppButton(): Promise<void> {
+        await this.appBtn.click()
+    }
+
+    async clickOnLogoutButton(): Promise<void> {
+        await this.logoutButton.click()
     }
 
     //accessors

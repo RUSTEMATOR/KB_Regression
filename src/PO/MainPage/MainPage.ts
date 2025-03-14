@@ -47,6 +47,7 @@ export default class MainPage extends BasePage {
     private depositAndPlayPostReg: Locator
     private topWinnersSection: Locator
     private supportButton: Locator
+    private sliderRegForm: Locator
 
 
 
@@ -99,6 +100,7 @@ export default class MainPage extends BasePage {
         this.depositAndPlayPostReg = page.locator('#deposit_play_btn')
         this.topWinnersSection = page.locator('.jackpot-winners-section-home')
         this.supportButton = page.locator(`body .intercom-lightweight-app-launcher-icon-open`)
+        this.sliderRegForm = page.locator('.main-slide-anon__register-form')
 
         this.gameCategories = {
             // this.lobby,
@@ -352,5 +354,9 @@ export default class MainPage extends BasePage {
 
     get getTopWinnersSection(): Locator {
         return this.topWinnersSection
+    }
+
+    get getsliderRegForm(): Locator {
+        return this.sliderRegForm
     }
 }
