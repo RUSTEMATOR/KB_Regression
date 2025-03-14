@@ -1,5 +1,6 @@
 import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
+import PromoPage from "../PO/PromoPage/PromoPage";
 
 export default class SidebarMenu extends BaseComponent {
     private sidebarMenu: Locator
@@ -11,6 +12,18 @@ export default class SidebarMenu extends BaseComponent {
     private appBtn: Locator
     private userInfoBlock: Locator
     private compointsBlock: Locator
+    private playerPannerWrapper: Locator
+    private username: Locator
+    private currentStatus: Locator
+    private nextStatus: Locator
+    private statusPoints: Locator
+    private statusBar: Locator
+    private userMenu: Locator
+    private logoutButton: Locator
+
+    private openMenuStatusClass: string
+
+    private profileButton: (text: string) => Locator
 
 
     constructor(page: Page) {
@@ -22,9 +35,21 @@ export default class SidebarMenu extends BaseComponent {
         this.vipTab = page.locator('#bar #burger_vip_btn')
         this.bankingTab = page.locator('#bar #burger_banking_btn')
         this.legendTab = page.locator('#bar #burger_legend_btn')
-        this.appBtn = page.getByRole('link', { name: ' Mobile app' })
+        this.appBtn = page.locator('#bar .btn--app')
         this.userInfoBlock = page.locator('#bar').locator('.select-user-menu__section')
         this.compointsBlock = page.locator('#bar').locator('.side-bar')
+        this.playerPannerWrapper = page.locator('#bar #downshift-select')
+        this.username = page.locator('#bar .user-info-player__nickname')
+        this.currentStatus = page.locator('#bar .user-info-player__level')
+        this.nextStatus = page.locator('#bar .user-status-player__name')
+        this.statusPoints = page.locator('#bar .user-status-player__next-level')
+        this.statusBar = page.locator('#bar .progress-bar__track')
+        this.userMenu = page.locator('#bar .select-user-menu__dropdown')
+        this.logoutButton = page.locator('#bar .logout ')
+
+        this.profileButton = (text: string) => page.locator('#bar .user-menu__link ').filter({hasText: text})
+
+        this.openMenuStatusClass = 'select-user-menu__dropdown select-user-menu__dropdown--open'
     }
 
     async openPromotionsTab(): Promise<void> {
@@ -49,6 +74,46 @@ export default class SidebarMenu extends BaseComponent {
 
     async clickAppBtn(): Promise<void> {
         await this.appBtn.click()
+    }
+
+    async unwrapPlayerPanel(): Promise<void>{
+        await this.playerPannerWrapper.click()
+    }
+
+    async getUserInfo(): Promise<Object>{
+        const usernameInfo = await this.username.innerText();
+        const currentStatusInfo = await this.currentStatus.innerText();
+        const nextStatusInfo = await this.nextStatus.innerText();
+        const statusPointsInfo = await this.statusPoints.textContent();
+        const statusBarInfo = await this.statusBar.getAttribute('style');
+
+        return {
+            username: usernameInfo,
+            currentStatus: currentStatusInfo,
+            nextStatus: nextStatusInfo,
+            statusPoints: statusPointsInfo,
+            statusBar: statusBarInfo
+        }
+    }
+
+    async getButtonsOfUserPanel(): Promise<Array<string>> {
+            return String(await this.userMenu.innerText()).split('\n').map(word => word.trim())
+    }
+
+    async getClassOfUserPanel(): Promise<string | null> {
+        return await this.userMenu.getAttribute('class')
+    }
+
+    async clickOnUserMenuButton(string: string): Promise<void>{
+        await this.profileButton(string).click()
+    }
+
+    async clickOnMobileAppButton(): Promise<void> {
+        await this.appBtn.click()
+    }
+
+    async clickOnLogoutButton(): Promise<void> {
+        await this.logoutButton.click()
     }
 
     //accessors
@@ -86,5 +151,13 @@ export default class SidebarMenu extends BaseComponent {
 
     get getCompointsBlock(): Locator {
         return this.compointsBlock
+    }
+
+    get getuserMenu(): Locator {
+        return this.userMenu
+    }
+
+    get getOpenMenuStatusClass(): string {
+        return this.openMenuStatusClass
     }
 }
