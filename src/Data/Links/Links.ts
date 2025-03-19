@@ -14,6 +14,8 @@ interface ILinks {
     Bets: string
     Wallet: string
     mobileApp: string
+    newGames: string
+    favoriteGames: string
 }
 
 export const LINKS: ILinks = {
@@ -29,5 +31,7 @@ export const LINKS: ILinks = {
     Bonuses: "/profile/promo/casino?target=_self",
     Bets: "/profile/game_history/casino?target=_self",
     Wallet: "/profile/wallet/balance?target=_self",
-    mobileApp: "/apk"
+    mobileApp: "/apk",
+    newGames: '/games/new_online_games',
+    favoriteGames: '/games/favoriteGames'
 }
