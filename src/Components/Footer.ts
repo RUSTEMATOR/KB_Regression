@@ -28,6 +28,7 @@ export default class Footer extends BaseComponent {
     private BonusTermsAndConditions: Locator
     private affiliate: Locator
     private affiliateTermsAndConditions: Locator
+    private askgamblersAwards: Locator
 
     constructor(page: Page){
         super(page);
@@ -36,7 +37,7 @@ export default class Footer extends BaseComponent {
         this.youtubeButton = page.locator('.social-links__link--youtube')
         this.bankingLink = page.locator('.footer-menu__link--online-casino-payments');
         this.casinoFaq = page.locator('.footer-menu__link--casino-faq')
-        this.casinoDictionary = page.locator('.footer-menu__link--casino-faq')
+        this.casinoDictionary = page.locator('.footer-menu__link--dictionary')
         this.cryptoFaq = page.locator('.footer-menu__link--btc-faq')
         this.complaints = page.locator('.footer-menu__link--complaints')
         this.cookiePolicy = page.locator('.footer-menu__link--cookie-policy')
@@ -57,6 +58,7 @@ export default class Footer extends BaseComponent {
         this.affiliate = page.locator('.footer-menu__link--affiliate')
         this.affiliateTermsAndConditions = page.locator('.footer-menu__link--affiliate-terms-conditions')
         this.footerLangDropdown = page.locator('#footer_lang_dropdown')
+        this.askgamblersAwards = page.locator('.ask-footer')
     }
 
 
@@ -104,7 +106,7 @@ export default class Footer extends BaseComponent {
         await this.casinoDictionary.click()
     }
 
-    async cryptoFaqPage(): Promise<void>  {
+    async openCryptoFaqPage(): Promise<void>  {
         await this.cryptoFaq.click()
     }
 
@@ -178,5 +180,21 @@ export default class Footer extends BaseComponent {
 
     async openAffiliateTermsAndConditionsPage(): Promise<void> {
         await this.affiliateTermsAndConditions.click()
+    }
+
+    async askgamblersAwardsChildrenCount():Promise<number> {
+        return this.page.evaluate(() => {
+            const askgamblersAwards = document.querySelector('.ask-footer')
+
+            if(askgamblersAwards) {
+                return askgamblersAwards.childElementCount
+            } else {
+                throw new Error()
+            }
+        })
+    }
+
+    get getAskgamblersAwardsLocator(): Locator {
+        return this.askgamblersAwards
     }
 }
