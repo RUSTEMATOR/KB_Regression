@@ -2,6 +2,9 @@ import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 
 export default class Footer extends BaseComponent {
+    private facebookButton: Locator
+    private instagramButton: Locator
+    private youtubeButton: Locator
     private bankingLink: Locator
     private casinoFaq: Locator
     private casinoDictionary: Locator
@@ -20,6 +23,7 @@ export default class Footer extends BaseComponent {
     private liveCasino: Locator
     private promotions: Locator
     private tournaments: Locator
+    private footerLangDropdown: Locator
     private vip: Locator
     private BonusTermsAndConditions: Locator
     private affiliate: Locator
@@ -27,6 +31,9 @@ export default class Footer extends BaseComponent {
 
     constructor(page: Page){
         super(page);
+        this.facebookButton = page.locator('.social-links__link--facebook')
+        this.instagramButton = page.locator('.social-links__link--instagram')
+        this.youtubeButton = page.locator('.social-links__link--youtube')
         this.bankingLink = page.locator('.footer-menu__link--online-casino-payments');
         this.casinoFaq = page.locator('.footer-menu__link--casino-faq')
         this.casinoDictionary = page.locator('.footer-menu__link--casino-faq')
@@ -49,6 +56,40 @@ export default class Footer extends BaseComponent {
         this.BonusTermsAndConditions = page.locator('.footer-menu__link--bonus-terms-conditions')
         this.affiliate = page.locator('.footer-menu__link--affiliate')
         this.affiliateTermsAndConditions = page.locator('.footer-menu__link--affiliate-terms-conditions')
+        this.footerLangDropdown = page.locator('#footer_lang_dropdown')
+    }
+
+
+    async openFooterLangDropdown(): Promise<void> {
+        await this.footerLangDropdown.click()
+    }
+
+    async getFooterLangDropdownLocales(){
+        return await this.page.evaluate(() => {
+
+            const dropdownList = document.querySelector('#footer_lang_dropdown')
+            const dropdownButton = document.querySelector('#footer_lang_dropdown-menu')
+
+            const aText = (dropdownButton as HTMLElement).innerText
+
+            const bText = (dropdownList as HTMLElement).innerText
+
+            const allText = `${bText}\n ${aText}`
+
+            return allText.split('\n').map(code => code.trim())
+        })
+    }
+
+    async clickOnFacebookButton(): Promise<void> {
+        await this.facebookButton.click()
+    }
+
+    async clickOnInstagramButton(): Promise<void> {
+        await this.instagramButton.click()
+    }
+
+    async clickOnYoutubeButton(): Promise<void> {
+        await this.youtubeButton.click()
     }
 
     async openBankingPage(): Promise<void> {
