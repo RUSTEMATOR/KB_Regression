@@ -24,7 +24,7 @@ test.describe('Games', () => {
     })
 
 
-    test.only('Check "Favourite" button', async () => {
+    test('Check "Favourite" button', async () => {
         await test.step('Click on "Favourite" button', async () => {
             await favoriteGames.clickOnFavoriteButton()
         })
