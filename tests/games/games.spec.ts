@@ -42,7 +42,5 @@ test.describe('Games', () => {
 
     test.afterEach(async () => {
         await favoriteGames.clickOnFavoritePageGameButton()
-    })  
-
-
+    })
 })

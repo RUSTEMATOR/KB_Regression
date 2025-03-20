@@ -4,6 +4,7 @@ import SignInModal from "../PO/MainPage/Component/SignInModal";
 import SignUpModal from "../PO/MainPage/Component/SignUpModal";
 import {DepModal} from "./DepModal";
 
+
 export default class Header extends BaseComponent {
     private burgerMenuOpenButton: Locator
     private headerLogo: Locator
