@@ -9,6 +9,12 @@ import playwrightConfig from "../../playwright.config";
 import FaqPage from "../../src/PO/FaqPage";
 import CasinoDictionary from "../../src/PO/CasinoDictionary/CasinoDictionary";
 import CryptoFaq from "../../src/PO/CryptoFaq/CryptoFaq";
+import LegendPage from "../../src/PO/LegendPage/LegendPage";
+import TermsAndConditions from "../../src/PO/TermsAndConditions/TermsAndConditions";
+import PrivacyPolicy from "../../src/PO/PrivacyPolicy/PrivacyPolicy";
+import ResponsibleGamblingPage from "../../src/PO/ResponsibleGamblingPage/ResponsibleGamblingPage";
+import CookiePolicy from "../../src/PO/CookiePolicy/CookiePolicy";
+import CookiePolicyPage from "../../src/PO/CookiePolicy/CookiePolicy";
 
 test.describe('Footer', () => {
     let mainPage: MainPage
@@ -106,7 +112,7 @@ test.describe('Footer', () => {
     })
 
 
-    test.only('Check number of the askgamblers awards', async () => {
+    test('Check number of the askgamblers awards', async () => {
         const expectedNumberOfAwards = 5
 
         await test.step('Check the number of awards', async () => {
@@ -180,5 +186,75 @@ test.describe('Footer', () => {
         })
     })
 
+    test('Check "The legend" page', async () => {
+        const theLegendPage = new LegendPage(page)
+
+        await test.step('Click on the Legend link', async () => {
+            await mainPage.footer.openLegendPage()
+            await expect(theLegendPage.getLegendTitle).toBeVisible()
+        })
+
+        await test.step('Check Legend page url', async () => {
+            const currentUrl = await theLegendPage.getPageUrl()
+            expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Legend}`)
+        })
+    })
+
+    test('Check "Terms and Conditions" page', async () => {
+        const termsAndConditions = new TermsAndConditions(page)
+
+        await test.step('Click on the Terms and Conditions link', async () => {
+            await mainPage.footer.openTermsAndConditionsPage()
+            await expect(termsAndConditions.getDownloadPdfButton).toBeVisible()
+        })
+
+        await test.step('Check Terms and Conditions page url', async () => {
+            const currentUrl = await termsAndConditions.getPageUrl()
+            expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.TermsAndConditions}`)
+        })
+    })
+
+    test('Check "Privacy policy" page', async () => {
+        const privacyPolicy = new PrivacyPolicy(page)
+
+        await test.step('Click on the Privacy Policy link', async () => {
+            await mainPage.footer.openPrivacyPolicyPage()
+            await expect(privacyPolicy.PrivacyPolicyTitle).toBeVisible()
+        })
+
+        await test.step('Check Privacy Policy page url', async () => {
+            const currentUrl = await privacyPolicy.getPageUrl()
+            expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.privacyPolicy}`)
+        })
+    })
+
+    test('Check "Responsible gambling" page', async () => {
+        const responsibleGambling = new ResponsibleGamblingPage(page)
+
+        await test.step('Click on the Responsible gambling link', async () => {
+            await mainPage.footer.openResponsibleGamingPage()
+            await expect(responsibleGambling.getResponsibleGamblingTitle).toBeVisible()
+        })
+
+        await test.step('Check Responsible gambling page url', async () => {
+            const currentUrl = await responsibleGambling.getPageUrl()
+            expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.responsibleGambling}`)
+        })
+    })
+
+    test('Check "Cookie Policy" page', async () => {
+
+        const cookiePolicy = new CookiePolicyPage(page)
+
+        await test.step('Click on the Cookie Policy link', async () => {
+            await mainPage.footer.openCookiePolicyPage()
+            await expect(cookiePolicy.getCookiePolicyTitle).toBeVisible()
+        })
+
+        await test.step('Check Cookie Policy page url', async () => {
+            const currentUrl = await cookiePolicy.getPageUrl()
+            expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.cookiePolicy}`)
+        })
+    })
 
 })
