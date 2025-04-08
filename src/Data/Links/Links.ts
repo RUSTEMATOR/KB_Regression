@@ -18,6 +18,9 @@ interface ILinks {
     instagramLink: string
     youtubeLink: string
     bankingLink: string
+    privacyPolicy: string
+    responsibleGambling: string
+    cookiePolicy: string
     faqLink: string
     casinoDictionary: string
     cryptoFaq: string
@@ -43,6 +46,9 @@ export const LINKS: ILinks = {
     faqLink: '/casino-faq',
     casinoDictionary: '/dictionary',
     cryptoFaq: '/btc-faq',
+    privacyPolicy: '/privacy-policy',
+    responsibleGambling: '/responsible-gaming',
+    cookiePolicy: '/cookie-policy',
     facebookLink: 'https://www.facebook.com/kingbilly.officialpage',
     youtubeLink: 'https://consent.youtube.com/m?continue=https%3A%2F%2Fwww.youtube.com%2F%40kingbillycasino4878%3Fcbrd%3D1&gl=GB&m=0&pc=yt&cm=2&hl=en&src=1',
     instagramLink: 'https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fking_billy_official%2F&is_from_rle'
