@@ -1,3 +1,4 @@
+import { IGameCategories } from "../Interfaces/gameCategories";
 import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 
@@ -21,6 +22,7 @@ export default class Footer extends BaseComponent {
     private slots: Locator
     private tableGames: Locator
     private liveCasino: Locator
+    private kingsChoice: Locator
     private promotions: Locator
     private tournaments: Locator
     private footerLangDropdown: Locator
@@ -29,6 +31,8 @@ export default class Footer extends BaseComponent {
     private affiliate: Locator
     private affiliateTermsAndConditions: Locator
     private askgamblersAwards: Locator
+
+    public gameCategories: IGameCategories
 
     constructor(page: Page){
         super(page);
@@ -53,14 +57,47 @@ export default class Footer extends BaseComponent {
         this.liveCasino = page.locator('.footer-menu__link--live_casino')
         this.promotions = page.locator('.footer-menu__link--promotions')
         this.tournaments = page.locator('.footer-menu__link--tournaments')
+        this.kingsChoice = page.locator('.footer-menu__link--hot_games')
         this.vip = page.locator('.footer-menu__link--vip-club')
         this.BonusTermsAndConditions = page.locator('.footer-menu__link--bonus-terms-conditions')
         this.affiliate = page.locator('.footer-menu__link--affiliate')
         this.affiliateTermsAndConditions = page.locator('.footer-menu__link--affiliate-terms-conditions')
         this.footerLangDropdown = page.locator('#footer_lang_dropdown')
         this.askgamblersAwards = page.locator('.ask-footer')
+
+
+        this.gameCategories = {
+            // this.lobby,
+            New:{
+                locator: this.new,
+                title: 'New online games'
+            },
+            Top: {
+                locator: this.top,
+                title: 'Top casino games'
+            },
+            Popular: {
+                locator: this.kingsChoice,
+                title: 'Popular'
+            },
+            Slots: {
+                locator: this.slots,
+                title: 'Slots'
+            },
+            Live: {
+                locator: this.liveCasino,
+                title: 'Live casino'
+            },
+            Table: {
+                locator: this.tableGames,
+                title: 'Casino table games'
+            }
+        }
     }
 
+    async openGameCategory(gameCategory: Locator): Promise<void> {
+        await gameCategory.click()
+    }
 
     async openFooterLangDropdown(): Promise<void> {
         await this.footerLangDropdown.click()
