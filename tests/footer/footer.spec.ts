@@ -15,6 +15,13 @@ import PrivacyPolicy from "../../src/PO/PrivacyPolicy/PrivacyPolicy";
 import ResponsibleGamblingPage from "../../src/PO/ResponsibleGamblingPage/ResponsibleGamblingPage";
 import CookiePolicy from "../../src/PO/CookiePolicy/CookiePolicy";
 import CookiePolicyPage from "../../src/PO/CookiePolicy/CookiePolicy";
+import { IGameCategories } from "../../src/Interfaces/gameCategories";
+import PromoPage from "../../src/PO/PromoPage/PromoPage";
+import TournamentPage from "../../src/PO/TournamentPage/TournamentPage";
+import BonusTermsAndConditions from "../../src/PO/BonusTermsAndConditions/BonusTermsAndConditions";
+import VipPage from "../../src/PO/VipPage/VipPage";
+import AffiliateTermsAndConditions from "../../src/PO/AffiliateTermsAndConditions/AffiliateTermsAndConditions";
+import { affiliateTermsAndConditionsText } from "../../src/Data/ExpectedTextResult/AffiliateTermsAndCondText";
 
 test.describe('Footer', () => {
     let mainPage: MainPage
@@ -283,23 +290,166 @@ test.describe('Footer', () => {
 
 
     test.describe('Check "Games" column in the footer', () => {
+        let gameCategories: IGameCategories
+        
+        
+            test('Click on the "Top" button', async () => {
+               gameCategories = mainPage.footer.gameCategories
 
-   
-        test('Click on the "Top" button', () => {
-            for (let [categoryName, values] of Object.entries(gameCategories)) {
-                await test.step(`Check ${categoryName} category`, async () => {
-                    await mainPage.openGameCategory(values.locator)
-                    await mainPage.sleep(800)
-                    const numberOfGames = await mainPage.getNumberOfGames()
-                    const categoryTitle = await mainPage.getCategoryTitleName()
-    
-                    expect.soft(numberOfGames).toBeGreaterThan(0)
-                    expect.soft(categoryTitle).toMatch(values.title)
-    
-                })
+                for (let [categoryName, values] of Object.entries(gameCategories)) {
+                    await test.step(`Check ${categoryName} category`, async () => {
+                        await mainPage.openGameCategory(values.locator)
+                        await mainPage.sleep(1000)
+                        const numberOfGames = await mainPage.getNumberOfGames()
+                        const categoryTitle = await mainPage.getCategoryTitleName()
+
+                        expect.soft(numberOfGames).toBeGreaterThan(0)
+                        expect.soft(categoryTitle).toMatch(values.title)
+
+                    })
+                }
+            })
+        })
+
+
+    test.describe('Check "Promotions" column in the footer', () => {
+
+        test('Check "Promotions" button', async () => {
+            const promoPage = new PromoPage(page)
+
+            await test.step('Click on the Promotions button', async () => {
+                await mainPage.footer.openPromotionsPage()
+                await expect(promoPage.getPromoCard).toBeVisible()
+            })
+
+            await test.step('Check Promotions page url', async () => {
+                const currentUrl = await promoPage.getPageUrl()
+                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
+            })
+        })
+
+        test('Check "Tournaments" button', async () => {
+            const tournamentPage = new TournamentPage(page)
+
+            await test.step('Click on the Tournaments button', async () => {
+                await mainPage.footer.openTournamentsPage()
+                await expect(tournamentPage.getTournamentItem).toBeVisible()
+            })
+
+            await test.step('Check Tournaments page url', async () => {
+                const currentUrl = await tournamentPage.getPageUrl()
+                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Tournaments}`)
+            })
+        })
+
+        test('Check "VIP" button', async () => {
+            const vipPage = new VipPage(page)
+
+            await test.step('Click on the VIP button', async () => {
+                await mainPage.footer.openVipPage()
+                await expect(vipPage.getVipPageLogo).toBeVisible()
+            })
+
+            await test.step('Check VIP page url', async () => {
+                const currentUrl = await vipPage.getPageUrl()
+                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Vip}`)
+            })
+        })
+
+        
+        test('Check "Bonus Terms and Conditions" button', async () => {
+            const bonusTermsAndConditions = new BonusTermsAndConditions(page)
+
+            await test.step('Click on the Bonus Terms and Conditions button', async () => {
+                await mainPage.footer.openBonusTermsAndConditionsPage()
+                await expect(bonusTermsAndConditions.getBonusTermsAndConditionsTitle).toBeVisible()
+            })
+
+            await test.step('Check Bonus Terms and Conditions page url', async () => {
+                const currentUrl = await bonusTermsAndConditions.getPageUrl()
+                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.bonusTermsAndConditions}`)
+            })
+        })
+    })
+
+
+
+    test.describe('Check "Partners" column in the footer', () => {
+        let affiliatePage: Page
+
+        test('Check "Affiliate" button', async () => {
+
+
+            await test.step('Click on the Affiliate button', async () => {
+                [affiliatePage] =  await Promise.all([
+                    context.waitForEvent('page'),
+                    await mainPage.footer.openAffiliatePage()
+                ])
+            })
+
+            await test.step('Check Affiliate page url', () => {
+                const currentUrl = affiliatePage.url()
+                expect(currentUrl).toBe(`${LINKS.affiliate}`)
+            })
+        })
+
+        test('Check "Affiliate Terms and Conditions" button', async () => {
+            const affiliateTermsAndConditions = new AffiliateTermsAndConditions(page)
+
+            await test.step('Click on the Affiliate Terms and Conditions button', async () => {
+                await mainPage.footer.openAffiliateTermsAndConditionsPage()
+            })
+
+            await test.step('Check text of the page', async () => {
+                const text = await affiliateTermsAndConditions.getTextOfThePage()
+                expect(text).toEqual(affiliateTermsAndConditionsText)
+            })
+
+            await test.step('Check Affiliate Terms and Conditions page url', async () => {
+                const currentUrl = await affiliateTermsAndConditions.getPageUrl()
+                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.affiliateTermsAndConditions}`)
+            })
+        })
+    })
+
+
+    test('Check if deposit methods logos are looped', async () => {
+        await test.step('Check number of the deposit logos', async () => {
+            const [firstPaymentLogo] = await mainPage.footer.getAllPaymentLogos()
+            
+            const numberOfLogos = (await mainPage.footer.getAllPaymentLogos()).length
+            
+            for (let i = 0; i < numberOfLogos; i++) {
+                await mainPage.footer.clickOnNextArrow()
+                await mainPage.sleep(1000)
             }
+
+            expect(firstPaymentLogo).toHaveAttribute('aria-hidden', 'false')
+        })
+    })
+
+
+        test('Blog',async () => {
+            let blogPage: Page
+
+            await test.step('Click on the Blog button', async () => {
+                [blogPage] =  await Promise.all([
+                    context.waitForEvent('page'),
+                    await mainPage.footer.openBlogPage()
+                ])
+            })
+
+            await test.step('Check Blog page url', async () => {
+                const currentUrl = blogPage.url()
+                expect(currentUrl).toBe(`${LINKS.blog}`)
+        })
+        
+    })
+
+
+
+        test.afterEach(async () => {
+            await context.close()
         })
 
     })
-
-})
