@@ -31,6 +31,8 @@ export default class Footer extends BaseComponent {
     private affiliate: Locator
     private affiliateTermsAndConditions: Locator
     private askgamblersAwards: Locator
+    private paymentLogos: Locator
+    private nextArrow: Locator
 
     public gameCategories: IGameCategories
 
@@ -64,6 +66,8 @@ export default class Footer extends BaseComponent {
         this.affiliateTermsAndConditions = page.locator('.footer-menu__link--affiliate-terms-conditions')
         this.footerLangDropdown = page.locator('#footer_lang_dropdown')
         this.askgamblersAwards = page.locator('.ask-footer')
+        this.paymentLogos = page.locator('footer .slick-track > div[data-index][style]')
+        this.nextArrow = page.locator('footer .slick-next')
 
 
         this.gameCategories = {
@@ -78,7 +82,7 @@ export default class Footer extends BaseComponent {
             },
             Popular: {
                 locator: this.kingsChoice,
-                title: 'Popular'
+                title: "King's Choice"
             },
             Slots: {
                 locator: this.slots,
@@ -229,6 +233,14 @@ export default class Footer extends BaseComponent {
                 throw new Error()
             }
         })
+    }
+
+    async getAllPaymentLogos(): Promise<Array<Locator>> {
+        return await this.paymentLogos.all()
+    }
+
+    async clickOnNextArrow(): Promise<void> {
+        await this.nextArrow.click()
     }
 
     get getAskgamblersAwardsLocator(): Locator {
