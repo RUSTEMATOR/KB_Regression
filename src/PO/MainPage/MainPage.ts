@@ -4,12 +4,14 @@ import {IGameCategories} from "../../Interfaces/gameCategories";
 import SidebarMenu from "../../Components/SidebarMenu";
 import {DepModal} from "../../Components/DepModal";
 import SupportMessanger from "../../Components/SupportButton";
+import PromoSection from "./Component/PromoSection";
 
 
 export default class MainPage extends BasePage {
     private mainPage: Page
     private allProviders: Locator
     private providersBlock: Locator
+    public promoSection: PromoSection
 
     private subcategoryDropdown: Locator
     private categorySlider: Locator
@@ -101,6 +103,8 @@ export default class MainPage extends BasePage {
         this.topWinnersSection = page.locator('.jackpot-winners-section-home')
         this.supportButton = page.locator(`body .intercom-lightweight-app-launcher-icon-open`)
         this.sliderRegForm = page.locator('.main-slide-anon__register-form')
+
+        this.promoSection = new PromoSection(this.page)
 
         this.gameCategories = {
             // this.lobby,

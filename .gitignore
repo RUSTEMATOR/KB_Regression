@@ -8,3 +8,4 @@ node_modules/
 .gitignore
 .idea
 mainPage.spec.ts-snapshots
+.qodo
