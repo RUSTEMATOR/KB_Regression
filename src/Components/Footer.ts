@@ -1,7 +1,11 @@
+import { IGameCategories } from "../Interfaces/gameCategories";
 import BaseComponent from "./BaseComponent";
 import {Locator, Page} from "@playwright/test";
 
 export default class Footer extends BaseComponent {
+    private facebookButton: Locator
+    private instagramButton: Locator
+    private youtubeButton: Locator
     private bankingLink: Locator
     private casinoFaq: Locator
     private casinoDictionary: Locator
@@ -18,18 +22,28 @@ export default class Footer extends BaseComponent {
     private slots: Locator
     private tableGames: Locator
     private liveCasino: Locator
+    private kingsChoice: Locator
     private promotions: Locator
     private tournaments: Locator
+    private footerLangDropdown: Locator
     private vip: Locator
     private BonusTermsAndConditions: Locator
     private affiliate: Locator
     private affiliateTermsAndConditions: Locator
+    private askgamblersAwards: Locator
+    private paymentLogos: Locator
+    private nextArrow: Locator
+
+    public gameCategories: IGameCategories
 
     constructor(page: Page){
         super(page);
+        this.facebookButton = page.locator('.social-links__link--facebook')
+        this.instagramButton = page.locator('.social-links__link--instagram')
+        this.youtubeButton = page.locator('.social-links__link--youtube')
         this.bankingLink = page.locator('.footer-menu__link--online-casino-payments');
         this.casinoFaq = page.locator('.footer-menu__link--casino-faq')
-        this.casinoDictionary = page.locator('.footer-menu__link--casino-faq')
+        this.casinoDictionary = page.locator('.footer-menu__link--dictionary')
         this.cryptoFaq = page.locator('.footer-menu__link--btc-faq')
         this.complaints = page.locator('.footer-menu__link--complaints')
         this.cookiePolicy = page.locator('.footer-menu__link--cookie-policy')
@@ -45,10 +59,80 @@ export default class Footer extends BaseComponent {
         this.liveCasino = page.locator('.footer-menu__link--live_casino')
         this.promotions = page.locator('.footer-menu__link--promotions')
         this.tournaments = page.locator('.footer-menu__link--tournaments')
+        this.kingsChoice = page.locator('.footer-menu__link--hot_games')
         this.vip = page.locator('.footer-menu__link--vip-club')
         this.BonusTermsAndConditions = page.locator('.footer-menu__link--bonus-terms-conditions')
         this.affiliate = page.locator('.footer-menu__link--affiliate')
         this.affiliateTermsAndConditions = page.locator('.footer-menu__link--affiliate-terms-conditions')
+        this.footerLangDropdown = page.locator('#footer_lang_dropdown')
+        this.askgamblersAwards = page.locator('.ask-footer')
+        this.paymentLogos = page.locator('footer .slick-track > div[data-index][style]')
+        this.nextArrow = page.locator('footer .slick-next')
+
+
+        this.gameCategories = {
+            // this.lobby,
+            New:{
+                locator: this.new,
+                title: 'New online games'
+            },
+            Top: {
+                locator: this.top,
+                title: 'Top casino games'
+            },
+            Popular: {
+                locator: this.kingsChoice,
+                title: "King's Choice"
+            },
+            Slots: {
+                locator: this.slots,
+                title: 'Slots'
+            },
+            Live: {
+                locator: this.liveCasino,
+                title: 'Live casino'
+            },
+            Table: {
+                locator: this.tableGames,
+                title: 'Casino table games'
+            }
+        }
+    }
+
+    async openGameCategory(gameCategory: Locator): Promise<void> {
+        await gameCategory.click()
+    }
+
+    async openFooterLangDropdown(): Promise<void> {
+        await this.footerLangDropdown.click()
+    }
+
+    async getFooterLangDropdownLocales(){
+        return await this.page.evaluate(() => {
+
+            const dropdownList = document.querySelector('#footer_lang_dropdown')
+            const dropdownButton = document.querySelector('#footer_lang_dropdown-menu')
+
+            const aText = (dropdownButton as HTMLElement).innerText
+
+            const bText = (dropdownList as HTMLElement).innerText
+
+            const allText = `${bText}\n ${aText}`
+
+            return allText.split('\n').map(code => code.trim())
+        })
+    }
+
+    async clickOnFacebookButton(): Promise<void> {
+        await this.facebookButton.click()
+    }
+
+    async clickOnInstagramButton(): Promise<void> {
+        await this.instagramButton.click()
+    }
+
+    async clickOnYoutubeButton(): Promise<void> {
+        await this.youtubeButton.click()
     }
 
     async openBankingPage(): Promise<void> {
@@ -63,7 +147,7 @@ export default class Footer extends BaseComponent {
         await this.casinoDictionary.click()
     }
 
-    async cryptoFaqPage(): Promise<void>  {
+    async openCryptoFaqPage(): Promise<void>  {
         await this.cryptoFaq.click()
     }
 
@@ -137,5 +221,29 @@ export default class Footer extends BaseComponent {
 
     async openAffiliateTermsAndConditionsPage(): Promise<void> {
         await this.affiliateTermsAndConditions.click()
+    }
+
+    async askgamblersAwardsChildrenCount():Promise<number> {
+        return this.page.evaluate(() => {
+            const askgamblersAwards = document.querySelector('.ask-footer')
+
+            if(askgamblersAwards) {
+                return askgamblersAwards.childElementCount
+            } else {
+                throw new Error()
+            }
+        })
+    }
+
+    async getAllPaymentLogos(): Promise<Array<Locator>> {
+        return await this.paymentLogos.all()
+    }
+
+    async clickOnNextArrow(): Promise<void> {
+        await this.nextArrow.click()
+    }
+
+    get getAskgamblersAwardsLocator(): Locator {
+        return this.askgamblersAwards
     }
 }
