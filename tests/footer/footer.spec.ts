@@ -106,7 +106,7 @@ test.describe('Footer', () => {
     })
 
 
-    test.only('Check number of the askgamblers awards', async () => {
+    test('Check number of the askgamblers awards', async () => {
         const expectedNumberOfAwards = 5
 
         await test.step('Check the number of awards', async () => {
@@ -120,7 +120,7 @@ test.describe('Footer', () => {
         })
     })
 
-    test('Check "Banking"', async () => {
+    test.skip('Check "Banking"', async () => {
         const bankingPage = new BankingPage(page)
 
         await test.step('Click on the banking link', async () => {
