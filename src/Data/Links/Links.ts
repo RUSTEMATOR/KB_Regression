@@ -6,6 +6,7 @@ interface ILinks {
     Vip: string
     Legend: string
     TermsAndConditions: string
+    bonusTermsAndConditions: string
     PasswordRecovery: string
     Profile: string
     Bonuses: string
@@ -18,9 +19,15 @@ interface ILinks {
     instagramLink: string
     youtubeLink: string
     bankingLink: string
+    privacyPolicy: string
+    responsibleGambling: string
+    cookiePolicy: string
+    affiliate: string
+    affiliateTermsAndConditions: string
     faqLink: string
     casinoDictionary: string
     cryptoFaq: string
+    blog: string
 }
 
 export const LINKS: ILinks = {
@@ -31,6 +38,7 @@ export const LINKS: ILinks = {
     Vip: "/vip-club",
     Legend: "/the-legend",
     TermsAndConditions: "/terms-and-conditions",
+    bonusTermsAndConditions: '/bonus-terms-conditions',
     PasswordRecovery: "/users/forgot-password",
     Profile: "/profile/general/info?target=_self",
     Bonuses: "/profile/promo/casino?target=_self",
@@ -43,6 +51,12 @@ export const LINKS: ILinks = {
     faqLink: '/casino-faq',
     casinoDictionary: '/dictionary',
     cryptoFaq: '/btc-faq',
+    privacyPolicy: '/privacy-policy',
+    responsibleGambling: '/responsible-gaming',
+    cookiePolicy: '/cookie-policy',
+    affiliate: 'https://kingbilly.partners/',
+    affiliateTermsAndConditions: '/affiliate/affiliate-terms-conditions',
+    blog: 'https://www.kingbillycasino.com/blog/en',
     facebookLink: 'https://www.facebook.com/kingbilly.officialpage',
     youtubeLink: 'https://consent.youtube.com/m?continue=https%3A%2F%2Fwww.youtube.com%2F%40kingbillycasino4878%3Fcbrd%3D1&gl=GB&m=0&pc=yt&cm=2&hl=en&src=1',
     instagramLink: 'https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fking_billy_official%2F&is_from_rle'
