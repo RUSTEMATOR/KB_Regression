@@ -134,7 +134,7 @@ test.describe('Registration Modal', () => {
         });
     }
 
-    test.skip('Check Registration and Post reg pop-up modal', async () => {
+    test('Check Registration and Post reg pop-up modal', async () => {
         const email = await methods.generateRandomEmail(3);
 
         await test.step('Create an account', async () => {
