@@ -108,7 +108,7 @@ test.describe('Footer', () => {
 
 
     test.describe('Check language dropdown', () => {
-        
+
 
         test('Check language change dropdown', async () => {
             let listOfLocales: Array<string>
@@ -291,8 +291,8 @@ test.describe('Footer', () => {
 
     test.describe('Check "Games" column in the footer', () => {
         let gameCategories: IGameCategories
-        
-        
+
+
             test('Click on the "Top" button', async () => {
                gameCategories = mainPage.footer.gameCategories
 
@@ -356,7 +356,7 @@ test.describe('Footer', () => {
             })
         })
 
-        
+
         test('Check "Bonus Terms and Conditions" button', async () => {
             const bonusTermsAndConditions = new BonusTermsAndConditions(page)
 
@@ -416,9 +416,9 @@ test.describe('Footer', () => {
     test('Check if deposit methods logos are looped', async () => {
         await test.step('Check number of the deposit logos', async () => {
             const [firstPaymentLogo] = await mainPage.footer.getAllPaymentLogos()
-            
+
             const numberOfLogos = (await mainPage.footer.getAllPaymentLogos()).length
-            
+
             for (let i = 0; i < numberOfLogos; i++) {
                 await mainPage.footer.clickOnNextArrow()
                 await mainPage.sleep(1000)
@@ -443,7 +443,7 @@ test.describe('Footer', () => {
                 const currentUrl = blogPage.url()
                 expect(currentUrl).toBe(`${LINKS.blog}`)
         })
-        
+
     })
 
 

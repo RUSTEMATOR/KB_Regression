@@ -8,6 +8,7 @@ import {CATEGORY_DROPDOWN_PARAMS} from "../../src/Data/Constants/CategoryDropdow
 import {MAIN_USER} from "../../src/Data/Users/mainUser";
 import SidebarMenu from "../../src/Components/SidebarMenu";
 import {CATEGORIES_FILTER} from "../../src/Data/Categories/Categories";
+import playwrightConfig from "../../playwright.config";
 
 
 
@@ -186,7 +187,7 @@ test.describe('Main page', () => {
 
         await test.step('Check Promo page url', async () => {
             const promoPageUrl = await mainPage.getPageUrl()
-            expect.soft(promoPageUrl).toEqual(LINKS.Promo)
+            expect.soft(promoPageUrl).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
             console.log(promoPageUrl)
         })
     })
