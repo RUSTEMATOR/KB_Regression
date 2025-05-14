@@ -20,6 +20,7 @@ export default class SidebarMenu extends BaseComponent {
     private statusBar: Locator
     private userMenu: Locator
     private logoutButton: Locator
+    private referalButton: Locator
 
     private openMenuStatusClass: string
 
@@ -46,6 +47,7 @@ export default class SidebarMenu extends BaseComponent {
         this.statusBar = page.locator('#bar .progress-bar__track')
         this.userMenu = page.locator('#bar .select-user-menu__dropdown')
         this.logoutButton = page.locator('#bar .logout ')
+        this.referalButton = page.locator('#bar .left-header-menu__item--referral_program')
 
         this.profileButton = (text: string) => page.locator('#bar .user-menu__link ').filter({hasText: text})
 
@@ -116,6 +118,10 @@ export default class SidebarMenu extends BaseComponent {
         await this.logoutButton.click()
     }
 
+    async clickOnRefferalButton(): Promise<void> {
+        await this.referalButton.click()
+    }
+
     //accessors
     get getSidebarMenu(): Locator {
         return this.sidebarMenu
@@ -159,5 +165,9 @@ export default class SidebarMenu extends BaseComponent {
 
     get getOpenMenuStatusClass(): string {
         return this.openMenuStatusClass
+    }
+
+    get getReferalButton(): Locator {
+        return this.referalButton
     }
 }

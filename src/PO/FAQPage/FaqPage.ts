@@ -1,4 +1,4 @@
-import BasePage from "./BasePage/BasePage";
+import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 
 export default class FaqPage extends BasePage {

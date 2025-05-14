@@ -25,9 +25,9 @@ export default class PromoPage extends BasePage{
         this.tournamentsTab = page.locator('#promo_tournaments_tab')
         this.promoCard = page.locator('.promo-item')
         this.tournamentCard = page.locator('.tourn-item')
+        this.showMoreButton = page.locator('.section-header__button')
         this.infoButton = (index) => page.locator(`.promo-item__info:nth-of-type(${index}) `)
         this.getItButton = (index) => page.locator(`.promo-item__button:nth-of-type(${index})`)
-        this.showMoreButton = page.locator('.section-header__button')
         this.tournamentShowMoreButton = (index) => page.locator(`.a.tourn-item__button.link-btn:nth-of-type(${index})`)
     }
 
@@ -64,9 +64,17 @@ export default class PromoPage extends BasePage{
         await this.tournamentShowMoreButton(index).click()
     }
 
+    async clickShowMore(): Promise<void> {
+        await this.showMoreButton.click()
+    }
+
 
     get getPromoCard(): Locator {
-        return this.promoCard.first()
+        return this.promoCard
+    }
+
+    get getTournamentCard(): Locator {
+        return this.tournamentCard
     }
 
 
