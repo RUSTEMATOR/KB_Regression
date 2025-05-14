@@ -15,6 +15,14 @@ export default class GamePage extends BasePage {
     private searchInput: Locator;
     private gameButton: Locator;
     private confirmButton: Locator;
+    private twoScreensButton: Locator;
+    private gameWindow: Locator;
+    private fourScreensButton: Locator;
+    private sidebarCurrencyDropdown: Locator;
+    private gameCurrencyList: Locator;
+    private tournamentButton: Locator;
+    private sidebarTournament: Locator;
+    private ingameCurrency: (text: string) => Locator;
 
     constructor(page: Page) {
         super(page);
@@ -32,6 +40,14 @@ export default class GamePage extends BasePage {
         this.searchInput = page.locator('#games-search')
         this.gameButton = page.locator('#games-search-item-0')
         this.confirmButton = page.locator('.game-session-close-modal__buttons .btn--primary')
+        this.twoScreensButton = page.locator('.game-controls__button--screen-2')
+        this.fourScreensButton = page.locator('.game-controls__button--screen-4')
+        this.gameWindow = page.locator('.page-game__grid-item')
+        this.sidebarCurrencyDropdown = page.locator('#game-currency-select')
+        this.gameCurrencyList = page.locator('.game-currency__list')
+        this.tournamentButton = page.locator('#game-side-tournament')
+        this.sidebarTournament = page.locator('.game-tourn')
+        this.ingameCurrency = (text: string) => page.locator('.game-currency__code').filter({hasText: text})
     }
 
 
@@ -51,9 +67,31 @@ export default class GamePage extends BasePage {
         await this.gameButton.click()
     }
 
+    async openSecondGameWindow(){
+        await this.twoScreensButton.click()
+    }
+
+    async openFourGameWindow(){
+        await this.fourScreensButton.click()
+    }
+
     async clickOnConfirm() {
         await this.confirmButton.click()
     }
+
+    async openCurrencyDropdown(){
+        await this.sidebarCurrencyDropdown.click()
+    }
+
+    async selectIngameCurrency(text: string){
+        await this.ingameCurrency(text).click()
+    }
+
+    async clickOnTournamentButton() {
+        await this.tournamentButton.click()
+    }
+
+
 
     get getGameFrame(): Locator {
         return this.gameFrame;
@@ -61,6 +99,22 @@ export default class GamePage extends BasePage {
 
     get getSideBarPanel(): Locator {
         return this.sideBarPanel;
+    }
+
+    get getGameWindow(): Locator {
+        return this.gameWindow;
+    }
+
+    get getSidebarCurrencyDropdown(): Locator {
+        return this.sidebarCurrencyDropdown;
+    }
+
+    get getGameCurrencyList(): Locator {
+        return this.gameCurrencyList;
+    }
+
+    get getSidebarTournament(): Locator {
+        return this.sidebarTournament;
     }
 
     get sideBarButtons(): Array<Locator> {
