@@ -32,6 +32,9 @@ interface ILinks {
     support: string
     fireLightning: string
     elvisFrog: string
+    promo: string
+    referalProgram: string
+    refProgramProfile: string
 }
 
 export const LINKS: ILinks = {
@@ -58,12 +61,16 @@ export const LINKS: ILinks = {
     privacyPolicy: '/privacy-policy',
     responsibleGambling: '/responsible-gaming',
     cookiePolicy: '/cookie-policy',
-    affiliate: 'https://kingbilly.partners/',
     affiliateTermsAndConditions: '/affiliate/affiliate-terms-conditions',
     complaints: '/complaints',
     support: '/support',
     fireLightning: '/game/fire-lightning',
     elvisFrog: '/game/elvis-frog-trueways',
+    referalProgram: '/referral_program',
+    refProgramProfile: '/profile/referral_system',
+
+    affiliate: 'https://kingbilly.partners/',
+    promo: 'https://www.kingbillycasino.com/promotions',
     blog: 'https://www.kingbillycasino.com/blog/en',
     facebookLink: 'https://www.facebook.com/kingbilly.officialpage',
     youtubeLink: 'https://consent.youtube.com/m?continue=https%3A%2F%2Fwww.youtube.com%2F%40kingbillycasino4878%3Fcbrd%3D1&gl=GB&m=0&pc=yt&cm=2&hl=en&src=1',
