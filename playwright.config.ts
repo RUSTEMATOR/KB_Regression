@@ -23,7 +23,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: 0,
   /* Opt out of parallel tests on CI. */
-  workers: 4,
+  workers: 1,
 
   reporter: [['html'], ['list']],
 
