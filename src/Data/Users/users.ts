@@ -47,3 +47,51 @@ export const DEP_USERS = {
         password: 'KingBillyCasino1@'
     }
 }
+
+
+export const VIP_USERS = {
+    guest: {
+        email: 'new_guest@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    citizen: {
+        email: 'New_citizen@Kingbilly.Xyz',
+        password: 'KingBilly123!'
+    },
+    knight: {
+        email: 'New_knight@Kingbilly.Xyz',
+        password: 'KingBilly123!'
+    },
+    baronet: {
+        email: 'new_baronet@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    baron: {
+        email: 'new_baron@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    viscount: {
+        email: 'new_viscount@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    count: {
+        email: 'new_count@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    marquess: {
+        email: 'new_marquess@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    duke: {
+        email: 'new_duke@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    prince: {
+        email: 'new_prince@kingbilly.xyz',
+        password: 'KingBilly123!'
+    },
+    king: {
+        email: 'new_king@kingbilly.xyz',
+        password: 'KingBilly123!'
+    }
+};

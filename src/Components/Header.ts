@@ -69,6 +69,14 @@ export default class Header extends BaseComponent {
         return new SignInModal(this.page)
     }
 
+    async signIn(email: string, password: string): Promise<void> {
+        const signInModal = await this.clickSignIn()
+        await signInModal.fillEmail(email)
+        await signInModal.fillPassword(password)
+        await signInModal.clickSignIn()
+        await signInModal.page.waitForTimeout(8000)
+    }
+
     async openLangDropdown(): Promise<void> {
         await this.langDropdown.click()
     }

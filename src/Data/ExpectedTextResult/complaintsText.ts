@@ -6,4 +6,4 @@ If you are experiencing any issues with Casino regarding Payment, Bonuses, Softw
 
 As it is important for us to be transparent, KING BILLY CASINO has joined AskGamblers circle of trust. We urge players who have complaints to post them publicly via the unique AskGamblers Casino Complaint Service.
 
-To encourage both our casino and the player to solve a potential issue as quickly as possible, there is a timer installed, so actually each party has 96h to respond. Failure of each party to do so within the given timeframe will result in the closure of the complaint. Hopefully, it won’t come to this, but if it by any means does, we are willig to do our best to resolve all issues in the best possible way.`
+To encourage both our casino and the player to solve a potential issue as quickly as possible, there is a timer installed, so actually each party has 96h to respond. Failure of each party to do so within the given timeframe will result in the closure of the complaint. Hopefully, it won’t come to this, but if it by any means does, we are willing to do our best to resolve all issues in the best possible way.`

@@ -157,7 +157,7 @@ test.describe('Registration Modal', () => {
         await test.step('Check URL of the page a user is transferred to', async () => {
             await promoPage.getPageUrl()
 
-            expect.soft(await promoPage.getPageUrl()).toEqual(`${LINKS.Promo}`)
+            expect.soft(await promoPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
         })
 
         await test.step('Check at least one promo card is visible', async () => {

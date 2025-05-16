@@ -241,16 +241,12 @@ test.describe('Main page', () => {
             await expect.soft(sidebar.getPromotionsTab).toBeVisible()
         })
 
-        // await test.step('Check tournaments button to be visible', async () => {
-        //     await expect(sidebar.getTournamentsTab).toBeVisible()
-        // })
+        await test.step('Check tournaments button to be visible', async () => {
+            await expect(sidebar.getTournamentsTab).toBeVisible()
+        })
 
         await test.step('Check VIP button to be visible', async () => {
             await expect.soft(sidebar.getVipTab).toBeVisible()
-        })
-
-        await test.step('Check banking button to be visible', async () => {
-            await expect.soft(sidebar.getBankingTab).toBeVisible()
         })
 
         await test.step('Check legend button to be visible', async () => {
