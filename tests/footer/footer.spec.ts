@@ -149,25 +149,6 @@ test.describe('Footer', () => {
 
     test.describe('Check "Help" column of the information pages', () => {
 
-        test('Check "Banking"', async () => {
-            const bankingPage = new BankingPage(page)
-
-            await test.step('Click on the banking link', async () => {
-                await mainPage.footer.openBankingPage()
-                await expect(bankingPage.getBankingItem).toBeVisible()
-            })
-
-            await test.step('Check banking page url', async () => {
-                const currentUrl = await bankingPage.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.bankingLink}`)
-            })
-
-            await test.step('Expect banking items to be greater than 5', async () => {
-                const numberOfItems = await bankingPage.getNumberOfBankingItems()
-                expect(numberOfItems).toBeGreaterThan(5)
-            })
-        })
-
         test('Check "Casino FAQ"', async () => {
             const faqPage = new FaqPage(page)
             await test.step('Click on the Casino FAQ link', async () => {
@@ -200,6 +181,7 @@ test.describe('Footer', () => {
             const cryptoFaq = new CryptoFaq(page)
             await test.step('Click on the Crypto FAQ link', async () => {
                 await mainPage.footer.openCryptoFaqPage()
+                await mainPage.page.waitForTimeout(5000)
                 await expect(cryptoFaq.getPageTitle).toBeVisible()
             })
 

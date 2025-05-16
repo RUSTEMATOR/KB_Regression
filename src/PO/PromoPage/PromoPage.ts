@@ -94,14 +94,6 @@ export default class PromoPage extends BasePage{
         await this.promoCardDepositButton.click()
     }
 
-    async signIn(email: string, password: string): Promise<void> {
-        const signInModal = await this.header.clickSignIn()
-        await signInModal.fillEmail(email)
-        await signInModal.fillPassword(password)
-        await signInModal.clickSignIn()
-        await signInModal.page.waitForTimeout(5000)
-    }
-
     async getaAndSortPromos(): Promise<{ activePromos: Array<Locator>; inactivePromos: Array<Locator> }> {
         let activePromos: Array<Locator> = []
         let inactivePromos: Array<Locator> = []

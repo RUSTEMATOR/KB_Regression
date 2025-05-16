@@ -74,8 +74,9 @@ test.describe('Burger menu', () => {
             expect(actualUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
         })
 
-        await test.step('Check promo card to be visible', async () => {
-            await expect(promoPage.getPromoCard).toBeVisible()
+        await test.step('Check number of promos to be bigger than 1', async () => {
+            const allPromoCards = await promoPage.getPromoCard.all()
+            expect(allPromoCards.length).toBeGreaterThan(1)
         })
     })
 

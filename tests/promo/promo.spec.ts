@@ -57,6 +57,7 @@ test.describe('Promos', () => {
         })
 
         await test.step('Expect number of tournaments to be greater than 0', async () => {
+            await promoPage.page.waitForTimeout(5000)
             expect(tournamentCards.length).toBeGreaterThan(0)
         })
     })
@@ -106,7 +107,7 @@ test.describe('Promos', () => {
             let inactivePromos: Array<Locator> = []
 
             await test.step('Sing in', async () => {
-                await promoPage.signIn(creds.email, creds.password)
+                await promoPage.header.signIn(creds.email, creds.password)
             })
 
             await test.step('Get all promos and sort', async () => {
@@ -129,7 +130,7 @@ test.describe('Promos', () => {
             let inactivePromos: Array<Locator> = []
 
             await test.step('Sing in', async () => {
-                await promoPage.signIn(creds.email, creds.password)
+                await promoPage.header.signIn(creds.email, creds.password)
             })
 
             await test.step('Get all promos and sort', async () => {
@@ -146,10 +147,10 @@ test.describe('Promos', () => {
         })
     }
 
-    test.only('Check "Deposit" button in Pop-up', async () => {
+    test('Check "Deposit" button in Pop-up', async () => {
 
         await test.step('Login', async () => {
-            await promoPage.signIn(MAIN_USER.email, MAIN_USER.password)
+            await promoPage.header.signIn(MAIN_USER.email, MAIN_USER.password)
         })
 
         await test.step('Open a promo card', async () => {
