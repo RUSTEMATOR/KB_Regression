@@ -3,6 +3,9 @@ import {LINKS} from "../../src/Data/Links/Links";
 import PromoPage from "../../src/PO/PromoPage/PromoPage";
 import playwrightConfig from "../../playwright.config";
 import TournamentPage from "../../src/PO/TournamentPage/TournamentPage";
+import {DEP_USERS, USERS,} from "../../src/Data/Users/users";
+import SignInModal from "../../src/PO/MainPage/Component/SignInModal";
+import {MAIN_USER} from "../../src/Data/Users/mainUser";
 
 
 test.describe('Promos', () => {
@@ -75,4 +78,93 @@ test.describe('Promos', () => {
         })
     })
 
+    test('Check "Show more" button on the tournament banners', async () => {
+        let href: string
+
+        await test.step('Scroll the page to the bottom', async () => {
+            await promoPage.footer.getAskgamblersAwardsLocator.scrollIntoViewIfNeeded()
+            const hrefAttr = await promoPage.getTournShowMoreButton.getAttribute('href')
+            if(hrefAttr !== null){
+                href = hrefAttr
+            } else {
+                console.log('href is not defined')
+            }
+        })
+
+        await test.step('Click on the "Show more" button', async () => {
+            await promoPage.clickTournShowMore()
+        })
+
+        await test.step('Check link of the page', async () => {
+            expect(await promoPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${href}`)
+        })
+    })
+
+    for (let [user, creds] of Object.entries(DEP_USERS)) {
+        test(`Check "Get it" button for ${user}`, async () => {
+            let activePromos: Array<Locator> = []
+            let inactivePromos: Array<Locator> = []
+
+            await test.step('Sing in', async () => {
+                await promoPage.signIn(creds.email, creds.password)
+            })
+
+            await test.step('Get all promos and sort', async () => {
+                ({activePromos, inactivePromos} = await promoPage.getaAndSortPromos())
+            })
+
+            for (let promo of activePromos) {
+                await test.step(`Check active promos ${promo}`, async () => {
+                    await promoPage.clickOnGetItButton(promo)
+                    expect.soft(promoPage.getPromoModal).toBeVisible()
+                    await promoPage.clickOnCloseButton()
+                })
+            }
+        })
+    }
+
+    for (let [user, creds] of Object.entries(DEP_USERS)) {
+        test(`Check "Info" button for ${user}`, async () => {
+            let activePromos: Array<Locator> = []
+            let inactivePromos: Array<Locator> = []
+
+            await test.step('Sing in', async () => {
+                await promoPage.signIn(creds.email, creds.password)
+            })
+
+            await test.step('Get all promos and sort', async () => {
+                ({activePromos, inactivePromos} = await promoPage.getaAndSortPromos())
+            })
+
+            for (let promo of activePromos) {
+                await test.step(`Check active promos ${promo}`, async () => {
+                    await promoPage.clickOnInfoButton(promo)
+                    expect.soft(promoPage.getPromoModal).toBeVisible()
+                    await promoPage.clickOnCloseButton()
+                })
+            }
+        })
+    }
+
+    test.only('Check "Deposit" button in Pop-up', async () => {
+
+        await test.step('Login', async () => {
+            await promoPage.signIn(MAIN_USER.email, MAIN_USER.password)
+        })
+
+        await test.step('Open a promo card', async () => {
+            const allPromos = await promoPage.getPromoCard.all()
+            const promoCard = allPromos[0]
+            await promoPage.clickOnGetItButton(promoCard)
+        })
+
+        await test.step('Click on the "Deposit" button', async () => {
+            await promoPage.clickOnPromoCardDepositButton()
+        })
+
+        await test.step('Check if deposit modal is open', async () => {
+            await expect(promoPage.getPromoDepositButton).toBeVisible()
+        })
+    })
 })
+
