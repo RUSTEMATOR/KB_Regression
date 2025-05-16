@@ -6,7 +6,7 @@ import { isContext } from "vm";
 import { LOCALES } from "../../src/Data/Locales/Locales";
 import BankingPage from "../../src/PO/BankingPage/BankingPage";
 import playwrightConfig from "../../playwright.config";
-import FaqPage from "../../src/PO/FaqPage";
+import FaqPage from "../../src/PO/FAQPage/FaqPage";
 import CasinoDictionary from "../../src/PO/CasinoDictionary/CasinoDictionary";
 import CryptoFaq from "../../src/PO/CryptoFaq/CryptoFaq";
 import LegendPage from "../../src/PO/LegendPage/LegendPage";
