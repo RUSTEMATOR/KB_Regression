@@ -2,7 +2,7 @@ export const CATEGORIES_FILTER = ['All', 'New', 'Top', 'Popular', 'Jackpots', 'S
     'Live poker', 'Live blackjack', 'Live roulette', 'Live baccarat']
 
 
-export const SLIDER_CATEGORIES = ['Lobby', 'New', 'Top', 'Popular', 'Jackpots', 'Slots', 'Live', 'Table games', 'Favourites', 'Recent']
+export const SLIDER_CATEGORIES = ['Lobby', 'New', 'Top', 'Popular', "King's Choice", 'Jackpots', 'Slots', 'Live', 'Table games', 'Favourites', 'Recent']
 
 export const SLOTS_DROPDOWN = ['Accumulating', 'Bonus buy', 'Megaways', 'Crash', 'Book', 'Exclusive']
 
