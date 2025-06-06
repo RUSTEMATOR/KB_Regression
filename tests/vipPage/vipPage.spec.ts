@@ -10,7 +10,7 @@ test.use({viewport:
 { width: 1920, height: 1080 }});
 
 for (const [status, creds] of Object.entries(VIP_USERS)) {
-  test.describe.only(`Visual tests for ${status}`, () => {
+  test.describe(`Visual tests for ${status}`, () => {
     let vipPage: VipPage;
 
     test.beforeEach(async ({ page }) => {
@@ -49,7 +49,7 @@ for (const [status, creds] of Object.entries(VIP_USERS)) {
 
 
 
-test.describe.only(`Visual tests for anon`, () => {
+test.describe(`Visual tests for anon`, () => {
   let vipPage: VipPage;
 
   test.beforeEach(async ({page}) => {

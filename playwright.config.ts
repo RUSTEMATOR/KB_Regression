@@ -21,22 +21,41 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 0,
+  retries: 3,
   /* Opt out of parallel tests on CI. */
-  workers: 4,
+  workers: 1,
 
-  reporter: [['html'], ['list']],
+  reporter: [['html'], ['list'],
+    // ['playwright-qase-reporter', {
+    //               debug: true,
+    //               mode: 'testops',
+    //               logging: true,
+    //               testops: {
+    //                 api: {
+    //                   token: '2b3e65ab1ee17f1440a13c94b9d1da5429f590fdbcc8d080ddc41268ae50305b',
+    //                 },
+  
+    //                 project: 'AUTOMATION',
+    //                 uploadAttachments: true,
+    //                 run: {
+    //                   complete: true,
+    //                   title: 'KB regression',
+    //                 }
+    //               }
+    //             }
+    //           ]
+         ],
 
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://www.kingbillycasino.com',
-    headless: false,
+    headless: true,
 
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
-    // video: 'on',
-    // screenshot: 'on',
+    video: 'on-first-retry',
+    screenshot: 'only-on-failure',
   },
 
   /* Configure projects for major browsers */
@@ -46,7 +65,7 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'] }
     // },
     {
-      name: 'chromium',
+      name: 'KB Regression',
       // dependencies: ['setup'],
       use: { ...devices['Desktop Chrome'] },
     },

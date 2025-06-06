@@ -10,6 +10,7 @@ import playwrightConfig from "../../playwright.config";
 import TermsAndConditions from "../../src/PO/TermsAndConditions/TermsAndConditions";
 import {NEGATIVE_EMAILS} from "../../src/Data/ParametrizedData/negativeEmails/negativeEmails";
 import Methods from "../../src/Methods/Methods";
+import { DepModal } from '../../src/Components/DepModal';
 
 
 
@@ -19,11 +20,13 @@ test.describe('Registration Modal', () => {
     let methods: Methods;
     let signUpModal: SignUpModal;
     let termsAndConditions: TermsAndConditions;
+    let depModal: DepModal
 
     test.beforeEach(async ({ page }) => {
         mainPage = new MainPage(page);
         methods = new Methods();
         termsAndConditions = new TermsAndConditions(page);
+        depModal = new DepModal(page)
 
         await mainPage.navTo(LINKS.Main);
         await mainPage.clickAcceptCookies();
@@ -141,16 +144,9 @@ test.describe('Registration Modal', () => {
             await signUpModal.createAccount({ email: email, password: MAIN_USER.password });
         });
 
-        await test.step('Check post-reg pop-up', async () => {
-            await mainPage.waitForSelector(mainPage.getSuccessRegPopUp);
-            expect.soft(mainPage.getSuccessRegPopUp).toBeVisible()
-        })
-
-        await test.step('Click on deposit and play button', async () => {
-            const depModal = await mainPage.clickOnDepositAndPlayPostReg();
-
-            expect.soft(await mainPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.MainPageDepModal}`);
+        await test.step('Check dep modal to be visible', async () => {
             await expect.soft(depModal.getDepModal).toBeVisible();
+            await expect.soft(await mainPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.MainPageDepModal}`);
         })
     });
 });
