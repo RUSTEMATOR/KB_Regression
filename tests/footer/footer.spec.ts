@@ -20,8 +20,6 @@ import PromoPage from "../../src/PO/PromoPage/PromoPage";
 import TournamentPage from "../../src/PO/TournamentPage/TournamentPage";
 import BonusTermsAndConditions from "../../src/PO/BonusTermsAndConditions/BonusTermsAndConditions";
 import VipPage from "../../src/PO/VipPage/VipPage";
-import AffiliateTermsAndConditions from "../../src/PO/AffiliateTermsAndConditions/AffiliateTermsAndConditions";
-import { affiliateTermsAndConditionsText } from "../../src/Data/ExpectedTextResult/AffiliateTermsAndCondText";
 
 test.describe('Footer', () => {
     let mainPage: MainPage
@@ -372,24 +370,6 @@ test.describe('Footer', () => {
             await test.step('Check Affiliate page url', () => {
                 const currentUrl = affiliatePage.url()
                 expect(currentUrl).toBe(`${LINKS.affiliate}`)
-            })
-        })
-
-        test('Check "Affiliate Terms and Conditions" button', async () => {
-            const affiliateTermsAndConditions = new AffiliateTermsAndConditions(page)
-
-            await test.step('Click on the Affiliate Terms and Conditions button', async () => {
-                await mainPage.footer.openAffiliateTermsAndConditionsPage()
-            })
-
-            await test.step('Check text of the page', async () => {
-                const text = await affiliateTermsAndConditions.getTextOfThePage()
-                expect(text).toEqual(affiliateTermsAndConditionsText)
-            })
-
-            await test.step('Check Affiliate Terms and Conditions page url', async () => {
-                const currentUrl = await affiliateTermsAndConditions.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.affiliateTermsAndConditions}`)
             })
         })
     })

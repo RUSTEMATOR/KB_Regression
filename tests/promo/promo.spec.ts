@@ -53,12 +53,12 @@ test.describe('Promos', () => {
         })
 
         await test.step('Get all tournaments', async () => {
+            await promoPage.page.waitForTimeout(5000)
             tournamentCards = await promoPage.getTournamentCard.all()
         })
 
         await test.step('Expect number of tournaments to be greater than 0', async () => {
-            await promoPage.page.waitForTimeout(5000)
-            expect(tournamentCards.length).toBeGreaterThan(0)
+            await expect(tournamentCards.length).toBeGreaterThan(0)
         })
     })
 
