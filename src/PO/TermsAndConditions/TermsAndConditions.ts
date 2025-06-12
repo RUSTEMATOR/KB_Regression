@@ -1,3 +1,4 @@
+import { axeScan } from "axe-playwright-report";
 import BasePage from "../BasePage/BasePage";
 import {Page, Locator} from "@playwright/test";
 
@@ -12,6 +13,7 @@ export default class TermsAndConditions extends BasePage {
         this.collapseBlockList = page.locator('a + .questions-list')
     }
 
+    @axeScan()
     async getCollapseDropdownText(): Promise<string> {
         return await this.collapseBlockList.innerText()
 

@@ -1,3 +1,4 @@
+import { axeScan } from "axe-playwright-report";
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 
@@ -44,10 +45,12 @@ export default class PromoPage extends BasePage{
 
     }
 
+    @axeScan()
     async openPromoTab(): Promise<void> {
         await this.promoTab.click()
     }
 
+    @axeScan()
     async openVipTab(): Promise<void> {
         await this.vipTab.click()
     }

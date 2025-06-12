@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import BasePage from "../BasePage/BasePage";
+import { axeScan } from "axe-playwright-report";
 
 export default class BonusTermsAndConditions extends BasePage {
     private bonusTermsAndConditionsTitle: Locator
@@ -12,6 +13,7 @@ export default class BonusTermsAndConditions extends BasePage {
         this.infoBlock = page.locator('.help-center__data')
     }
 
+    @axeScan()
     async getInfoBlockText(): Promise<string> {
         return await this.infoBlock.innerText()
     }

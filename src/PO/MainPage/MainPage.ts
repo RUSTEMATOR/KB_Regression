@@ -5,6 +5,7 @@ import SidebarMenu from "../../Components/SidebarMenu";
 import {DepModal} from "../../Components/DepModal";
 import SupportMessanger from "../../Components/SupportButton";
 import PromoSection from "./Component/PromoSection";
+import { axeScan } from "axe-playwright-report";
 
 
 export default class MainPage extends BasePage {
@@ -146,8 +147,8 @@ export default class MainPage extends BasePage {
         this.topWinnerGame = (index: number) => page.locator(`.winners-game__wrap div[data-index='${index}']`)
     }
 
-
-     async openGameCategory(gameCategory: Locator): Promise<void> {
+    @axeScan()
+    async openGameCategory(gameCategory: Locator): Promise<void> {
         await gameCategory.click()
     }
 

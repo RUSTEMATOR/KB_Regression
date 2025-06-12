@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import BasePage from "../BasePage/BasePage";
+import { axeScan } from "axe-playwright-report";
 
 export default class CasinoFaq extends BasePage {
 
@@ -11,7 +12,8 @@ export default class CasinoFaq extends BasePage {
         this.body = page.locator('.help-center__data')
     }
 
-    public async getBodyText(): Promise<string> {
+    @axeScan()
+    async getBodyText(): Promise<string> {
         return await this.body.innerText();
     }
 

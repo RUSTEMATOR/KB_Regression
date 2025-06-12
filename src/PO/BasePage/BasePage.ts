@@ -3,6 +3,7 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import SidebarMenu from "../../Components/SidebarMenu";
 import CategoryDropdown from "../MainPage/Component/CategoryDropdown";
+import { axeScan } from "axe-playwright-report";
 
 export default class BasePage {
   readonly page: Page
@@ -25,6 +26,7 @@ export default class BasePage {
     this.categoryDropdown = new CategoryDropdown(this.page)
   }
 
+  @axeScan()
   async navTo(url: string): Promise<void> {
     await this.page.goto(url);
   }

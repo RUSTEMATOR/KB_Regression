@@ -1,3 +1,4 @@
+import { axeScan } from "axe-playwright-report";
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 
@@ -11,6 +12,7 @@ export default class Complaints extends BasePage {
         this.complaintsInfoWindow = page.locator('.help-center__data')
     }
 
+    @axeScan()
     async getComplaintsInfoText(): Promise<string> {
         return this.complaintsInfoWindow.innerText()
     }

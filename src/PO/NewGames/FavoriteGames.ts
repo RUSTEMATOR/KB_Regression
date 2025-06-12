@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import BasePage from "../BasePage/BasePage";
+import { axeScan } from "axe-playwright-report";
 
 export default class FavoriteGames extends BasePage {
     private favoriteGamesButton: Locator
@@ -15,7 +16,7 @@ export default class FavoriteGames extends BasePage {
         this.favoriteGamePageButton = page.locator('.favorite-games__item .game__favorite')
     }
 
-
+    @axeScan()
     async clickOnFavoriteButton(): Promise<void>{
         await this.favoriteGamesButton.click()
     }
