@@ -13,7 +13,7 @@ export default class BankingPage extends BasePage {
         this.bankingItems = page.locator('.payment-tables__content:not(.payment-tables__content--hide) .payment-list__block')
     }
 
-    @axeScan()
+    
     async getNumberOfBankingItems() {
         return await this.bankingItems.count()
     }

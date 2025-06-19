@@ -30,14 +30,14 @@ export const PASSWORD_STATES = {
         password: '1',
     },
 
-    weak: {
-        text: 'Weak must include at least one special symbol, such as !@#$%^*()-+= ...',
-        color: 'rgb(255, 201, 10)',
+    normal: {
+        text: 'Normal',
+        color: 'rgb(57, 133, 234)',
         password: '12345678'
     },
 
-    strong: {
-        text: 'Strong ',
+    normal2: {
+        text: 'Normal ',
         color: 'rgb(57, 133, 234)',
         password: '12345678_'
     },
@@ -45,6 +45,6 @@ export const PASSWORD_STATES = {
     perfect: {
         text: 'Perfect ',
         color: 'rgb(124, 178, 90)',
-        password: '12345678_Az'
+        password: '193786Az()'
     }
 }

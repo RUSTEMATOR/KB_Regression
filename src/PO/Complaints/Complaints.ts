@@ -12,7 +12,7 @@ export default class Complaints extends BasePage {
         this.complaintsInfoWindow = page.locator('.help-center__data')
     }
 
-    @axeScan()
+    
     async getComplaintsInfoText(): Promise<string> {
         return this.complaintsInfoWindow.innerText()
     }

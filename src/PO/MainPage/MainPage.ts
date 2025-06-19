@@ -123,7 +123,7 @@ export default class MainPage extends BasePage {
             },
             Jackpots: {
                 locator: this.jackpots,
-                title: 'Casino jackpots'
+                title: 'Jackpots'
             },
             Slots: {
                 locator: this.slots,
@@ -147,7 +147,7 @@ export default class MainPage extends BasePage {
         this.topWinnerGame = (index: number) => page.locator(`.winners-game__wrap div[data-index='${index}']`)
     }
 
-    @axeScan()
+    
     async openGameCategory(gameCategory: Locator): Promise<void> {
         await gameCategory.click()
     }

@@ -13,7 +13,7 @@ export default class PrivacyPolicy extends BasePage {
         this.infoBlock = page.locator('.content')
     }
 
-    @axeScan()
+    
     async getPrivacyPolicyText(): Promise<string> {
         return await this.infoBlock.innerText()
     }

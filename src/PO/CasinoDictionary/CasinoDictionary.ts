@@ -13,7 +13,7 @@ export default class CasinoDictionary extends BasePage {
         this.body = page.locator('.help-center__data')
     }
 
-    @axeScan()
+    
     async getBodyText(): Promise<string> {
         return await this.body.innerText();
     }

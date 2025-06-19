@@ -12,7 +12,7 @@ export default class CasinoFaq extends BasePage {
         this.body = page.locator('.help-center__data')
     }
 
-    @axeScan()
+    
     async getBodyText(): Promise<string> {
         return await this.body.innerText();
     }

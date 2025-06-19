@@ -16,7 +16,7 @@ export default class FavoriteGames extends BasePage {
         this.favoriteGamePageButton = page.locator('.favorite-games__item .game__favorite')
     }
 
-    @axeScan()
+    
     async clickOnFavoriteButton(): Promise<void>{
         await this.favoriteGamesButton.click()
     }

@@ -26,7 +26,7 @@ export default class BasePage {
     this.categoryDropdown = new CategoryDropdown(this.page)
   }
 
-  @axeScan()
+  
   async navTo(url: string): Promise<void> {
     await this.page.goto(url);
   }

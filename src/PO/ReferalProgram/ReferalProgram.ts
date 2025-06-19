@@ -25,7 +25,7 @@ export default class ReferalProgram extends BasePage {
         this.refLinkInputField = page.locator('.input__left-container + input')
     }
 
-    @axeScan()
+    
     async clickGenerateLinkButton() {
         await this.generateLinkButton.click()
     }

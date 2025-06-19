@@ -60,7 +60,7 @@ Baronet / Baronetess\tBaron / Baroness\tViscount / Viscountess\tCount / Countess
 
 7.7. To receive a weekly cashback, a player needs to meet the following conditions:
 Deposit at least: 200 EUR / 200 USD / 2000 NOK / 300 AUD / 300 NZD / 300 CAD / 2000 NOK / 4000 ZAR / 18000 INR / 12000 PHP / 400 USDT / 0.004 BTC / 0.12 ETH / 4 LTCduring current weeks cashback period (from 00:00 (UTC) Thursday to 23:59 (UTC) Wednesday);
-Min payments sum without balance should be at least: 200 EUR / 200 USD / 2000 NOK / 300 AUD / 300 NZD / 300 CAD / 2000 NOK / 4000 ZAR / 18000 INR / 12000 PHP / 400 USDT / 0.004 BTC / 0.12 ETH / 4 LTC during current week’s cashback period (from 00:00 (UTC) Thursday to 23:59 (UTC) Wednesday).
+Net loss sum should be at least 200 EUR / 200 USD / 2000 NOK / 300 AUD / 300 NZD / 300 CAD / 2000 NOK / 4000 ZAR / 18000 INR / 12000 PHP / 400 USDT / 0.004 BTC / 0.12 ETH / 4 LTC during the current week’s cashback period (from 00:00 (UTC) Thursday to 23:59 (UTC) Wednesday).
 
 7.8 Bonus amount from cashback bonus will be awarded with a wagering requirement of:
 Baronet / Baronetess\tBaron / Baroness\tViscount / Viscountess\tCount / Countess\tMarquess / Marchioness\tDuke / Duchess\tPrince / Princess\tKing / Queen

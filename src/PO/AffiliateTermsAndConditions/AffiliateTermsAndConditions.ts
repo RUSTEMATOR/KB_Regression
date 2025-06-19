@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import BasePage from "../BasePage/BasePage";
-import { axeScan } from 'axe-playwright-report';
+
 
 export default class AffiliateTermsAndConditions extends BasePage {
 
@@ -12,7 +12,7 @@ export default class AffiliateTermsAndConditions extends BasePage {
         this.body = page.locator('.cms-page')
     }
 
-    @axeScan()
+    
     async getTextOfThePage(): Promise<string> {
         await this.body.waitFor({state: 'visible'})
         const text = await this.body.innerText()

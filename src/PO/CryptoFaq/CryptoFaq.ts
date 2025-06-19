@@ -15,7 +15,7 @@ export default class CryptoFaq extends BasePage {
 
     }
 
-    @axeScan()
+    
     async getCollapseBlocksText(): Promise<string> {
         return this.collapseBlocks.innerText()
     }

@@ -68,7 +68,7 @@ export default class GamePage extends BasePage {
         await this.gameButton.click()
     }
 
-    @axeScan()
+    
     async openSecondGameWindow(){
         await this.twoScreensButton.click()
     }

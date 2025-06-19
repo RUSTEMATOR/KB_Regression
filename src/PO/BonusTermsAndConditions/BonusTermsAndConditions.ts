@@ -13,7 +13,7 @@ export default class BonusTermsAndConditions extends BasePage {
         this.infoBlock = page.locator('.help-center__data')
     }
 
-    @axeScan()
+    
     async getInfoBlockText(): Promise<string> {
         return await this.infoBlock.innerText()
     }

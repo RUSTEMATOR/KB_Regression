@@ -15,6 +15,6 @@ export const MAIN_USER: IMainUser = {
     username: 'Pony Fluttershy',
     status: 'Baron',
     nextStatus: 'Viscount',
-    statusPoints: "626  / 2000RS",
+    statusPoints: "626 / 2000RS",
     progressBarState: 'width: 31%;',
 }

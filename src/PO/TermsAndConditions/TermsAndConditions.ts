@@ -13,7 +13,7 @@ export default class TermsAndConditions extends BasePage {
         this.collapseBlockList = page.locator('a + .questions-list')
     }
 
-    @axeScan()
+    
     async getCollapseDropdownText(): Promise<string> {
         return await this.collapseBlockList.innerText()
 

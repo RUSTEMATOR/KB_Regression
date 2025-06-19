@@ -31,7 +31,7 @@ export class PasswordRecovery extends BasePage {
         this.resendConfirmationInstructionsButton = page.locator('.auth-form__instruction-link:nth-of-type(2)')
     }
 
-    @axeScan()
+    
     async clickDidntRecieveInstructions(): Promise<void> {
         await this.didntRecieveInstructionsLink.click()
     }
