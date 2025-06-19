@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import BasePage from "../BasePage/BasePage"
+import { axeScan } from "axe-playwright-report";
 
 export default class PrivacyPolicy extends BasePage {
     private privacyPolicyTitle: Locator
@@ -12,6 +13,7 @@ export default class PrivacyPolicy extends BasePage {
         this.infoBlock = page.locator('.content')
     }
 
+    
     async getPrivacyPolicyText(): Promise<string> {
         return await this.infoBlock.innerText()
     }

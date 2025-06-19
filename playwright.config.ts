@@ -45,7 +45,12 @@ export default defineConfig({
     //             }
     //           ]
          ],
-
+    expect: {
+      toHaveScreenshot: {
+        maxDiffPixels: 700,
+        maxDiffPixelRatio: 0.3
+      }
+    },
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://www.kingbillycasino.com',

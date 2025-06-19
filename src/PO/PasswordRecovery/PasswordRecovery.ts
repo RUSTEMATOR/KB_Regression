@@ -1,6 +1,7 @@
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 import {MAIN_USER} from "../../Data/Users/mainUser";
+import { axeScan } from "axe-playwright-report";
 
 export class PasswordRecovery extends BasePage {
     public notificationText: string
@@ -30,6 +31,7 @@ export class PasswordRecovery extends BasePage {
         this.resendConfirmationInstructionsButton = page.locator('.auth-form__instruction-link:nth-of-type(2)')
     }
 
+    
     async clickDidntRecieveInstructions(): Promise<void> {
         await this.didntRecieveInstructionsLink.click()
     }

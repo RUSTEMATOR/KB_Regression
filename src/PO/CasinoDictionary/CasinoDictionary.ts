@@ -1,3 +1,4 @@
+import { axeScan } from "axe-playwright-report";
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 
@@ -12,6 +13,7 @@ export default class CasinoDictionary extends BasePage {
         this.body = page.locator('.help-center__data')
     }
 
+    
     async getBodyText(): Promise<string> {
         return await this.body.innerText();
     }

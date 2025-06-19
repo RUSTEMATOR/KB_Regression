@@ -1,3 +1,4 @@
+import { axeScan } from "axe-playwright-report";
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 
@@ -67,6 +68,7 @@ export default class GamePage extends BasePage {
         await this.gameButton.click()
     }
 
+    
     async openSecondGameWindow(){
         await this.twoScreensButton.click()
     }

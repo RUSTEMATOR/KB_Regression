@@ -1,3 +1,4 @@
+import { axeScan } from "axe-playwright-report";
 import BasePage from "../BasePage/BasePage";
 import {Locator, Page} from "@playwright/test";
 
@@ -14,6 +15,7 @@ export default class CryptoFaq extends BasePage {
 
     }
 
+    
     async getCollapseBlocksText(): Promise<string> {
         return this.collapseBlocks.innerText()
     }

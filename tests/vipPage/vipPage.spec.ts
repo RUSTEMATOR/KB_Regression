@@ -41,7 +41,7 @@ for (const [status, creds] of Object.entries(VIP_USERS)) {
     }
 
 
-    test('Check terms and conditions of the VIP page', async () => {
+    test.only('Check terms and conditions of the VIP page', async () => {
         expect(await vipPage.getTermsAndConditions.innerText()).toEqual(VIP_TERMS_AND_CONDITIONS)
     })
   });
