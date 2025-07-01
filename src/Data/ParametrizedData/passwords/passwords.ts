@@ -31,7 +31,7 @@ export const PASSWORD_STATES = {
     },
 
     normal: {
-        text: 'Normal',
+        text: 'Normal ',
         color: 'rgb(57, 133, 234)',
         password: '12345678'
     },

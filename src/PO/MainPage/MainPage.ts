@@ -76,7 +76,7 @@ export default class MainPage extends BasePage {
         this.newCategory = page.getByRole('link', { name: 'New', exact: true })
         this.topCategory = page.getByRole('link', { name: 'Top', exact: true })
         this.popularCategory = page.getByRole('link', { name: 'Popular', exact: true })
-        this.jackpotsCategory = page.getByRole('link', { name: 'Jackpots', exact: true })
+        this.jackpotsCategory = page.locator('#jackpots_category').first()
         this.slotsCategory = page.getByRole('link', { name: 'Slots', exact: true })
         this.accumulatingCategory = page.locator('#slots_accumulating')
         this.bonusBuyCategory = page.locator('#slots_bonus_buy')

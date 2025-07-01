@@ -49,7 +49,7 @@ test.describe('Registration Modal', () => {
 
     })
 
-    test.skip('Check "Already have an account. Sign in" button', async () => {
+    test('Check "Already have an account. Sign in" button', async () => {
         await test.step('Check "Already have an account. Sign in" link', async () => {
             let signInModalForm  = await signUpFormSlider.clickSignInLink()
             await signInModalForm.getSignInModalForm.waitFor({state: "visible"})
@@ -165,7 +165,7 @@ test.describe('Registration Modal', () => {
         })
 
         await test.step('Check at least one promo card is visible', async () => {
-            await promoPage.waitForSelector(promoPage.getPromoCard)
+            await promoPage.waitForSelector(promoPage.getPromoCard.first())
             expect.soft(await promoPage.getPromoCardNumber()).toBeGreaterThan(promoPage.defaultPromoIndex)
         })
     })
