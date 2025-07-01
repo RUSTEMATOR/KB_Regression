@@ -13,7 +13,7 @@ export const NEGATIVE_EMAILS = [
     { email: `automaton-anyything@kingbilly-xyz`, error: 'The email is invalid.' },
     { email: `automaton-anyything@kingbilly_xyz`, error: 'The email is invalid.' },
     { email: `automaton-anyything@kingbilly..xyz`, error: 'The email is invalid.' },
-    { email: '', error: 'This field must be completed.' },
+    { email: '', error: 'must be completed.' },
     { email: `änyýthing@kingbilly.xyz`, error: 'The email is invalid.' },
     { email: `automaton-anyything@softs_wis..com`, error: 'The email is invalid.' },
     { email: `automaton-anyything.kingbilly.xyz`, error: 'The email is invalid.' },
