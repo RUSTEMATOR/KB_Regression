@@ -1,4 +1,4 @@
-export const CATEGORIES_FILTER = ['All', 'New', 'Top', 'Popular', 'Jackpots', 'Slots', 'Live', 'Bonus buy slots', 'Megaways slots', 'Crash slots', 'King Billy Slots', 'Books Slots',
+export const CATEGORIES_FILTER = ['All', 'New online games', 'Top casino games', 'Popular', 'Casino jackpots', 'Slots', 'Live casino', 'Bonus buy feature', 'Megaways slots', 'Crash', 'King Billy Slots', 'Books Slots',
     'Live poker', 'Live blackjack', 'Live roulette', 'Live baccarat']
 
 
