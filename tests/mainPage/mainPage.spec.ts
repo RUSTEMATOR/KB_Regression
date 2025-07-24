@@ -12,7 +12,7 @@ import playwrightConfig from "../../playwright.config";
 
 
 
-test.describe.only('Main page', () => {
+test.describe('Main page', () => {
     let mainPage: MainPage
     let gameCategories: IGameCategories
 
@@ -74,7 +74,7 @@ test.describe.only('Main page', () => {
     }
 
 
-    test.only(`Check New category slider functionality`, async () => {
+    test(`Check New category slider functionality`, async () => {
         await test.step(`Check New category`, async () => {
             await mainPage.openGameCategory(mainPage.gameCategories.New.locator)
             await mainPage.sleep(5000)
@@ -86,7 +86,7 @@ test.describe.only('Main page', () => {
         })
     })
 
-    test.only(`Check Top category slider functionality`, async () => {
+    test(`Check Top category slider functionality`, async () => {
         await test.step(`Check Top category`, async () => {
             await mainPage.openGameCategory(mainPage.gameCategories.Top.locator)
             await mainPage.sleep(5000)
@@ -98,7 +98,7 @@ test.describe.only('Main page', () => {
         })
     })
 
-    test.only(`Check Popular category slider functionality`, async () => {
+    test(`Check Popular category slider functionality`, async () => {
         await test.step(`Check Popular category`, async () => {
             await mainPage.openGameCategory(mainPage.gameCategories.Popular.locator)
             await mainPage.sleep(5000)
@@ -110,7 +110,7 @@ test.describe.only('Main page', () => {
         })
     })
 
-    test.only(`Check Jackpots category slider functionality`, async () => {
+    test(`Check Jackpots category slider functionality`, async () => {
         await test.step(`Check Jackpots category`, async () => {
             await mainPage.openGameCategory(mainPage.gameCategories.Jackpots.locator)
             await mainPage.sleep(5000)
@@ -122,7 +122,7 @@ test.describe.only('Main page', () => {
         })
     })
 
-    test.only(`Check Slots category slider functionality`, async () => {
+    test(`Check Slots category slider functionality`, async () => {
         await test.step(`Check Slots category`, async () => {
             await mainPage.openGameCategory(mainPage.gameCategories.Slots.locator)
             await mainPage.sleep(5000)
@@ -134,7 +134,7 @@ test.describe.only('Main page', () => {
         })
     })
 
-    test.only(`Check Live category slider functionality`, async () => {
+    test(`Check Live category slider functionality`, async () => {
         await test.step(`Check Live category`, async () => {
             await mainPage.openGameCategory(mainPage.gameCategories.Live.locator)
             await mainPage.sleep(5000)
@@ -146,7 +146,7 @@ test.describe.only('Main page', () => {
         })
     })
 
-    test.only(`Check Table category slider functionality`, async () => {
+    test(`Check Table category slider functionality`, async () => {
         await test.step(`Check Table category`, async () => {
             await mainPage.openGameCategory(mainPage.gameCategories.Table.locator)
             await mainPage.sleep(5000)
