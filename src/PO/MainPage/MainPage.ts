@@ -51,6 +51,7 @@ export default class MainPage extends BasePage {
     private topWinnersSection: Locator
     private supportButton: Locator
     private sliderRegForm: Locator
+    private kingsChoiceCategory: Locator
 
 
 
@@ -76,20 +77,21 @@ export default class MainPage extends BasePage {
         this.newCategory = page.getByRole('link', { name: 'New', exact: true })
         this.topCategory = page.getByRole('link', { name: 'Top', exact: true })
         this.popularCategory = page.getByRole('link', { name: 'Popular', exact: true })
-        this.jackpotsCategory = page.locator('#jackpots_category').first()
-        this.slotsCategory = page.getByRole('link', { name: 'Slots', exact: true })
+        this.jackpotsCategory = page.locator('.home__filter .game-category-helper__name').filter({hasText: "Jackpots"}).nth(1)
+        this.kingsChoiceCategory = page.locator('.home__filter .game-category-helper__name').filter({hasText: "King's Choice"}).nth(1)
+        this.slotsCategory = page.locator('.home__filter .game-category-helper__name').filter({hasText: "Slots"}).nth(1)
         this.accumulatingCategory = page.locator('#slots_accumulating')
         this.bonusBuyCategory = page.locator('#slots_bonus_buy')
         this.megawaysCategory = page.locator('#slots_megaways')
         this.crashCategory = page.locator('#slots_crash')
         this.bookCategory = page.locator('#slots_book')
         this.exclusiveCategory = page.locator('#slots_exclusive')
-        this.liveCategory = page.getByRole('link', { name: 'Live', exact: true })
+        this.liveCategory = page.locator('.games-filter .game-category-helper__name').filter({hasText: "Live"}).nth(1)
         this.blackjackCategory = page.locator('#live_blackjack')
         this.rouletteCategory = page.locator('#live_roulette')
         this.baccaratCategory = page.locator('#live_baccarat')
         this.pokerCategory = page.locator('#live_poker')
-        this.tableGamesCategory = page.getByRole('link', { name: 'Table games', exact: true })
+        this.tableGamesCategory = page.locator('.home__filter .game-category-helper__name').filter({hasText: "Table games"}).nth(1)
         this.tableOnlineRoulette = page.locator('#table_online_roulette')
         this.recentGamesCategory = page.locator('#recent_games_category')
         this.gameItem = page.locator('.catalog__item')
@@ -121,9 +123,13 @@ export default class MainPage extends BasePage {
                 locator: this.popular,
                 title: 'Popular'
             },
+            KingsChoice: {
+                locator: this.kingsChoiceCategory,
+                title: "King's Choice"
+            },
             Jackpots: {
                 locator: this.jackpots,
-                title: 'Jackpots'
+                title: 'Casino jackpots'
             },
             Slots: {
                 locator: this.slots,
@@ -150,6 +156,11 @@ export default class MainPage extends BasePage {
     
     async openGameCategory(gameCategory: Locator): Promise<void> {
         await gameCategory.click()
+        const isClickable = await gameCategory.isVisible()
+        if (!isClickable) {
+            await this.page.locator('#slider_arrow_right').click()
+            await this.openGameCategory(gameCategory)
+        }
     }
 
     async clickOnCategoryDropdown(element: string){

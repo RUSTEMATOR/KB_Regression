@@ -12,7 +12,7 @@ import playwrightConfig from "../../playwright.config";
 
 
 
-test.describe('Main page', () => {
+test.describe.only('Main page', () => {
     let mainPage: MainPage
     let gameCategories: IGameCategories
 
@@ -65,7 +65,7 @@ test.describe('Main page', () => {
             })
 
             await test.step('Check number of games in the provider category', async () => {
-                await mainPage.sleep(800)
+                await mainPage.sleep(5000)
                 const numberOfGames = await mainPage.getNumberOfGames()
 
                 expect(numberOfGames).toBeGreaterThan(0)
@@ -74,20 +74,88 @@ test.describe('Main page', () => {
     }
 
 
-    //7 tests
-    test(`Check game category slider functionality`, async () => {
-        for (let [categoryName, values] of Object.entries(gameCategories)) {
-            await test.step(`Check ${categoryName} category`, async () => {
-                await mainPage.openGameCategory(values.locator)
-                await mainPage.sleep(800)
-                const numberOfGames = await mainPage.getNumberOfGames()
-                const categoryTitle = await mainPage.getCategoryTitleName()
+    test.only(`Check New category slider functionality`, async () => {
+        await test.step(`Check New category`, async () => {
+            await mainPage.openGameCategory(mainPage.gameCategories.New.locator)
+            await mainPage.sleep(5000)
+            const numberOfGames = await mainPage.getNumberOfGames()
+            const categoryTitle = await mainPage.getCategoryTitleName()
 
-                expect.soft(numberOfGames).toBeGreaterThan(0)
-                expect.soft(categoryTitle).toMatch(values.title)
+            expect.soft(numberOfGames).toBeGreaterThan(0)
+            expect.soft(categoryTitle).toMatch(mainPage.gameCategories.New.title)
+        })
+    })
 
-            })
-        }
+    test.only(`Check Top category slider functionality`, async () => {
+        await test.step(`Check Top category`, async () => {
+            await mainPage.openGameCategory(mainPage.gameCategories.Top.locator)
+            await mainPage.sleep(5000)
+            const numberOfGames = await mainPage.getNumberOfGames()
+            const categoryTitle = await mainPage.getCategoryTitleName()
+
+            expect.soft(numberOfGames).toBeGreaterThan(0)
+            expect.soft(categoryTitle).toMatch(mainPage.gameCategories.Top.title)
+        })
+    })
+
+    test.only(`Check Popular category slider functionality`, async () => {
+        await test.step(`Check Popular category`, async () => {
+            await mainPage.openGameCategory(mainPage.gameCategories.Popular.locator)
+            await mainPage.sleep(5000)
+            const numberOfGames = await mainPage.getNumberOfGames()
+            const categoryTitle = await mainPage.getCategoryTitleName()
+
+            expect.soft(numberOfGames).toBeGreaterThan(0)
+            expect.soft(categoryTitle).toMatch(mainPage.gameCategories.Popular.title)
+        })
+    })
+
+    test.only(`Check Jackpots category slider functionality`, async () => {
+        await test.step(`Check Jackpots category`, async () => {
+            await mainPage.openGameCategory(mainPage.gameCategories.Jackpots.locator)
+            await mainPage.sleep(5000)
+            const numberOfGames = await mainPage.getNumberOfGames()
+            const categoryTitle = await mainPage.getCategoryTitleName()
+
+            expect.soft(numberOfGames).toBeGreaterThan(0)
+            expect.soft(categoryTitle).toMatch(mainPage.gameCategories.Jackpots.title)
+        })
+    })
+
+    test.only(`Check Slots category slider functionality`, async () => {
+        await test.step(`Check Slots category`, async () => {
+            await mainPage.openGameCategory(mainPage.gameCategories.Slots.locator)
+            await mainPage.sleep(5000)
+            const numberOfGames = await mainPage.getNumberOfGames()
+            const categoryTitle = await mainPage.getCategoryTitleName()
+
+            expect.soft(numberOfGames).toBeGreaterThan(0)
+            expect.soft(categoryTitle).toMatch(mainPage.gameCategories.Slots.title)
+        })
+    })
+
+    test.only(`Check Live category slider functionality`, async () => {
+        await test.step(`Check Live category`, async () => {
+            await mainPage.openGameCategory(mainPage.gameCategories.Live.locator)
+            await mainPage.sleep(5000)
+            const numberOfGames = await mainPage.getNumberOfGames()
+            const categoryTitle = await mainPage.getCategoryTitleName()
+
+            expect.soft(numberOfGames).toBeGreaterThan(0)
+            expect.soft(categoryTitle).toMatch(mainPage.gameCategories.Live.title)
+        })
+    })
+
+    test.only(`Check Table category slider functionality`, async () => {
+        await test.step(`Check Table category`, async () => {
+            await mainPage.openGameCategory(mainPage.gameCategories.Table.locator)
+            await mainPage.sleep(5000)
+            const numberOfGames = await mainPage.getNumberOfGames()
+            const categoryTitle = await mainPage.getCategoryTitleName()
+
+            expect.soft(numberOfGames).toBeGreaterThan(0)
+            expect.soft(categoryTitle).toMatch(mainPage.gameCategories.Table.title)
+        })
     })
 
     //3 tests
