@@ -9,3 +9,4 @@ node_modules/
 .idea
 mainPage.spec.ts-snapshots
 .qodo
+.env

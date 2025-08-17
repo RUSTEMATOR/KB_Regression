@@ -35,6 +35,7 @@ interface ILinks {
     promo: string
     referalProgram: string
     refProgramProfile: string
+    telegramLink: string
 }
 
 export const LINKS: ILinks = {
@@ -51,7 +52,7 @@ export const LINKS: ILinks = {
     Bonuses: "/profile/promo/casino?target=_self",
     Bets: "/profile/game_history/casino?target=_self",
     Wallet: "/profile/wallet/balance?target=_self",
-    mobileApp: "/apk",
+    mobileApp: "/kingbilly-app",
     newGames: '/games/new_online_games',
     favoriteGames: '/games/favoriteGames',
     bankingLink: '/online-casino-payments',
@@ -73,6 +74,7 @@ export const LINKS: ILinks = {
     promo: 'https://www.kingbillycasino.com/promotions',
     blog: 'https://www.kingbillycasino.com/blog/en',
     facebookLink: 'https://www.facebook.com/kingbilly.officialpage',
-    youtubeLink: 'https://consent.youtube.com/m?continue=https%3A%2F%2Fwww.youtube.com%2F%40kingbillycasino4878%3Fcbrd%3D1&gl=GB&m=0&pc=yt&cm=2&hl=en&src=1',
-    instagramLink: 'https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fking_billy_official%2F&is_from_rle'
+    youtubeLink: 'https://www.youtube.com/@kingbillycasino4878/ ',
+    instagramLink: 'https://www.instagram.com/king_billy_official/',
+    telegramLink: 'https://t.me/king_billy_official'
 }

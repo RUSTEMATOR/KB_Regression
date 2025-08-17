@@ -30,7 +30,7 @@ export const TERMS_AND_CONDITIONS_TEXT = `1. GENERAL
 
 
 
-1.6 The website www.kingbillycasino.com ("Casino", "Website", “Company”, "We", "Us", "Our") is owned and operated by Dama N.V., a company registered and established under the laws of Curaçao, with registration number 152125 and registered address at Scharlooweg 39, Willemstad, Curaçao. Dama N.V. is licensed and regulated by Curaçao Gaming Control Board (license no. OGL/2023/174/0082).
+1.6 The website Kingbillycasino.com ("Casino", "Website", “Company”, "We", "Us", "Our") is owned and operated by Dama N.V., a company registered and established under the laws of Curaçao, with registration number 152125 and registered address at Scharlooweg 39, Willemstad, Curaçao. Dama N.V. is licensed and regulated by Curaçao Gaming Control Board (license no. OGL/2023/174/0082).
 
 
 
@@ -99,7 +99,6 @@ export const TERMS_AND_CONDITIONS_TEXT = `1. GENERAL
 
 
 3.6 Users from the following countries (“Restricted Countries”) are not allowed to deposit and play real money games: Afghanistan, Åland Islands, Albania, Algeria, American Samoa, Andorra, Angola, Anguilla, Antarctica, Antigua and Barbuda, Armenia, Aruba, Azerbaijan, Bahamas, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bermuda, Bhutan, Bolivia, Bonaire, Bosnia and Herzegovina, Botswana, Bouvet Island, Brazil, British Indian Ocean Territory, Brunei Darussalam, Bulgaria, Burkina Faso, Burundi, Cabo Verde, Cambodia, Cameroon, Cayman Islands, Central African Republic, Chad, China, Christmas Island, Cocos (Keeling) Islands, Colombia, Comoros, Congo, Congo Democratic Republic of the Congo, Cook Islands, Costa Rica, Croatia, Cuba, Curaçao, Cyprus, Czechia, Côte d'Ivoire, Democratic People’s Republic of Korea, Djibouti, Dominica, Dominican Republic, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Eswatini, Ethiopia, Falkland Islands (Malvinas), Faroe Islands, Fiji, Finland, France, French Guiana, French Polynesia, French Southern Territories, Gabon, Gambia, Georgia, Ghana, Gibraltar, Greece, Greenland, Grenada, Guadeloupe, Guam, Guatemala, Guernsey, Guinea, Guinea-Bissau, Guyana, Haiti, Heard Island and McDonald Islands, Holy See (Vatican City State), Honduras, Hong Kong, Hungary, Indonesia, Iran, Iraq, Isle of Man, Israel, Jamaica, Japan, Jersey, Kenya, Kiribati, Kyrgyzstan, Lao People's Democratic Republic, Latvia, Lebanon, Liberia, Libya, Liechtenstein, Lithuania, Macao, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Martinique, Mauritania, Mauritius, Mayotte, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Montserrat, Morocco, Mozambique, Myanmar, Namibia, Nauru, Nepal, Netherlands, New Caledonia, Nicaragua, Niger, Nigeria, Niue, Norfolk Island, Northern Mariana Islands, Pakistan, Palau, Palestine, Panama, Papua New Guinea, Paraguay, Peru, Pitcairn, Poland, Portugal, Republic of Korea, Romania, Russia, Rwanda, Réunion, Saint Barthélemy, Saint Helena, Saint Kitts and Nevis, Saint Lucia, Saint Martin (French part), Saint Pierre and Miquelon, Samoa, San Marino, Sao Tome and Principe, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Sint Maarten (Dutch part), Slovakia, Solomon Islands, Somalia, South Georgia and the South Sandwich Islands, South Sudan, Spain, Sri Lanka, Sudan, Suriname, Svalbard and Jan Mayen, Sweden, Syrian Arab Republic, Taiwan, Tajikistan, Tanzania, Thailand, the United Kingdom (including the United Kingdom Overseas Territories), Timor-Leste, Togo, Tokelau, Tonga, Trinidad and Tobago, Tunisia, Turkey, Turkmenistan, Turks and Caicos Islands, Tuvalu, Uganda, Ukraine, United States, United States Minor Outlying Islands, Uzbekistan, Vanuatu, Venezuela, Vietnam, Virgin Islands (British), Virgin Islands (U.S.), Wallis and Futuna, Western Sahara, Yemen, Zambia, Zimbabwe. The Casino cannot guarantee successful processing of withdrawals or refunds in the event that the player breaches this Restricted Countries policy.
-
 
 
 
@@ -720,7 +719,7 @@ export const TERMS_AND_CONDITIONS_TEXT = `1. GENERAL
 
 
 
-11.18 In order to verify player\`s account casino management require documents (ID, payment systems, utility bills еtc) in Latin or Cyrillic alphabet. In case player doesn’t have an opportunity to provide documents in above-mentioned alphabets casino reserves the right to demand video verification where player shows his/her documents. Scanned documents (ID/Passport) are not accepted. Documents should be photographed.
+11.18 In order to verify player's account casino management require documents (ID, payment systems, utility bills еtc) in Latin or Cyrillic alphabet. In case player doesn't have an opportunity to provide documents in above-mentioned alphabets casino reserves the right to demand video verification where player shows his/her documents. Scanned documents (ID/Passport) are not accepted. Documents should be photographed.
 
 
 
@@ -878,13 +877,15 @@ export const TERMS_AND_CONDITIONS_TEXT = `1. GENERAL
 
 
 
-13.2 The maximum withdrawal amount from the member account per transaction is EUR 4000 / USD 4000 / ZAR 60000 / NOK 40000 / AUD 6000 / NZD 6000 / CAD 6000 / YEN 300000 / INR 320000 / PHP 1 000 000.
+13.2 Cashout requests are processed only during business days.
+Withdrawals can be approved by the Casino exclusively from Monday 7:00 AM UTC till Friday 4:00 PM UTC time.
+Please note that cashout requests submitted after 16:00 UTC on Friday will not be processed during the weekend (Saturday and Sunday) and will be reviewed starting from Monday at 07:00 UTC. 
 
 
 
 
 
-13.3 The period of processing requests for withdrawals is from 0 to 24 hours.
+13.3 The maximum withdrawal amount from the member account per transaction is EUR 4000 / USD 4000 / ZAR 60000 / NOK 40000 / AUD 6000 / NZD 6000 / CAD 6000 / YEN 300000 / INR 320000 / PHP 1 000 000.
 
 
 
@@ -926,13 +927,13 @@ export const TERMS_AND_CONDITIONS_TEXT = `1. GENERAL
 
 
 
-13.10 The maximum withdrawal amount processed to a player is 20000 €/$ per week and 40000 €/$ per month, unless otherwise specified in the Terms & Conditions of a specific promotion. Exceptions may be made to players with a higher VIP level, if any, at the Casino’s sole discretion.
+13.10 The maximum withdrawal amount processed to a player is 4000 EUR / 4000 USD / 60000 ZAR / 40000 NOK / 6000 AUD / 6000 NZD / 6000 CAD / 300000 JPY / 320000 INR / 1 000 000 PHP per day, 15000 EUR / 15000 USD / 225000 ZAR / 150000 NOK / 22500 AUD / 22500 NZD / 22500 CAD / 1 125 000 JPY / 1 200 000 INR / 3 750 000 PHP per week, and 30000 EUR / 30000 USD / 450000 ZAR / 300000 NOK / 45000 AUD / 45000 NZD / 45000 CAD / 2 250 000 JPY / 2 400 000 INR / 7 500 000 PHP per month; with the casino day starting at 00:00 and ending at 23:59 UTC (Coordinated Universal Time), unless otherwise specified in the Terms & Conditions of a specific promotion. Exceptions may be made to players with a higher VIP level, if any, at the Casino’s sole discretion.
 
 
 
 
 
-13.11 If You win more than €40000, the Casino reserves the right to divide the payout into monthly installments of maximum €40000 until the full amount is paid out.
+13.11 If You win more than €30000, the Casino reserves the right to divide the payout into monthly installments of maximum €30000 until the full amount is paid out.
 
 
 
@@ -993,13 +994,13 @@ export const TERMS_AND_CONDITIONS_TEXT = `1. GENERAL
 
 14. DORMANT ACCOUNTS
 
-14.1 An inactive (dormant) account is a Player Account which a player has not logged into or logged out of for twelve (12) consecutive months. If Your Player Account is deemed to be inactive, the Casino reserves the right to charge a monthly administrative fee of €25 or the equivalent in another currency (or the current balance of Your account, if less) as long as the balance of Your account remains positive.
+14.1 An inactive (dormant) account is a Player Account which a player has not logged into or logged out of for twelve (12) consecutive months. Exceptions include accounts that are subject to a cooling-off period or self-exclusion for twelve (12) months or longer — such accounts will not be classified as Dormant during the exclusion period.
 
 
 
 
 
-14.2 You authorise the Casino to charge this fee from Your Player Account on the beginning of the month following the day Your account is deemed inactive, and on the beginning of every subsequent month that Your account remains inactive. The Casino will stop deducting the fee if the account balance is zero or if the account is re-activated.
+14.2 If a Dormant Account holds a positive balance, the Casino reserves the right to freeze the remaining funds and notify the player regarding the possibility to withdraw the balance immediately. If the player does not respond within a reasonable period (not exceeding 30 days from the notification), the Casino reserves the right to deduct the remaining balance.
 
 
 
@@ -1125,8 +1126,4 @@ export const TERMS_AND_CONDITIONS_TEXT = `1. GENERAL
 
 
 
-20.5 All costs that may occur upon refund procedure are on the player.
-
-
-
-`
+20.5 All costs that may occur upon refund procedure are on the player.`

@@ -1,0 +1,35 @@
+{
+  "cookies": [
+    {
+      "name": "locale",
+      "value": "ImVuIg%3D%3D--9852d6265eff7c06f084796dc582882269b0da1a",
+      "domain": ".kingbillycasino.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "original_user_id",
+      "value": "NjU5MjAz--f181ad5184660d662845222fb827cb33029cbaa3",
+      "domain": "www.kingbillycasino.com",
+      "path": "/",
+      "expires": 2386622109,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_casino_session",
+      "value": "eyJ0eXAiOiJKV1QiLCJraWQiOjcsImFsZyI6IlJTNTEyIn0.eyJzZXNzaW9uIjoiYzFiMGRiM2ViMmNlODhkZTllZmExMGI4OTgyMTgxYmIiLCJ1c2VyX2lkIjo2NTkyMDMsImlwIjoiMTg1LjE5Mi4xNi4yMiIsImNhc2lub19jb2RlbmFtZSI6ImtpbmdiaWxseSIsImV4cCI6MTc1NzI4NDUwOSwiaWF0IjoxNzU1NDcwMTA5LCJqdGkiOiIwMmVlNjc1NS1hYmRkLTQ4NWUtOGU5MS1kOWYwYTRmODNmZDIifQ.ewf795OrHet-twdQXnKf9rGeB7hX1x2h6hhqM8USNejOreowqKA0mSTcuSfYoBl_QEaKsxupjdBkkaK2qdqgSjyF7e-IWVvQ-HU7eR0A8-LY8vf39mjK6Di25oqNwcX-cHxuIGXVSExAyGgH6_-PmtpT2W7Ih0nJuErpHsfL70mefGI_sJm0Cy_faWlaSamVPM7GxOqRD2EL1rHUJkRF-bMNjPDAHFqqeVFcHzwkZxi165xgWOaZT1kqAWp3ljcLSta90xmhb3Fk_orWXCGzXCOzvVxo48UgJxqMXsKGr2XGjE8Esyo-J8VQr1ro68yrMia6ymHkt6FuVdzZSIpkIg",
+      "domain": ".kingbillycasino.com",
+      "path": "/",
+      "expires": 1758062109,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": []
+}
