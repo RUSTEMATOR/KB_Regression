@@ -6,6 +6,7 @@ export default class Footer extends BaseComponent {
     private facebookButton: Locator
     private instagramButton: Locator
     private youtubeButton: Locator
+    private telegramButton: Locator
     private bankingLink: Locator
     private casinoFaq: Locator
     private casinoDictionary: Locator
@@ -41,6 +42,7 @@ export default class Footer extends BaseComponent {
         this.facebookButton = page.locator('.social-links__link--facebook')
         this.instagramButton = page.locator('.social-links__link--instagram')
         this.youtubeButton = page.locator('.social-links__link--youtube')
+        this.telegramButton = page.locator('.social-links__link--telegram')
         this.bankingLink = page.locator('.footer-menu__link--online-casino-payments');
         this.casinoFaq = page.locator('.footer-menu__link--casino-faq')
         this.casinoDictionary = page.locator('.footer-menu__link--dictionary')
@@ -133,6 +135,10 @@ export default class Footer extends BaseComponent {
 
     async clickOnYoutubeButton(): Promise<void> {
         await this.youtubeButton.click()
+    }
+    
+    async clickOnTelegramButton(): Promise<void> {
+        await this.telegramButton.click()
     }
 
     async openBankingPage(): Promise<void> {
@@ -245,5 +251,22 @@ export default class Footer extends BaseComponent {
 
     get getAskgamblersAwardsLocator(): Locator {
         return this.askgamblersAwards
+    }
+
+    // Getters for social media buttons
+    getFacebookButton(): Locator {
+        return this.facebookButton;
+    }
+
+    getInstagramButton(): Locator {
+        return this.instagramButton;
+    }
+
+    getYoutubeButton(): Locator {
+        return this.youtubeButton;
+    }
+
+    getTelegramButton(): Locator {
+        return this.telegramButton;
     }
 }

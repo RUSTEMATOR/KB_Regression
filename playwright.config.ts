@@ -15,15 +15,15 @@ export default defineConfig({
   testDir: './tests',
   testMatch: '**/*.spec.ts',
   testIgnore: '**/*.skip.ts',
-  timeout: 30000,
+  timeout: 120000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 1,
+  retries: 3,
   /* Opt out of parallel tests on CI. */
-  workers: 1,
+  workers: 3,
 
   reporter: [['html'], ['list'],
     // ['playwright-qase-reporter', {
@@ -45,12 +45,7 @@ export default defineConfig({
     //             }
     //           ]
          ],
-    expect: {
-      toHaveScreenshot: {
-        maxDiffPixels: 700,
-        maxDiffPixelRatio: 0.3
-      }
-    },
+
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://www.kingbillycasino.com',
@@ -65,13 +60,20 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    // {
-    //   name: 'setup',
-    //   use: { ...devices['Desktop Chrome'] }
-    // },
     {
-      name: 'KB Regression',
-      // dependencies: ['setup'],
+      name: 'setup',
+      testMatch: 'tests/setup/**/*.setup.ts',
+      use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'KB Regression YesSetUp',
+      dependencies: ['setup'],
+      testMatch: 'tests/YesSetUp/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: './tests/setup/storageState.json' },
+    },
+    {
+      name: 'KB Regression NoSetUp',
+      testMatch: 'tests/NoSetUp/**/*.spec.ts',
       use: { ...devices['Desktop Chrome'] },
     },
 

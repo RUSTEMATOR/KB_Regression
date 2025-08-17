@@ -47,7 +47,6 @@ In order for your withdrawal to be completed, two types of approval are needed:
 2. Approval by the payment provider.
 
 Time Limits:
-From our side the process takes up to 24 hours.
 From the payment providers' side:
 E-Wallets: up to 1 hour.
 Credit cards: up to 1-3 business days.
@@ -308,7 +307,7 @@ What is min and max amount allowed to withdraw?
 
 The minimum withdrawal amount is 40 EUR / 40 USD / 60 AUD / 60 CAD / 60 NZD / 400 NOK / 800 ZAR / 6000 JPY / 3600 INR / 2400 PHP per transaction (EUR 300 / NOK 3000 / AUD 300 / 300 NZD / 300 CAD in case of Bank Transfer).
 
-The maximum withdrawal amount per transaction is EUR 4.000 / USD 4.000 / ZAR 60.000 / NOK 40.000 / AUD 6.000 / NZD 6.000 / CAD 6.000 / YEN 300.000 / INR 320.000 / PHP 1.000.000. The maximum weekly withdrawal amount is $/€ 20.000 or equivalent. The maximum monthly withdrawal amount is $/€ 40.000 or equivalent.
+The maximum withdrawal amount processed to a player is 4000 EUR / 4000 USD / 60000 ZAR / 40000 NOK / 6000 AUD / 6000 NZD / 6000 CAD / 300000 JPY / 320000 INR / 1 000 000 PHP per day, 15000 EUR / 15000 USD / 225000 ZAR / 150000 NOK / 22500 AUD / 22500 NZD / 22500 CAD / 1 125 000 JPY / 1 200 000 INR / 3 750 000 PHP per week, and 30000 EUR / 30000 USD / 450000 ZAR / 300000 NOK / 45000 AUD / 45000 NZD / 45000 CAD / 2 250 000 JPY / 2 400 000 INR / 7 500 000 PHP per month; with the casino day starting at 00:00 and ending at 23:59 UTC (Coordinated Universal Time), unless otherwise specified in the Terms & Conditions of a specific promotion. Exceptions may be made to players with a higher VIP level, if any, at the Casino’s sole discretion.
 
 It seems like I cannot withdraw!
 
@@ -343,7 +342,6 @@ In order for your withdrawal to be completed, two types of approval are needed:
 2. Approval by the payment provider.
 
 Time Limits:
-From our side the process takes up to 24 hours.
 From the payment providers' side:
 E-Wallets: up to 1 hour.
 Credit cards: up to 1-3 business days.

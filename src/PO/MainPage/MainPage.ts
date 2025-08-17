@@ -156,11 +156,11 @@ export default class MainPage extends BasePage {
     
     async openGameCategory(gameCategory: Locator): Promise<void> {
         await gameCategory.click()
-        const isClickable = await gameCategory.isVisible()
-        if (!isClickable) {
-            await this.page.locator('#slider_arrow_right').click()
-            await this.openGameCategory(gameCategory)
-        }
+        // const isClickable = await gameCategory.isVisible()
+        // if (!isClickable) {
+        //     await this.page.locator('#slider_arrow_right').click()
+            // await this.openGameCategory(gameCategory)
+        // }
     }
 
     async clickOnCategoryDropdown(element: string){
