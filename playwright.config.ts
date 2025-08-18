@@ -23,7 +23,8 @@ export default defineConfig({
   /* Retry on CI only */
   retries: 3,
   /* Opt out of parallel tests on CI. */
-  workers: 3,
+  workers: 8,
+
 
   reporter: [['html'], ['list'],
     // ['playwright-qase-reporter', {
@@ -50,6 +51,11 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://www.kingbillycasino.com',
     headless: true,
+    proxy: {
+      server: 'proxy.geonode.io:9000',
+      username: 'geonode_Zr3aVjywHC-type-residential-country-ie-state-munster',
+      password: 'bebe29a2-c13b-4aa5-8c20-eb3dd10a8afd'
+    },
 
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */

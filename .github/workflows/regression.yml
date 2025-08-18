@@ -6,17 +6,19 @@ on:
       slack_channel:
         description: 'Slack channel ID for notifications'
         required: true
+        default: 'none'
       slack_ts:
         description: 'Slack message timestamp for updates'
         required: true
+        default: 'none'
       trigger_source:
         description: 'Source that triggered the workflow'
         required: false
         default: 'manual'
       test_group:
-        description: 'Test group to run (YesSetUp, NoSetUp, or all)'
+        description: 'Optional parameter (not used in current configuration)'
         required: false
-        default: 'all'
+        default: ''
 
 jobs:
   test:
@@ -27,7 +29,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'latest'
+          node-version: lts
           
       - name: Install dependencies
         run: npm ci
@@ -35,23 +37,16 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         
+      # Only update Slack if it's a Slack-triggered run
       - name: Update Slack - Running tests
+        if: ${{ github.event.inputs.trigger_source == 'slack' && github.event.inputs.slack_channel != 'none' }}
         uses: slackapi/slack-github-action@v1.24.0
         with:
           update-ts: ${{ github.event.inputs.slack_ts }}
           channel-id: ${{ github.event.inputs.slack_channel }}
           payload: |
             {
-              "text": "🏃‍♂️ Regression tests in progress...\nTest group: ${{ github.event.inputs.test_group }}\nRepository: ${{ github.repository }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "🏃‍♂️ *Regression tests in progress*\nTest group: `${{ github.event.inputs.test_group }}`\nRepository: `${{ github.repository }}`\nBranch: `${{ github.ref_name }}`\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run details>"
-                  }
-                }
-              ]
+              "text": "🏃‍♂️ Regression tests in progress...\nTest group: ${{ github.event.inputs.test_group }}"
             }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -59,15 +54,12 @@ jobs:
       - name: Run Playwright tests
         id: run_tests
         run: |
-          if [ "${{ github.event.inputs.test_group }}" = "YesSetUp" ]; then
-            npm run test:setup
-            npx playwright test --project="KB Regression YesSetUp" --reporter=list,html
-          elif [ "${{ github.event.inputs.test_group }}" = "NoSetUp" ]; then
-            npx playwright test --project="KB Regression NoSetUp" --reporter=list,html
-          else
-            npm run test:setup
-            npx playwright test --reporter=list
-          fi
+          # Always run setup
+          npm run test:setup
+          
+          # Run all tests
+          echo "Running all tests"
+          npx playwright test --reporter=list,html
         continue-on-error: true
         
       - name: Upload test report
@@ -78,9 +70,10 @@ jobs:
           path: playwright-report/
           retention-days: 30
           
+      # Only update Slack with results if it's a Slack-triggered run
       - name: Update Slack - Test results
+        if: ${{ always() && github.event.inputs.trigger_source == 'slack' && github.event.inputs.slack_channel != 'none' }}
         uses: slackapi/slack-github-action@v1.24.0
-        if: always()
         with:
           update-ts: ${{ github.event.inputs.slack_ts }}
           channel-id: ${{ github.event.inputs.slack_channel }}
@@ -92,7 +85,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{ steps.run_tests.outcome == 'success' && '✅ *Regression tests passed!*' || '❌ *Regression tests failed!*' }}\nTest group: `${{ github.event.inputs.test_group }}`\nRepository: `${{ github.repository }}`\nBranch: `${{ github.ref_name }}`\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View full test results>"
+                    "text": "${{ steps.run_tests.outcome == 'success' && '✅ *Regression tests passed!*' || '❌ *Regression tests failed!*' }}\nTest group: `${{ github.event.inputs.test_group }}`\nRepository: `${{ github.repository }}`\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View full test results>"
                   }
                 }
               ]
