@@ -57,6 +57,12 @@ export default defineConfig({
       password: 'bebe29a2-c13b-4aa5-8c20-eb3dd10a8afd'
     },
 
+    proxy: {
+      server: 'proxy.geonode.io:9000',
+      username: 'geonode_Zr3aVjywHC-type-residential-country-ie-state-munster',
+      password: 'bebe29a2-c13b-4aa5-8c20-eb3dd10a8afd'
+    },
+
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
