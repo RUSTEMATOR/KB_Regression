@@ -22,7 +22,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       
@@ -53,14 +53,19 @@ jobs:
       - name: Run Playwright tests
         id: run_tests
         run: |
-          # Always run setup
-          npm run test:setup
-          
+          npx playwright test --reporter=list,json=playwright-report/results.json
+
           # Run all tests
           echo "Running all tests"
           npx playwright test --reporter=list,html
         continue-on-error: true
-        
+
+      - name: Post test results to Slack thread
+        if: always()
+        run: node post-slack-results.js "${{ github.event.inputs.slack_channel }}" "${{ github.event.inputs.slack_ts }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
       - name: Upload test report
         uses: actions/upload-artifact@v4
         if: always()
