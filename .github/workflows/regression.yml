@@ -37,7 +37,6 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         
-      # Only update Slack if it's a Slack-triggered run
       - name: Update Slack - Running tests
         if: ${{ github.event.inputs.trigger_source == 'slack' && github.event.inputs.slack_channel != 'none' }}
         uses: slackapi/slack-github-action@v1.24.0
@@ -70,7 +69,6 @@ jobs:
           path: playwright-report/
           retention-days: 30
           
-      # Only update Slack with results if it's a Slack-triggered run
       - name: Update Slack - Test results
         if: ${{ always() && github.event.inputs.trigger_source == 'slack' && github.event.inputs.slack_channel != 'none' }}
         uses: slackapi/slack-github-action@v1.24.0
