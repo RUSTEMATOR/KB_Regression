@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
+  "type": "module",
   "description": "",
   "devDependencies": {
     "@faker-js/faker": "^9.4.0",
