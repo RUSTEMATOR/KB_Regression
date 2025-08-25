@@ -53,7 +53,7 @@ jobs:
       - name: Run Playwright tests
         id: run_tests
         run: |
-          npx playwright test --reporter=list,json
+          npx playwright test --output=playwright-report/test-results.json
 
           # Run all tests
           echo "Running all tests"
