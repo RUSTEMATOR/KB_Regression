@@ -53,13 +53,19 @@ jobs:
       - name: Run Playwright tests
         id: run_tests
         run: |
-          npx playwright test --output=playwright-report/test-results.json
-
-          # Run all tests
           echo "Running all tests"
-          npx playwright test --output=playwright-report
+          npx playwright test --reporter=json --output=playwright-report
+
         continue-on-error: true
 
+      - name: Verify Playwright results file
+        run: ls -l playwright-report
+
+
+      - name: Check Playwright logs
+        run: cat playwright-report/test-results.json || echo "No logs found"
+
+        
       - name: Post test results to Slack thread
         if: always()
         run: node post-slack-results.js "${{ github.event.inputs.slack_channel }}" "${{ github.event.inputs.slack_ts }}"
