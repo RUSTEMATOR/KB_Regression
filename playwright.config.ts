@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import path from 'path';
 
 /**
  * Read environment variables from file.
@@ -26,7 +27,7 @@ export default defineConfig({
   workers: 3,
 
 
-  reporter: [['html'], ['list'], ['json'],
+  reporter: [['html'], ['list'], ['json', {path: 'playwright-report/test-results.json'}],
     // ['playwright-qase-reporter', {
     //               debug: true,
     //               mode: 'testops',

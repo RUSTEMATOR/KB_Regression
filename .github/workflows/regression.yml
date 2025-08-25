@@ -54,7 +54,7 @@ jobs:
         id: run_tests
         run: |
           echo "Running all tests"
-          npx playwright test --reporter=json=playwright-report/results.json
+          npx playwright test 
 
         continue-on-error: true
 
