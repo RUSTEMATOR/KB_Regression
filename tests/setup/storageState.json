@@ -15,17 +15,17 @@
       "value": "NjU5MjAz--f181ad5184660d662845222fb827cb33029cbaa3",
       "domain": "www.kingbillycasino.com",
       "path": "/",
-      "expires": 2386695173,
+      "expires": 2387306381,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "_casino_session",
-      "value": "eyJ0eXAiOiJKV1QiLCJraWQiOjcsImFsZyI6IlJTNTEyIn0.eyJzZXNzaW9uIjoiMzAyYTNjMDVkYjFhMTU4YmI1ZjdkODMwOWYyN2QzZWMiLCJ1c2VyX2lkIjo2NTkyMDMsImlwIjoiODYuNDUuNy4xMDYiLCJjYXNpbm9fY29kZW5hbWUiOiJraW5nYmlsbHkiLCJleHAiOjE3NTczNTc1NzMsImlhdCI6MTc1NTU0MzE3MywianRpIjoiZmZkNzE1YjgtNGJkYy00YjljLTk2NWUtMDZjZjFkNTAzOTdjIn0.iBNoiPbljrttx-qmP7B4G0vq-O58fdL3SpMFQbn38Y79lkGqwoy8lswqUFmPtpzRuNRQ0956CV1Kz7nyVZPuHB3gJcZigtb5uoS_FQ84ZaiRL_B4usdl68y4FzQRasNACd3wP0uHg7CG3Gz9Q4Bf070vWzh8ywnMpAOVF1DwRf5I3U5s0_tdEGonzyUpwAqI9IadJ8BteKFdZwjr8O7gBjqa8mJZqcth_Q2RVckGWJwnCjIu-m4XTzOkjsg6DgLTG0ejtL4cWmTeZv4rkIhA4qylRLGdCTYEpDK27_9pXkwbiUXOij09-dfXsLxdjT4H8hbMvWuurxjmlcJ-wcJThQ",
+      "value": "eyJ0eXAiOiJKV1QiLCJraWQiOjcsImFsZyI6IlJTNTEyIn0.eyJzZXNzaW9uIjoiNzBkMWUzOGIwYjc1MWZkYzZkNDIyMzdlYjEzZWEyZWEiLCJ1c2VyX2lkIjo2NTkyMDMsImlwIjoiMTg1LjE5Mi4xNi4xNzAiLCJjYXNpbm9fY29kZW5hbWUiOiJraW5nYmlsbHkiLCJleHAiOjE3NTc5Njg3ODEsImlhdCI6MTc1NjE1NDM4MSwianRpIjoiNzMyYmZhOWEtODI4My00ZDBlLTkyZjgtYmEzMzE3ZmIzNjdjIn0.Yq4NGCL5OAcgBpNDhvKSBhe1uy0AyI1PmeilDwJYaN2Pvol3d-mGUoftBz0hUwJaeblGly8eTMzxghxFrlc0j43g6tXXkD_PmG4KB5wZP7tcoTSEUCRZk8WW6kbGLLbV86cUsvbVCgfV0K99c7Bcc4AMucYjXjAliOWOxzp6RI0po9SJPh1P7jbCdLxJmqA2m3LlYKi3LZoKdmDMhk_SAoM-RrwIV7DJvBn3Lm90zaXmpuTPcQlpbk7wqEhvryvZiPoCB2AhEEWuLHerxTfeqEohj3CvNm_rvL-Ymmp6Nv5Ze6O0xrwSEfK-N5V5wK1i53aNcQoBDwRPQpwVQ9oOdA",
       "domain": ".kingbillycasino.com",
       "path": "/",
-      "expires": 1758135173,
+      "expires": 1758746381,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
