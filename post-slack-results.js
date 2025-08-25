@@ -1,6 +1,4 @@
-const fs = require('fs');
-const fetch = require('node-fetch');
-
+import fs from 'fs';
 const resultsPath = 'playwright-report/results.json'; // Correct file path
 const slackToken = process.env.SLACK_BOT_TOKEN;
 const slackChannel = process.env.SLACK_CHANNEL_ID || process.argv[2];
