@@ -1,6 +1,7 @@
-import fs from 'fs';
+const fs = require('fs');
+const fetch = require('node-fetch');
 
-const resultsPath = 'playwright-report/results.json';
+const resultsPath = 'playwright-report/results.json'; // Correct file path
 const slackToken = process.env.SLACK_BOT_TOKEN;
 const slackChannel = process.env.SLACK_CHANNEL_ID || process.argv[2];
 const threadTs = process.env.SLACK_THREAD_TS || process.argv[3];
@@ -11,15 +12,29 @@ if (!fs.existsSync(resultsPath)) {
 }
 
 const results = JSON.parse(fs.readFileSync(resultsPath, 'utf-8'));
-const tests = results.suites.flatMap(suite => suite.specs.flatMap(spec => spec.tests));
-const passed = tests.filter(t => t.status === 'passed').length;
-const failed = tests.filter(t => t.status === 'failed').length;
-const skipped = tests.filter(t => t.status === 'skipped').length;
-const failedNames = tests.filter(t => t.status === 'failed').map(t => t.title);
+const suites = results.suites || [];
+let passed = 0, failed = 0, skipped = 0;
+const failedTests = [];
+
+suites.forEach(suite => {
+  suite.suites.forEach(subSuite => {
+    subSuite.specs.forEach(spec => {
+      spec.tests.forEach(test => {
+        const status = test.results[0]?.status || 'skipped';
+        if (status === 'passed') passed++;
+        if (status === 'failed') {
+          failed++;
+          failedTests.push(test.title);
+        }
+        if (status === 'skipped') skipped++;
+      });
+    });
+  });
+});
 
 let summary = `*Test Results:*\n✅ Passed: ${passed}\n❌ Failed: ${failed}\n⏩ Skipped: ${skipped}`;
-if (failedNames.length > 0) {
-  summary += `\n*Failed tests:*\n${failedNames.map(name => `• ${name}`).join('\n')}`;
+if (failedTests.length > 0) {
+  summary += `\n*Failed tests:*\n${failedTests.map(name => `• ${name}`).join('\n')}`;
 }
 
 fetch('https://slack.com/api/chat.postMessage', {

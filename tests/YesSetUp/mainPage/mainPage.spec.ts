@@ -13,7 +13,7 @@ import { ADDRGETNETWORKPARAMS } from 'dns';
 
 
 
-test.describe.only('Main page', () => {
+test.describe('Main page', () => {
     let mainPage: MainPage
     let gameCategories: IGameCategories
 
@@ -361,7 +361,7 @@ test.describe.only('Main page', () => {
         })
     })
 
-    test('Check game filter category dropdown', async () => {
+    test.only('Check game filter category dropdown', async () => {
         await test.step('Click on filter button', async () => {
             await mainPage.header.clickFilterButton()
         })
