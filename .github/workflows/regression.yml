@@ -57,7 +57,7 @@ jobs:
 
           # Run all tests
           echo "Running all tests"
-          npx playwright test --reporter=list,html
+          npx playwright test --output=playwright-report
         continue-on-error: true
 
       - name: Post test results to Slack thread
