@@ -27,7 +27,9 @@ export default defineConfig({
   workers: 3,
 
 
-  reporter: [['html'], ['list'], ['json', {path: 'playwright-report/test-results.json'}],
+  reporter: [['html', { outputFolder: 'playwright-report' }],
+    ['list'],
+    ['json', { outputFile: 'playwright-report/results.json' }],
     // ['playwright-qase-reporter', {
     //               debug: true,
     //               mode: 'testops',
