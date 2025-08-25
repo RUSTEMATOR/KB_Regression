@@ -93,7 +93,7 @@ test.describe('Body', async () => {
     }
 
 
-    test.only('Check "Support" button', async () => {
+    test('Check "Support" button', async () => {
         let intercomWindow: SupportMessanger
         await test.step('Open support window', async () => {
             intercomWindow = await mainPage.clickOnSupportButton()

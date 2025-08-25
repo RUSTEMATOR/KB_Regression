@@ -13,7 +13,7 @@ import { ADDRGETNETWORKPARAMS } from 'dns';
 
 
 
-test.describe('Main page', () => {
+test.describe.only('Main page', () => {
     let mainPage: MainPage
     let gameCategories: IGameCategories
 
