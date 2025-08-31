@@ -24,7 +24,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: 3,
   /* Opt out of parallel tests on CI. */
-  workers: 3,
+  workers: 5,
 
 
   reporter: [['html', { outputFolder: 'playwright-report' }],

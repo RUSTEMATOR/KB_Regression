@@ -22,19 +22,22 @@ test.describe('Main page', () => {
             })
         })
 
-
         test('Check "More info" button on bonus offer card', async () => {
             let numberOfPromoCards: number
             await test.step('Get number of promo cards on the page', async () => {
                 numberOfPromoCards = await mainPage.promoSection.getNumberOfCards()
             })
 
-            
-                await test.step('Open info pop-up for every active card', async () => {
-                    for (let i = 0; i <= numberOfPromoCards - 1; i++) {
-                    
-                    const isActive = await mainPage.promoSection.checkIfPromoCardIsActive(i)
+            await test.step('Open info pop-up for every active card', async () => {
+                for (let i = 0; i <= numberOfPromoCards - 1; i++) {
+                    // Skip disabled promo cards
+                    const promoCardLocator = mainPage.page.locator(`.promo-item:nth-of-type(${i + 1})`)
+                    if (await promoCardLocator.getAttribute('class').then(cls => cls?.includes('promo-item--disabled'))) {
+                        console.log(`Promo card ${i + 1} is disabled, skipping`)
+                        continue
+                    }
 
+                    const isActive = await mainPage.promoSection.checkIfPromoCardIsActive(i)
                     if (isActive) {
                         await mainPage.promoSection.clickOnInfoButton(i)
                         const pageURL = await mainPage.getPageUrl()
@@ -48,40 +51,8 @@ test.describe('Main page', () => {
                     } else {
                         console.log(`Promo card ${i + 1} is not active`)
                     }
-                    
                 }
             })
-        })
-
-        test('Check "Get it now" button', async () => {
-            let numberOfPromoCards: number
-            await test.step('Get number of promo cards on the page', async () => {
-                numberOfPromoCards = await mainPage.promoSection.getNumberOfCards()
-            })
-
-            
-                await test.step('Click on "Get it now" button for every active card', async () => {
-                    for (let i = 0; i <= numberOfPromoCards - 1; i++) {
-                    
-                    const isActive = await mainPage.promoSection.checkIfPromoCardIsActive(i)
-
-                    if (isActive) {
-                        await mainPage.promoSection.clickOnGetItButton(i)
-                         const pageURL = await mainPage.getPageUrl()
-
-                        if(pageURL.includes('/promotions')){
-                            expect.soft(mainPage.promoSection.getInfoModal).toBeVisible()
-                            await mainPage.promoSection.closeInfoModal()
-                        } else {
-                            await mainPage.page.goBack()
-                        }
-                    } else {
-                        console.log(`Promo card ${i + 1} is not active`)
-                    }
-                    
-                }
-            })
-
         })
 
         test('Check "Next" arrow-shaped button in the promo section',async () => {

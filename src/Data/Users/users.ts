@@ -1,16 +1,16 @@
 export const USERS = {
     currencyUser: {
-        email: 'currencies@kingbilly.xyz',
-        password: '193786Az()'
+        email: 'regression_currencies@kingbilly.xyz',
+        password: 'KingBilly123!'
     },
-
+    
     citizenUser: {
-        email: 'New_citizen@Kingbilly.Xyz',
+        email: 'regression_new_citizen@kingbilly.xyz',
         password: 'KingBilly123!'
     },
 
     referalUser: {
-        email: 'referral_auto@kingbilly.xyz',
+        email: 'regression_referral_auto@kingbilly.xyz',
         password: 'KingBilly123!'
     },
 }
@@ -18,80 +18,80 @@ export const USERS = {
 
 export const DEP_USERS = {
     zeroDep: {
-        email: 'mike0@kingbilly.xyz',
-        password: 'LOL12lol!'
+        email: 'regression_mike0@kingbilly.xyz',
+        password: 'KingBilly123!'
     },
 
     oneDep: {
-        email: 'nikita1@gmail.com',
-        password: 'KingBillyCasino1@'
+        email: 'regression_nikita1@gmail.com',
+        password: 'KingBilly123!'
     },
 
     twoDep: {
-        email: 'newtest2@kingbilly.xyz',
+        email: 'regression_newtest2@kingbilly.xyz',
         password: 'KingBilly123!'
     },
 
     threeDep: {
-        email: 'nikita3@gmail.com',
-        password: 'KingBillyCasino1@'
+        email: 'regression_nikita3@gmail.com',
+        password: 'KingBilly123!'
     },
 
     fourDep: {
-        email: 'nikita4@gmail.com',
-        password: 'KingBillyCasino1@'
+        email: 'regression_nikita4@gmail.com',
+        password: 'KingBilly123!'
     },
 
     fiveDep: {
-        email: 'nikita5@gmail.com',
-        password: 'KingBillyCasino1@'
+        email: 'regression_nikita5@gmail.com',
+        password: 'KingBilly123!'
     }
 }
 
 
 export const VIP_USERS = {
     guest: {
-        email: 'new_guest@kingbilly.xyz',
+        email: 'regression_new_guest@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     citizen: {
-        email: 'New_citizen@Kingbilly.Xyz',
+        email: 'regression_new_citizen@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     knight: {
-        email: 'New_knight@Kingbilly.Xyz',
+        email: 'regression_New_knight@Kingbilly.Xyz',
         password: 'KingBilly123!'
     },
     baronet: {
-        email: 'new_baronet@kingbilly.xyz',
+        email: 'regression_new_baronet@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     baron: {
-        email: 'new_baron@kingbilly.xyz',
+        email: 'regression_new_baron@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     viscount: {
-        email: 'new_viscount@kingbilly.xyz',
+        email: 'regression_new_viscount@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     count: {
-        email: 'new_count@kingbilly.xyz',
+        email: 'regression_new_count@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     marquess: {
-        email: 'new_marquess@kingbilly.xyz',
+        email: 'regression_new_marquess@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     duke: {
-        email: 'new_duke@kingbilly.xyz',
+        email: 'regression_new_duke@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     prince: {
-        email: 'new_prince@kingbilly.xyz',
+        email: 'regression_new_prince@kingbilly.xyz',
         password: 'KingBilly123!'
     },
     king: {
-        email: 'new_king@kingbilly.xyz',
+        email: 'regression_new_king@kingbilly.xyz',
         password: 'KingBilly123!'
     }
-};
+}

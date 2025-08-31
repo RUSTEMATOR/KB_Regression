@@ -10,11 +10,11 @@ interface IMainUser {
 
 
 export const MAIN_USER: IMainUser = {
-    email: 'samoilenkofluttershy@gmail.com',
-    password: '193786Az()',
+    email: 'regression_mainuser@kingbilly.xyz',
+    password: 'KingBilly123!',
     username: 'Pony Fluttershy',
-    status: 'Baron',
-    nextStatus: 'Viscount',
-    statusPoints: "626 / 2000RS",
-    progressBarState: 'width: 31%;',
+    status: 'Count',
+    nextStatus: 'Marquess',
+    statusPoints: "1 / 12000RS",
+    progressBarState: 'width: 0%;',
 }

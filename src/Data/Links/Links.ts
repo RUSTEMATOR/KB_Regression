@@ -76,5 +76,5 @@ export const LINKS: ILinks = {
     facebookLink: 'https://www.facebook.com/kingbilly.officialpage',
     youtubeLink: 'https://www.youtube.com/@kingbillycasino4878/ ',
     instagramLink: 'https://www.instagram.com/king_billy_official/',
-    telegramLink: 'https://t.me/king_billy_official'
+    telegramLink: 'https://t.me/+0Eznmtd1oLRlMDhi'
 }

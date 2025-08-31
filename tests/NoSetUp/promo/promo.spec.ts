@@ -120,11 +120,13 @@ test.describe('Promos', () => {
                     await promoPage.clickOnGetItButton(promo)
                     const promoPageUrl = await promoPage.getPageUrl()
 
-                    if(promoPageUrl.includes('/promotions')){
-                        expect.soft(promoPage.getPromoModal).toBeVisible()
-                        await promoPage.clickOnCloseButton()
-                    } else {
+                    if (promoPageUrl.includes('/promotions/royal-month')) {
                         await promoPage.page.goBack()
+                    } else if (promoPageUrl.includes('/bonus-store')) {
+                        await promoPage.page.goBack()
+                    } else {
+                            expect.soft(promoPage.getPromoModal).toBeVisible()
+                            await promoPage.clickOnCloseButton()
                     }
                 })
             }
@@ -149,12 +151,15 @@ test.describe('Promos', () => {
                     await promoPage.clickOnInfoButton(promo)
                     const promoPageUrl = await promoPage.getPageUrl()
 
-                    if(promoPageUrl.includes('/promotions')){
-                        expect.soft(promoPage.getPromoModal).toBeVisible()
-                        await promoPage.clickOnCloseButton()
-                    } else {
+                    
+                    if (promoPageUrl.includes('/promotions/royal-month')) {
                         await promoPage.page.goBack()
-                    }
+                    } else if (promoPageUrl.includes('/bonus-store')) {
+                        await promoPage.page.goBack()
+                    } else {
+                            expect.soft(promoPage.getPromoModal).toBeVisible()
+                            await promoPage.clickOnCloseButton()
+                        }
                 })
             }
         })

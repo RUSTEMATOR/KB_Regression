@@ -75,6 +75,7 @@ test.describe('Burger menu', () => {
         await test.step('Check number of promos to be bigger than 1', async () => {
             await promoPage.page.waitForLoadState('domcontentloaded')
             const allPromoCards = await promoPage.getPromoCard.all()
+            console.log(allPromoCards)
             await promoPage.page.waitForTimeout(4000)
             await expect(allPromoCards.length).toBeGreaterThan(1)
         })

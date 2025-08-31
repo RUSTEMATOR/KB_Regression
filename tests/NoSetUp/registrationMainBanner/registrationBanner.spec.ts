@@ -51,7 +51,7 @@ test.describe('Registration Modal', () => {
 
     test('Check "Email" field in the registration modal form', async () => {
         await test.step('Enter a valid email into the "Email" input', async () => {
-            await signUpFormSlider.fillEmail('samoilenkofluttershy@gmail.com')
+            await signUpFormSlider.fillEmail(MAIN_USER.email)
 
             await expect(signUpFormSlider.getEmailInput).toHaveAttribute('value', `${MAIN_USER.email}`)
         })
@@ -59,7 +59,7 @@ test.describe('Registration Modal', () => {
 
     test('Check "Password" field in the registration modal form', async () => {
         await test.step('Enter a valid password into the "Password" input', async () => {
-            await signUpFormSlider.fillPassword('193786Az()')
+            await signUpFormSlider.fillPassword(MAIN_USER.password)
 
             await expect(signUpFormSlider.getPasswordInput).toHaveAttribute('value', `${MAIN_USER.password}`)
         })
