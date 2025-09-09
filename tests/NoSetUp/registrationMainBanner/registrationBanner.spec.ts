@@ -117,11 +117,11 @@ test.describe('Registration Modal', () => {
         })
     })
 
-    test('Check "Terms and conditions" link', async () => {
+    test('Check "Terms and conditions" link', async ({baseURL}) => {
         await test.step('Click on the "Terms and conditions" link', async () => {
             await signUpFormSlider.clickOnTermsAndConditionsLink()
 
-            expect.soft(await termsAndConditions.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.TermsAndConditions}`)
+            expect.soft(await termsAndConditions.getPageUrl()).toEqual(`${baseURL}${LINKS.TermsAndConditions}`)
             await expect.soft(termsAndConditions.getDownloadPdfButton).toBeVisible()
         })
     })
@@ -142,7 +142,7 @@ test.describe('Registration Modal', () => {
         })
     }
 
-    test('Check "Discover more" button on the main banner in the registration modal', async () => {
+    test('Check "Discover more" button on the main banner in the registration modal', async ({baseURL}) => {
         let promoPage: PromoPage
 
         await test.step('Click on the "Discover more" button', async () => {
@@ -152,7 +152,7 @@ test.describe('Registration Modal', () => {
         await test.step('Check URL of the page a user is transferred to', async () => {
             await promoPage.getPageUrl()
 
-            expect.soft(await promoPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
+            expect.soft(await promoPage.getPageUrl()).toEqual(`${baseURL}${LINKS.Promo}`)
         })
 
         await test.step('Check at least one promo card is visible', async () => {
@@ -161,7 +161,7 @@ test.describe('Registration Modal', () => {
         })
     })
 
-    test('Check Registration and Post reg pop-up modal', async () => {
+    test('Check Registration and Post reg pop-up modal', async ({baseURL}) => {
         const email = await methods.generateRandomEmail(3);
 
         await test.step('Create an account', async () => {
@@ -170,7 +170,7 @@ test.describe('Registration Modal', () => {
 
         await test.step('Check dep modal to be visible', async () => {
             await expect.soft(depModal.getDepModal).toBeVisible();
-            await expect.soft(await mainPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.MainPageDepModal}`);
+            await expect.soft(await mainPage.getPageUrl()).toEqual(`${baseURL}${LINKS.MainPageDepModal}`);
         })
     });
 })

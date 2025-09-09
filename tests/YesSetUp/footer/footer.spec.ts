@@ -5,7 +5,7 @@ import { MAIN_USER } from "../../../src/Data/Users/mainUser";
 import { isContext } from "vm";
 import { LOCALES } from "../../../src/Data/Locales/Locales";
 import BankingPage from "../../../src/PO/BankingPage/BankingPage";
-import playwrightConfig from "../../../playwright.config";
+// Removed unused playwrightConfig import
 import FaqPage from "../../../src/PO/FAQPage/FaqPage";
 import CasinoDictionary from "../../../src/PO/CasinoDictionary/CasinoDictionary";
 import CryptoFaq from "../../../src/PO/CryptoFaq/CryptoFaq";
@@ -142,7 +142,7 @@ test.describe('Footer', () => {
 
     test.describe('Check "Help" column of the information pages', () => {
 
-        test('Check "Casino FAQ"', async () => {
+    test('Check "Casino FAQ"', async ({ baseURL }) => {
             const faqPage = new FaqPage(page)
             await test.step('Click on the Casino FAQ link', async () => {
                 await mainPage.footer.openCasinoFaqPage()
@@ -151,11 +151,11 @@ test.describe('Footer', () => {
 
             await test.step('Check Casino FAQ page url', async () => {
                 const currentUrl = await faqPage.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.faqLink}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.faqLink}`)
             })
         })
 
-        test('Check "Casino Dictionary"', async () => {
+    test('Check "Casino Dictionary"', async ({ baseURL }) => {
             const casinoDictionary = new CasinoDictionary(page)
 
             await test.step('Click on the Casino Dictionary link', async () => {
@@ -165,12 +165,12 @@ test.describe('Footer', () => {
 
             await test.step('Check Casino Dictionary page url', async () => {
                 const currentUrl = await casinoDictionary.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.casinoDictionary}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.casinoDictionary}`)
             })
         })
 
 
-        test('Check "Crypto FAQ"', async () => {
+    test('Check "Crypto FAQ"', async ({ baseURL }) => {
             const cryptoFaq = new CryptoFaq(page)
             await test.step('Click on the Crypto FAQ link', async () => {
                 await mainPage.footer.openCryptoFaqPage()
@@ -180,7 +180,7 @@ test.describe('Footer', () => {
 
             await test.step('Check Crypto FAQ page url', async () => {
                 const currentUrl = await cryptoFaq.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.cryptoFaq}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.cryptoFaq}`)
             })
         })
 
@@ -190,7 +190,7 @@ test.describe('Footer', () => {
     test.describe('Check "Info" column of the info pages', () => {
 
 
-        test('Check "The legend" page', async () => {
+    test('Check "The legend" page', async ({ baseURL }) => {
             const theLegendPage = new LegendPage(page)
 
             await test.step('Click on the Legend link', async () => {
@@ -200,11 +200,11 @@ test.describe('Footer', () => {
 
             await test.step('Check Legend page url', async () => {
                 const currentUrl = await theLegendPage.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Legend}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.Legend}`)
             })
         })
 
-        test('Check "Terms and Conditions" page', async () => {
+    test('Check "Terms and Conditions" page', async ({ baseURL }) => {
             const termsAndConditions = new TermsAndConditions(page)
 
             await test.step('Click on the Terms and Conditions link', async () => {
@@ -214,11 +214,11 @@ test.describe('Footer', () => {
 
             await test.step('Check Terms and Conditions page url', async () => {
                 const currentUrl = await termsAndConditions.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.TermsAndConditions}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.TermsAndConditions}`)
             })
         })
 
-        test('Check "Privacy policy" page', async () => {
+    test('Check "Privacy policy" page', async ({ baseURL }) => {
             const privacyPolicy = new PrivacyPolicy(page)
 
             await test.step('Click on the Privacy Policy link', async () => {
@@ -228,11 +228,11 @@ test.describe('Footer', () => {
 
             await test.step('Check Privacy Policy page url', async () => {
                 const currentUrl = await privacyPolicy.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.privacyPolicy}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.privacyPolicy}`)
             })
         })
 
-        test('Check "Responsible gambling" page', async () => {
+    test('Check "Responsible gambling" page', async ({ baseURL }) => {
             const responsibleGambling = new ResponsibleGamblingPage(page)
 
             await test.step('Click on the Responsible gambling link', async () => {
@@ -242,11 +242,11 @@ test.describe('Footer', () => {
 
             await test.step('Check Responsible gambling page url', async () => {
                 const currentUrl = await responsibleGambling.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.responsibleGambling}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.responsibleGambling}`)
             })
         })
 
-        test('Check "Cookie Policy" page', async () => {
+    test('Check "Cookie Policy" page', async ({ baseURL }) => {
 
             const cookiePolicy = new CookiePolicyPage(page)
 
@@ -257,7 +257,7 @@ test.describe('Footer', () => {
 
             await test.step('Check Cookie Policy page url', async () => {
                 const currentUrl = await cookiePolicy.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.cookiePolicy}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.cookiePolicy}`)
             })
         })
 
@@ -289,7 +289,7 @@ test.describe('Footer', () => {
 
     test.describe('Check "Promotions" column in the footer', () => {
 
-        test('Check "Promotions" button', async () => {
+    test('Check "Promotions" button', async ({ baseURL }) => {
             const promoPage = new PromoPage(page)
 
             await test.step('Click on the Promotions button', async () => {
@@ -299,11 +299,11 @@ test.describe('Footer', () => {
 
             await test.step('Check Promotions page url', async () => {
                 const currentUrl = await promoPage.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.Promo}`)
             })
         })
 
-        test('Check "Tournaments" button', async () => {
+    test('Check "Tournaments" button', async ({ baseURL }) => {
             const tournamentPage = new TournamentPage(page)
 
             await test.step('Click on the Tournaments button', async () => {
@@ -313,11 +313,11 @@ test.describe('Footer', () => {
 
             await test.step('Check Tournaments page url', async () => {
                 const currentUrl = await tournamentPage.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Tournaments}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.Tournaments}`)
             })
         })
 
-        test('Check "VIP" button', async () => {
+        test('Check "VIP" button', async ({baseURL}) => {
             const vipPage = new VipPage(page)
 
             await test.step('Click on the VIP button', async () => {
@@ -327,12 +327,12 @@ test.describe('Footer', () => {
 
             await test.step('Check VIP page url', async () => {
                 const currentUrl = await vipPage.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Vip}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.Vip}`)
             })
         })
 
 
-        test('Check "Bonus Terms and Conditions" button', async () => {
+    test('Check "Bonus Terms and Conditions" button', async ({ baseURL }) => {
             const bonusTermsAndConditions = new BonusTermsAndConditions(page)
 
             await test.step('Click on the Bonus Terms and Conditions button', async () => {
@@ -342,7 +342,7 @@ test.describe('Footer', () => {
 
             await test.step('Check Bonus Terms and Conditions page url', async () => {
                 const currentUrl = await bonusTermsAndConditions.getPageUrl()
-                expect(currentUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.bonusTermsAndConditions}`)
+                expect(currentUrl).toBe(`${baseURL}${LINKS.bonusTermsAndConditions}`)
             })
         })
     })

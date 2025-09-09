@@ -60,7 +60,7 @@ test.describe('Burger menu', () => {
         })
     })
 
-    test('Check "Promotions" button', async () => {
+    test('Check "Promotions" button', async ({baseURL}) => {
 
         await test.step('Click on the promotions button', async () => {
             await burgerMenu.openPromotionsTab()
@@ -69,11 +69,12 @@ test.describe('Burger menu', () => {
         await test.step('Check link of the page', async () =>{
             const actualUrl = await promoPage.getPageUrl()
 
-            expect(actualUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
+            expect(actualUrl).toBe(`${baseURL}${LINKS.Promo}`)
         })
 
         await test.step('Check number of promos to be bigger than 1', async () => {
             await promoPage.page.waitForLoadState('domcontentloaded')
+            await promoPage.page.waitForTimeout(4000)
             const allPromoCards = await promoPage.getPromoCard.all()
             console.log(allPromoCards)
             await promoPage.page.waitForTimeout(4000)
@@ -81,7 +82,7 @@ test.describe('Burger menu', () => {
         })
     })
 
-    test('Check "Tournaments" button', async () => {
+    test('Check "Tournaments" button', async ({baseURL}) => {
         await test.step('Click on the "tournaments" button', async () => {
             await burgerMenu.openTournamentsTab()
         })
@@ -89,7 +90,7 @@ test.describe('Burger menu', () => {
         await test.step('Check link of the page', async () => {
             const actualUrl = await tournamentPage.getPageUrl()
 
-            expect(actualUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Tournaments}`)
+            expect(actualUrl).toBe(`${baseURL}${LINKS.Tournaments}`)
         })
 
         await test.step('Check tournament card to be visible', async () => {
@@ -98,7 +99,7 @@ test.describe('Burger menu', () => {
 
     })
 
-    test('Check "VIP" button', async () => {
+    test('Check "VIP" button', async ({baseURL}) => {
         await test.step('Click on the "VIP" button', async () => {
             await burgerMenu.openVipTab()
             await vipPage.getVipPageLogo.waitFor({state: "visible"})
@@ -107,7 +108,7 @@ test.describe('Burger menu', () => {
         await test.step('Check link of the page', async () => {
             const actualUrl = await promoPage.getPageUrl()
 
-            expect(actualUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Vip}`)
+            expect(actualUrl).toBe(`${baseURL}${LINKS.Vip}`)
         })
 
         await test.step('Check VIP card to be visible', async () => {
@@ -115,7 +116,7 @@ test.describe('Burger menu', () => {
         })
     })
 
-    test('Check "Legend" button', async () => {
+    test('Check "Legend" button', async ({baseURL}) => {
         await test.step('Click on the "Legend" button', async () => {
             await burgerMenu.openLegendTab()
         })
@@ -123,7 +124,7 @@ test.describe('Burger menu', () => {
         await test.step('Check link of the page', async () => {
             const actualUrl = await promoPage.getPageUrl()
 
-            expect(actualUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.Legend}`)
+            expect(actualUrl).toBe(`${baseURL}${LINKS.Legend}`)
         })
 
         await test.step('Check title of the page', async () => {
@@ -131,14 +132,14 @@ test.describe('Burger menu', () => {
         })
     })
 
-    test('Check Check "Mobile app" button', async () => {
+    test('Check Check "Mobile app" button', async ({baseURL}) => {
         await test.step('Click on the "Mobile app" button', async () => {
             await burgerMenu.clickOnMobileAppButton()
         })
         await test.step('Check link of the page', async () => {
             const actualUrl = await mobileAppPage.getPageUrl()
 
-            expect(actualUrl).toBe(`${playwrightConfig.use?.baseURL}${LINKS.mobileApp}`)
+            expect(actualUrl).toBe(`${baseURL}${LINKS.mobileApp}`)
         })
 
         await test.step('Check if download button is visible', async () => {
@@ -175,7 +176,7 @@ test.describe('Burger menu', () => {
         })
     })
 
-    test('Redirects to profile info', async () => {
+    test('Redirects to profile info', async ({baseURL}) => {
         const profileTitleText = 'Profile'
         await test.step('Click on chevrone button', async () => {
             await burgerMenu.unwrapPlayerPanel()
@@ -189,12 +190,12 @@ test.describe('Burger menu', () => {
         await test.step('Check the page that opened', async () => {
             const actualUrl = await profilePage.getPageUrl()
 
-            expect(actualUrl).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Profile}`)
+            expect(actualUrl).toEqual(`${baseURL}${LINKS.Profile}`)
             expect(await profilePage.getProfileTitle.innerText()).toEqual(profileTitleText)
         })
     })
 
-    test('Redirects to Bonuses', async () => {
+    test('Redirects to Bonuses', async ({baseURL}) => {
          const bonusesTitleText = 'Bonuses'
          await test.step('Click on chevrone button', async () => {
             await burgerMenu.unwrapPlayerPanel()
@@ -208,12 +209,12 @@ test.describe('Burger menu', () => {
         await test.step('Check the page that opened', async () => {
             const actualUrl = await profilePage.getPageUrl()
 
-            expect(actualUrl).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Bonuses}`)
+            expect(actualUrl).toEqual(`${baseURL}${LINKS.Bonuses}`)
             expect(await profilePage.getProfileTitle.innerText()).toEqual(bonusesTitleText)
         })
     })
 
-    test('Redirects to Bets', async () => {
+    test('Redirects to Bets', async ({baseURL}) => {
          const betsTitleText = 'Game History'
          await test.step('Click on chevrone button', async () => {
             await burgerMenu.unwrapPlayerPanel()
@@ -227,12 +228,12 @@ test.describe('Burger menu', () => {
         await test.step('Check the page that opened', async () => {
             const actualUrl = await profilePage.getPageUrl()
 
-            expect(actualUrl).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Bets}`)
+            expect(actualUrl).toEqual(`${baseURL}${LINKS.Bets}`)
             expect(await profilePage.getProfileTitle.innerText()).toEqual(betsTitleText)
         })
     })
 
-    test('Redirects to Wallet', async () => {
+    test('Redirects to Wallet', async ({baseURL}) => {
          const walletTitleText = 'Wallet'
          await test.step('Click on chevrone button', async () => {
             await burgerMenu.unwrapPlayerPanel()
@@ -246,7 +247,7 @@ test.describe('Burger menu', () => {
         await test.step('Check the page that opened', async () => {
             const actualUrl = await profilePage.getPageUrl()
 
-            expect(actualUrl).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Wallet}`)
+            expect(actualUrl).toEqual(`${baseURL}${LINKS.Wallet}`)
             expect(await profilePage.getProfileTitle.innerText()).toEqual(walletTitleText)
         })
     })

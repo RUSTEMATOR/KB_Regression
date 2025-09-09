@@ -36,6 +36,7 @@ interface ILinks {
     referalProgram: string
     refProgramProfile: string
     telegramLink: string
+    bonusStore: string
 }
 
 export const LINKS: ILinks = {
@@ -69,10 +70,11 @@ export const LINKS: ILinks = {
     elvisFrog: '/game/elvis-frog-trueways',
     referalProgram: '/referral_program',
     refProgramProfile: '/profile/referral_system',
+    bonusStore: '/bonus-store',
 
     affiliate: 'https://kingbilly.partners/',
-    promo: 'https://www.kingbillycasino.com/promotions',
-    blog: 'https://www.kingbillycasino.com/blog/en',
+    promo: '/promotions',
+    blog: '/blog/en',
     facebookLink: 'https://www.facebook.com/kingbilly.officialpage',
     youtubeLink: 'https://www.youtube.com/@kingbillycasino4878/ ',
     instagramLink: 'https://www.instagram.com/king_billy_official/',

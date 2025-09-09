@@ -99,6 +99,10 @@ export default class BasePage {
     }
   }
 
+      async clickOn(button: Locator) {
+        await button.click();
+    }
+
   get getScrollUpButton(): Locator {
     return this.scrollUpButton
   }

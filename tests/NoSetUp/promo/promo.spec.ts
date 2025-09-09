@@ -63,7 +63,7 @@ test.describe('Promos', () => {
         })
     })
 
-    test('Check "Show more" button above the tournament section', async ({page}) => {
+    test('Check "Show more" button above the tournament section', async ({page, baseURL}) => {
         const tournamentPage = new TournamentPage(page)
 
         await test.step('Click on the "Show more" button', async () => {
@@ -71,7 +71,7 @@ test.describe('Promos', () => {
         })
 
         await test.step('Check transfer to the tournaments page', async () => {
-            expect(await promoPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Tournaments}`)
+            expect(await promoPage.getPageUrl()).toEqual(`${baseURL}${LINKS.Tournaments}`)
         })
 
         await test.step('Check presence of tournaments on the page', async () => {
@@ -80,7 +80,7 @@ test.describe('Promos', () => {
         })
     })
 
-    test('Check "Show more" button on the tournament banners', async () => {
+    test('Check "Show more" button on the tournament banners', async ({ baseURL }) => {
         let href: string
 
         await test.step('Scroll the page to the bottom', async () => {
@@ -98,7 +98,7 @@ test.describe('Promos', () => {
         })
 
         await test.step('Check link of the page', async () => {
-            expect(await promoPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${href}`)
+            expect(await promoPage.getPageUrl()).toEqual(`${baseURL}${href}`)
         })
     })
 

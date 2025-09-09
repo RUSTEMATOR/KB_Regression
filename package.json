@@ -11,7 +11,8 @@
     "@playwright/test": "^1.50.0",
     "@types/node": "^22.10.10",
     "axe-playwright-report": "^1.0.2",
-    "playwright-qase-reporter": "^2.0.16"
+    "playwright-qase-reporter": "^2.0.16",
+    "typescript": "^5.9.2"
   },
   "dependencies": {
     "@slack/bolt": "^4.4.0",
@@ -21,6 +22,10 @@
     "speakeasy": "^2.0.0"
   },
   "scripts": {
-    "slack-bot": "node app_slack.js"
-}
+    "slack-bot": "node app_slack.js",
+    "test:default": "npx playwright test --project=Default-YesSetUp --project=Default-NoSetUp --headed --debug",
+    "test:kb-bet1": "npx playwright test --project=KB-Bet1-YesSetUp --project=KB-Bet1-NoSetUp",
+    "test:kb-win24": "npx playwright test --project=KB-Win24-YesSetUp --project=KB-Win24-NoSetUp",
+    "test:kb-16": "npx playwright test --project=KB-16-YesSetUp --project=KB-16-NoSetUp"
+  }
 }

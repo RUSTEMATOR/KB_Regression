@@ -255,7 +255,7 @@ test.describe('Main page', () => {
         })
     })
 
-    test('Check the show more button, Promo', async () => {
+    test('Check the show more button, Promo', async ({baseURL}) => {
 
         await test.step('Click on Promo show more button', async () => {
             await mainPage.clickOnPromoShowMoreButton()
@@ -263,7 +263,7 @@ test.describe('Main page', () => {
 
         await test.step('Check Promo page url', async () => {
             const promoPageUrl = await mainPage.getPageUrl()
-            expect.soft(promoPageUrl).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.Promo}`)
+            expect.soft(promoPageUrl).toEqual(`${baseURL}${LINKS.Promo}`)
             console.log(promoPageUrl)
         })
     })

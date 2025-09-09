@@ -14,5 +14,5 @@ export default class SupportMessanger extends BaseComponent {
 
     get getIntercomWindow() {
         return this.intercomWindowContainer;
-    }
+    }  
 }

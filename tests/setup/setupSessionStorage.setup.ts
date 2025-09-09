@@ -1,20 +1,23 @@
 import { test as setup, request } from '@playwright/test';
 import { MAIN_USER } from '../../src/Data/Users/mainUser';
+import playwrightConfig from '../../playwright.config';
 
 setup.describe('Setup Session Storage', () => {
-  setup('Set up session storage for main account via API', async () => {
+  setup('Set up session storage for main account via API', async ({baseURL}) => {
     console.log('Setting up session state for the main account via API...');
     
     // Create a new request context
     const apiRequest = await request.newContext({
-      baseURL: 'https://www.kingbillycasino.com',
+      baseURL: baseURL,
       extraHTTPHeaders: {
         'Accept': 'application/vnd.s.v1+json',
         'Content-Type': 'application/json',
-        'Origin': 'https://www.kingbillycasino.com',
-        'Referer': 'https://www.kingbillycasino.com/?sign-in=modal'
+        'Origin': `${baseURL}`,
+        'Referer': `${baseURL}/?sign-in=modal`
       }
     });
+
+    console.log('Request context created with baseURL:', baseURL);
 
     // Login via API
     const response = await apiRequest.post('/api/users/sign_in', {

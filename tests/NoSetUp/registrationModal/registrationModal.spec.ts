@@ -115,10 +115,10 @@ test.describe('Registration Modal', () => {
         });
     });
 
-    test('Check "Terms and conditions" link', async () => {
+    test('Check "Terms and conditions" link', async ({baseURL}) => {
         await test.step('Click on the "Terms and conditions" link', async () => {
             await signUpModal.clickOnTermsAndConditionsLink();
-            expect.soft(await termsAndConditions.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.TermsAndConditions}`);
+            expect.soft(await termsAndConditions.getPageUrl()).toEqual(`${baseURL}${LINKS.TermsAndConditions}`);
             await expect.soft(termsAndConditions.getDownloadPdfButton).toBeVisible();
         });
     });
@@ -137,7 +137,7 @@ test.describe('Registration Modal', () => {
         });
     }
 
-    test('Check Registration and Post reg pop-up modal', async () => {
+    test('Check Registration and Post reg pop-up modal', async ({baseURL}) => {
         const email = await methods.generateRandomEmail(3);
 
         await test.step('Create an account', async () => {
@@ -146,7 +146,7 @@ test.describe('Registration Modal', () => {
 
         await test.step('Check dep modal to be visible', async () => {
             await expect.soft(depModal.getDepModal).toBeVisible();
-            await expect.soft(await mainPage.getPageUrl()).toEqual(`${playwrightConfig.use?.baseURL}${LINKS.MainPageDepModal}`);
+            await expect.soft(await mainPage.getPageUrl()).toEqual(`${baseURL}${LINKS.MainPageDepModal}`);
         })
     });
 });

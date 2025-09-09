@@ -28,7 +28,7 @@ test.describe('Games', () => {
     })
 
 
-    test('Check "Favourite" button', async () => {
+    test('Check "Favourite" button', async ({baseURL}) => {
         await test.step('Click on "Favourite" button', async () => {
             await favoriteGames.closeModal()
             await favoriteGames.clickOnFavoriteButton()
@@ -36,7 +36,7 @@ test.describe('Games', () => {
 
         await test.step('Go to favorite games page', async () => {
             await favoriteGames.navTo(LINKS.favoriteGames)
-            expect(await favoriteGames.getPageUrl()).toBe(`${playwrightConfig.use?.baseURL}${LINKS.favoriteGames}`)
+            expect(await favoriteGames.getPageUrl()).toBe(`${baseURL}${LINKS.favoriteGames}`)
         })
 
         await test.step('Check the chosen game to be visible', async () => {
@@ -99,7 +99,7 @@ test.describe('Game page', () => {
         }
     })
 
-    test('Check game search in the sidemenu', async () => {
+    test('Check game search in the sidemenu', async ({baseURL}) => {
         await test.step('Click on the search button', async () => {
             await gamePage.clickOnSearchButton()
         })
@@ -115,7 +115,7 @@ test.describe('Game page', () => {
 
         await test.step('Check link of the game page', async () => {
             await gamePage.sleep(3000)
-            expect(await gamePage.getPageUrl()).toBe(`${playwrightConfig.use?.baseURL}${LINKS.elvisFrog}`)
+            expect(await gamePage.getPageUrl()).toBe(`${baseURL}${LINKS.elvisFrog}`)
         })
     })
 

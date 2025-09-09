@@ -24,12 +24,12 @@ export default defineConfig({
   /* Retry on CI only */
   retries: 3,
   /* Opt out of parallel tests on CI. */
-  workers: 5,
+  workers: 8,
 
 
   reporter: [['html', { outputFolder: 'playwright-report' }],
     ['list'],
-    ['json', { outputFile: 'playwright-report/results.json' }],
+    // ['json', { outputFile: 'playwright-report/results.json' }],
     // ['playwright-qase-reporter', {
     //               debug: true,
     //               mode: 'testops',
@@ -52,7 +52,6 @@ export default defineConfig({
 
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://www.kingbillycasino.com',
     headless: true,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
@@ -62,54 +61,80 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // Setup projects for each baseURL
     {
-      name: 'setup',
+      name: 'setup-default',
       testMatch: 'tests/setup/**/*.setup.ts',
-      use: { ...devices['Desktop Chrome'] }
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillycasino.com' }
     },
     {
-      name: 'KB Regression YesSetUp',
-      dependencies: ['setup'],
+      name: 'setup-bet1',
+      testMatch: 'tests/setup/**/*.setup.ts',
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillybet1.com' }
+    },
+    {
+      name: 'setup-win24',
+      testMatch: 'tests/setup/**/*.setup.ts',
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillywin24.com' }
+    },
+    {
+      name: 'setup-16',
+      testMatch: 'tests/setup/**/*.setup.ts',
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillycasino16.com' }
+    },
+
+    // Default
+    {
+      name: 'Default-YesSetUp',
+      dependencies: ['setup-default'],
       testMatch: 'tests/YesSetUp/**/*.spec.ts',
-      use: { ...devices['Desktop Chrome'], storageState: './tests/setup/storageState.json' },
+      use: { ...devices['Desktop Chrome'], storageState: './tests/setup/storageState.json', baseURL: 'https://www.kingbillycasino.com' },
     },
     {
-      name: 'KB Regression NoSetUp',
+      name: 'Default-NoSetUp',
       testMatch: 'tests/NoSetUp/**/*.spec.ts',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillycasino.com' },
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-    //
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    // kingbillybet1.com
+    {
+      name: 'KB-Bet1-YesSetUp',
+      dependencies: ['setup-bet1'],
+      testMatch: 'tests/YesSetUp/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: './tests/setup/storageState.json', baseURL: 'https://www.kingbillybet1.com' },
+    },
+    {
+      name: 'KB-Bet1-NoSetUp',
+      testMatch: 'tests/NoSetUp/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillybet1.com' },
+    },
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+    // kingbillywin24.com
+    {
+      name: 'KB-Win24-YesSetUp',
+      dependencies: ['setup-win24'],
+      testMatch: 'tests/YesSetUp/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: './tests/setup/storageState.json', baseURL: 'https://www.kingbillywin24.com' },
+    },
+    {
+      name: 'KB-Win24-NoSetUp',
+      testMatch: 'tests/NoSetUp/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillywin24.com' },
+    },
 
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+    // kingbillycasino16.com
+    {
+      name: 'KB-16-YesSetUp',
+      dependencies: ['setup-16'],
+      testMatch: 'tests/YesSetUp/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: './tests/setup/storageState.json', baseURL: 'https://www.kingbillycasino16.com' },
+    },
+    {
+      name: 'KB-16-NoSetUp',
+      testMatch: 'tests/NoSetUp/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://www.kingbillycasino16.com' },
+    },
   ],
-
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
