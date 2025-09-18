@@ -398,7 +398,7 @@ test.describe('Footer', () => {
 
             await test.step('Check Blog page url', async () => {
                 const currentUrl = blogPage.url()
-                expect(currentUrl).toBe(`${LINKS.blog}`)
+                expect(currentUrl).toBe(`${test.info().project.use.baseURL}${LINKS.blog}`)
         })
 
     })

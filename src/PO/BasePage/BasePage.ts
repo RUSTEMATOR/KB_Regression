@@ -4,6 +4,7 @@ import Footer from "../../Components/Footer";
 import SidebarMenu from "../../Components/SidebarMenu";
 import CategoryDropdown from "../MainPage/Component/CategoryDropdown";
 import { axeScan } from "axe-playwright-report";
+import playwrightConfig from "../../../playwright.config";
 
 export default class BasePage {
   readonly page: Page
@@ -102,6 +103,7 @@ export default class BasePage {
       async clickOn(button: Locator) {
         await button.click();
     }
+
 
   get getScrollUpButton(): Locator {
     return this.scrollUpButton

@@ -7,7 +7,7 @@ export default class SupportMessanger extends BaseComponent {
     constructor(page: Page) {
         super(page);
 
-        this.intercomWindowContainer = page.locator('iframe[name="intercom-messenger-frame"]').contentFrame().getByTestId('compactHeader')
+        this.intercomWindowContainer = page.locator('iframe[name="intercom-messenger-frame"]').contentFrame().getByRole('button', { name: 'Search for help' });
     }
 
 

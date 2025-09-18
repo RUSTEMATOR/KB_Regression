@@ -33,6 +33,10 @@ export default class PromoSection extends BaseComponent {
         return await this.promoCards.count()
     }
 
+    async getPromoCards(): Promise<Array<Locator>> {
+        return await this.promoCards.all();
+    }
+
     async checkIfPromoCardIsActive(index: number): Promise<boolean> {
 
         return await this.page.evaluate((i) => {

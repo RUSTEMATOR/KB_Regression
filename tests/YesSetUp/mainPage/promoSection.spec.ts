@@ -1,4 +1,4 @@
-import test, {expect} from "@playwright/test";
+import test, {expect, Locator} from "@playwright/test";
 import MainPage from "../../../src/PO/MainPage/MainPage";
 import {LINKS} from "../../../src/Data/Links/Links";
 import {MAIN_USER} from "../../../src/Data/Users/mainUser";
@@ -23,15 +23,15 @@ test.describe('Main page', () => {
         })
 
         test('Check "More info" button on bonus offer card', async () => {
-            let numberOfPromoCards: number
-            await test.step('Get number of promo cards on the page', async () => {
-                numberOfPromoCards = await mainPage.promoSection.getNumberOfCards()
+            let promoCards: Array<Locator> = []
+            await test.step('Get promo cards', async () => {
+                promoCards = await mainPage.promoSection.getPromoCards()
             })
 
             await test.step('Open info pop-up for every active card', async () => {
-                for (let i = 0; i <= numberOfPromoCards - 1; i++) {
+                for (let i = 0; i <= promoCards.length - 1; i++) {
                     // Skip disabled promo cards
-                    const promoCardLocator = mainPage.page.locator(`.promo-item:nth-of-type(${i + 1})`)
+                    const promoCardLocator = promoCards[i]
                     if (await promoCardLocator.getAttribute('class').then(cls => cls?.includes('promo-item--disabled'))) {
                         console.log(`Promo card ${i + 1} is disabled, skipping`)
                         continue
@@ -42,7 +42,9 @@ test.describe('Main page', () => {
                         await mainPage.promoSection.clickOnInfoButton(i)
                         const pageURL = await mainPage.getPageUrl()
 
-                        if(pageURL.includes('/promotions')){
+                        if(pageURL.includes('promotions/royal-month')){
+                            await mainPage.page.goBack()
+                        } else if(pageURL.includes('/promotions')){
                             expect.soft(mainPage.promoSection.getInfoModal).toBeVisible()
                             await mainPage.promoSection.closeInfoModal()
                         } else {

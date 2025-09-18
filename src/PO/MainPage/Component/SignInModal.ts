@@ -1,9 +1,11 @@
 import {Locator, Page} from "@playwright/test";
 import BaseComponent from "../../../Components/BaseComponent";
 import SignUpModal from "./SignUpModal";
-import {PasswordRecovery} from "../../PasswordRecovery/PasswordRecovery";
+import { test } from "@playwright/test";
+import Header from "../../../Components/Header";
 
 export default class SignInModal extends BaseComponent {
+    private header: Header
     private emailInput: Locator
     private passwordInput: Locator
     private signInButton: Locator
@@ -19,6 +21,8 @@ export default class SignInModal extends BaseComponent {
 
     constructor(page: Page) {
         super(page);
+
+        this.header = new Header(this.page)
 
         this.emailInput = page.locator('#login_modal_email_input')
         this.passwordInput = page.locator('#login_password_input')
@@ -42,6 +46,12 @@ export default class SignInModal extends BaseComponent {
     }
 
     async clickSignIn(): Promise<void> {
+        await this.signInButton.click()
+        await this.header.getDepositButton.waitFor({state: 'visible', timeout: 10000})
+        await this.changeLanguage('EN', test.info().project.use.baseURL);
+    }
+
+    async clickSignInNegative(): Promise<void> {
         await this.signInButton.click()
     }
 

@@ -259,7 +259,7 @@ CVV stands for "Card Verification Value" and CVC2 for "Card Verification Code". 
 
 What is the minimum/maximum amount I can deposit?
 
-By King Billy’s decree, the minimum deposit amount is 20 EUR / 20 USD / 30 AUD / 30 CAD / 30 NZD / 200 NOK / 400 ZAR / 3000 JPY / 1800 INR / 1200 PHP and 0.0002 BTC / 0.006 ETH / 0.2 LTC / 20 USDT.
+By King Billy’s decree, the minimum deposit amount is 20 EUR / 20 USD / 30 AUD / 30 CAD / 30 NZD / 200 NOK / 400 ZAR and 0.0002 BTC / 0.006 ETH / 0.2 LTC / 20 USDT.
 
 Which deposit methods are available at King Billy Casino?
 
@@ -305,9 +305,9 @@ Please note: you can withdraw only by the same method you used to deposit.
 
 What is min and max amount allowed to withdraw?
 
-The minimum withdrawal amount is 40 EUR / 40 USD / 60 AUD / 60 CAD / 60 NZD / 400 NOK / 800 ZAR / 6000 JPY / 3600 INR / 2400 PHP per transaction (EUR 300 / NOK 3000 / AUD 300 / 300 NZD / 300 CAD in case of Bank Transfer).
+The minimum withdrawal amount is 40 EUR / 40 USD / 60 AUD / 60 CAD / 60 NZD / 400 NOK / 800 ZAR per transaction (EUR 300 / NOK 3000 / AUD 300 / 300 NZD / 300 CAD in case of Bank Transfer).
 
-The maximum withdrawal amount processed to a player is 4000 EUR / 4000 USD / 60000 ZAR / 40000 NOK / 6000 AUD / 6000 NZD / 6000 CAD / 300000 JPY / 320000 INR / 1 000 000 PHP per day, 15000 EUR / 15000 USD / 225000 ZAR / 150000 NOK / 22500 AUD / 22500 NZD / 22500 CAD / 1 125 000 JPY / 1 200 000 INR / 3 750 000 PHP per week, and 30000 EUR / 30000 USD / 450000 ZAR / 300000 NOK / 45000 AUD / 45000 NZD / 45000 CAD / 2 250 000 JPY / 2 400 000 INR / 7 500 000 PHP per month; with the casino day starting at 00:00 and ending at 23:59 UTC (Coordinated Universal Time), unless otherwise specified in the Terms & Conditions of a specific promotion. Exceptions may be made to players with a higher VIP level, if any, at the Casino’s sole discretion.
+The maximum withdrawal amount processed to a player is 4000 EUR / 4000 USD / 60000 ZAR / 40000 NOK / 6000 AUD / 6000 NZD / 6000 CAD per day, 15000 EUR / 15000 USD / 225000 ZAR / 150000 NOK / 22500 AUD / 22500 NZD / 22500 CAD per week, and 30000 EUR / 30000 USD / 450000 ZAR / 300000 NOK / 45000 AUD / 45000 NZD / 45000 CAD per month; with the casino day starting at 00:00 and ending at 23:59 UTC (Coordinated Universal Time), unless otherwise specified in the Terms & Conditions of a specific promotion. Exceptions may be made to players with a higher VIP level, if any, at the Casino’s sole discretion.
 
 It seems like I cannot withdraw!
 
@@ -406,7 +406,7 @@ Earn Royal Score by making deposits. As your Royal Score goes up, so does your n
 
 What is Royal Score?
 
-Your Royal Score indicates your level within the Kingdom and the VIP Court. Royal Score ascends when you deposit, raising it by 1 point with each 1 EUR (1 USD, 1.5 AUD, 1.5 NZD, 1.5 CAD, 11.5 NOK, 20 ZAR, 150 JPY, 90 INR, 60 PHP, 0.000015 BTC, 0.0003 ETH, 0.01 LTC, 1 USDT) deposit.
+Your Royal Score indicates your level within the Kingdom and the VIP Court. Royal Score ascends when you deposit, raising it by 1 point with each 1 EUR (1 USD, 1.5 AUD, 1.5 NZD, 1.5 CAD, 11.5 NOK, 20 ZAR, 0.000015 BTC, 0.0003 ETH, 0.01 LTC, 1 USDT) deposit.
 
 Where can I check the Royal Score?
 
@@ -419,14 +419,14 @@ King’s Coins are the King Billy Casino’s currency. You can see King's Coins 
 How to earn King's Coins?
 
 King's coins are earned by making bets on King Billy Casino and can be exchanged to prizes. To earn 1 King's Coin, a player needs to wager (only real money bets can earn coins):
-Slots/Live Games: 20 EUR / 20 USD / 30 AUD / 30 CAD / 30 NZD / 200 NOK / 400 ZAR / 3000 JPY / 1800 INR / 1200 PHP.
+Slots/Live Games: 20 EUR / 20 USD / 30 AUD / 30 CAD / 30 NZD / 200 NOK / 400 ZAR.
 Note: Other games don’t contribute to earning King’s Coins. Low-risk roulette bets, red/black, odd/even, and low/high, do not count towards King’s Coins. All double options on Slots & Video Poker (all varieties) will not earn King’s Coins.
 To see the full details, please refer to the Terms & Conditions.
 
 How do I trade King's Coins?
 
 Go to your Account - Promo Tab and here click on "Exchange" and enter the amount of King's Coins (also called Compoints) you would like to change (min 100).
-Every 100 King's Coins can be exchanged into 1 EUR / 1 USD / 1,5 AUD / 1,5 CAD / 1,5 NZD / 10 NOK / 150 JPY / 90 INR / 20 ZAR / 60 PHP, crypto 1 USDT / 0.000015 BTC / 0.0003 ETH / 0.01 LTC.
+Every 100 King's Coins can be exchanged into 1 EUR / 1 USD / 1,5 AUD / 1,5 CAD / 1,5 NZD / 10 NOK / 20 ZAR, crypto 1 USDT / 0.000015 BTC / 0.0003 ETH / 0.01 LTC.
 To see the full details, please refer to the Terms & Conditions.
 
 What is the wagering requirement for my bonus?

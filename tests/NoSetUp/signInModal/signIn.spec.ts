@@ -100,7 +100,7 @@ test.describe('Log In', () => {
         })
 
         await test.step('Check page URL', async () => {
-            expect(await passwordRecovery.getPageUrl()).toEqual(`${baseURL}${LINKS.PasswordRecovery}`)
+            expect(await passwordRecovery.getPageUrl()).toEqual(`${test.info().project.use.baseURL}${LINKS.PasswordRecovery}`)
         })
 
         await test.step('Check if at least one UI element is visible', async () => {

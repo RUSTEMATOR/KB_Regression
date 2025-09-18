@@ -76,7 +76,7 @@ test.describe('Referral', () => {
         })
 
         await test.step('Check link of the page', async () => {
-            expect(await refPage.getPageUrl()).toEqual(`${baseURL}${LINKS.referalProgram}`)
+            expect(await refPage.getPageUrl()).toEqual(`${test.info().project.use.baseURL}${LINKS.referalProgram}`)
         })
 
         await test.step('Verify elements on the page', async () => {
@@ -93,7 +93,7 @@ test.describe('Referral', () => {
 
         await test.step('Check link of the page', async () => {
             await refPage.getProfileReferalLinkForm.waitFor()
-            expect(await refPage.getPageUrl()).toMatch(new RegExp(`${baseURL}${LINKS.refProgramProfile}`))
+            expect(await refPage.getPageUrl()).toMatch(new RegExp(`${test.info().project.use.baseURL}${LINKS.refProgramProfile}`))
         })
 
         await test.step('Check if link input is not empty', async () => {

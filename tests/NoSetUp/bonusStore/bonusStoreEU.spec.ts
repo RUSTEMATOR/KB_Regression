@@ -4,8 +4,7 @@ import BonusStore from "../../../src/PO/BonusStore/BonusStore";
 import { LINKS } from "../../../src/Data/Links/Links";
 import { test, expect } from "@playwright/test";
 import { USERS, VIP_USERS } from "../../../src/Data/Users/users";
-import { EXPECTED_RESULTS_BONUS_STORE } from "../../../src/Data/bonusStoreExpectedResults/bonusStoreExpected";
-
+import { EU_EXPECTED_RESULTS_BONUS_STORE } from "../../../src/Data/bonusStoreExpectedResults/bonusStoreExpectedEU";
 
 function createComparisonMatcher(bonuses: any[]): any {
     return expect.arrayContaining(
@@ -18,19 +17,22 @@ function createComparisonMatcher(bonuses: any[]): any {
     );
 }
 
-test.describe('Bonus Store', () => {
-    
-    let signInModal: SignInModal
-    let signUpModal: SignUpModal
-    let bonusStore: BonusStore
-
-    test.beforeEach(async ({ page }) => {
+test.describe('Bonus Store - EU', () => {
+    test.beforeEach(async ({ page }, testInfo) => {
+        const baseURL = testInfo.project.use.baseURL;
+        test.skip(baseURL === 'https://www.kingbillywin24.com', 'These tests are for EU domains only');
+        
         signInModal = new SignInModal(page)
         signUpModal = new SignUpModal(page)
         bonusStore = new BonusStore(page)
         await bonusStore.navTo(LINKS.bonusStore)
         await bonusStore.clickAcceptCookies()
     });
+    
+    let signInModal: SignInModal
+    let signUpModal: SignUpModal
+    let bonusStore: BonusStore
+
     test('Verify Sign in button availability', async () => {
         await bonusStore.clickOn(bonusStore.signInButton)
         await expect(signInModal.getEmailInput).toBeVisible()
@@ -50,7 +52,7 @@ test.describe('Bonus Store', () => {
 
             await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
             const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
-            expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL))
+            expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL))
     })
 
     test('Verify bonus availability for New Citizen user kings coins', async () => {
@@ -62,7 +64,7 @@ test.describe('Bonus Store', () => {
 
         await bonusStore.bonusCardKingsCoins.first().scrollIntoViewIfNeeded()
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS))
     })
 
     test('Verify bonus availability for King user real money', async () => {
@@ -74,7 +76,8 @@ test.describe('Bonus Store', () => {
 
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.KING.REAL))
+
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.KING.REAL))
     })
 
     test('Verify bonus availability for King user kings coins', async () => {
@@ -85,8 +88,7 @@ test.describe('Bonus Store', () => {
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
-        console.log(bonusInfo)
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS))
     })
 
     test('Verify bonus availability for Duke user real money', async () => {
@@ -97,7 +99,7 @@ test.describe('Bonus Store', () => {
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL))
     })
 
     test('Verify bonus availability for Duke user kings coins', async () => {
@@ -108,7 +110,7 @@ test.describe('Bonus Store', () => {
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS))
     })
 
      test('Verify bonus availability for Baronet user real money', async () => {
@@ -119,7 +121,7 @@ test.describe('Bonus Store', () => {
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL))
     })
 
     test('Verify bonus availability for Baronet user kings coins', async () => {
@@ -130,7 +132,7 @@ test.describe('Bonus Store', () => {
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS))
     })
 
 
@@ -142,8 +144,7 @@ test.describe('Bonus Store', () => {
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
-        console.log(bonusInfo)
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL))
     })
 
     test('Verify bonus availability for Knight user kings coins', async () => {
@@ -154,7 +155,7 @@ test.describe('Bonus Store', () => {
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
-        expect(bonusInfo).toEqual(createComparisonMatcher(EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS))
+        expect(bonusInfo).toEqual(createComparisonMatcher(EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS))
     })
 
 
@@ -167,21 +168,22 @@ test.describe('Bonus Store', () => {
 
         await test.step('Check cash bonuses', async () => {
             await bonusStore.clickOn(bonusStore.cashTab)
-            const cashBonuses = EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS.filter(bonus => bonus.type === 'cash');
+            const cashBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS.filter(bonus => bonus.type === 'cash');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
+            
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(cashBonuses));
         })
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.KINGS_COINS.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
@@ -196,21 +198,21 @@ test.describe('Bonus Store', () => {
         
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check tips bonuses', async () => {
             await bonusStore.clickOn(bonusStore.tipsTab)
-            const tipsBonuses = EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL.filter(bonus => bonus.type === 'tips');
+            const tipsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.CITIZEN.REAL.filter(bonus => bonus.type === 'tips');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(tipsBonuses));
         });
@@ -226,21 +228,21 @@ test.describe('Bonus Store', () => {
 
         await test.step('Check cash bonuses', async () => {
             await bonusStore.clickOn(bonusStore.cashTab)
-            const cashBonuses = EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS.filter(bonus => bonus.type === 'cash');
+            const cashBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS.filter(bonus => bonus.type === 'cash');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(cashBonuses));
         })
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.KINGS_COINS.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
@@ -255,21 +257,21 @@ test.describe('Bonus Store', () => {
         
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check tips bonuses', async () => {
             await bonusStore.clickOn(bonusStore.tipsTab)
-            const tipsBonuses = EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL.filter(bonus => bonus.type === 'tips');
+            const tipsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.BARONET.REAL.filter(bonus => bonus.type === 'tips');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(tipsBonuses));
         });
@@ -284,21 +286,21 @@ test.describe('Bonus Store', () => {
 
         await test.step('Check cash bonuses', async () => {
             await bonusStore.clickOn(bonusStore.cashTab)
-            const cashBonuses = EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS.filter(bonus => bonus.type === 'cash');
+            const cashBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS.filter(bonus => bonus.type === 'cash');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(cashBonuses));
         })
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.KINGS_COINS.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
@@ -313,21 +315,21 @@ test.describe('Bonus Store', () => {
         
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check tips bonuses', async () => {
             await bonusStore.clickOn(bonusStore.tipsTab)
-            const tipsBonuses = EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL.filter(bonus => bonus.type === 'tips');
+            const tipsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.DUKE.REAL.filter(bonus => bonus.type === 'tips');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(tipsBonuses));
         });
@@ -343,21 +345,21 @@ test.describe('Bonus Store', () => {
 
         await test.step('Check cash bonuses', async () => {
             await bonusStore.clickOn(bonusStore.cashTab)
-            const cashBonuses = EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS.filter(bonus => bonus.type === 'cash');
+            const cashBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS.filter(bonus => bonus.type === 'cash');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(cashBonuses));
         })
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KING.KINGS_COINS.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
@@ -372,21 +374,21 @@ test.describe('Bonus Store', () => {
         
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.KING.REAL.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KING.REAL.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.KING.REAL.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KING.REAL.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check tips bonuses', async () => {
             await bonusStore.clickOn(bonusStore.tipsTab)
-            const tipsBonuses = EXPECTED_RESULTS_BONUS_STORE.KING.REAL.filter(bonus => bonus.type === 'tips');
+            const tipsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KING.REAL.filter(bonus => bonus.type === 'tips');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(tipsBonuses));
         });
@@ -402,21 +404,21 @@ test.describe('Bonus Store', () => {
 
         await test.step('Check cash bonuses', async () => {
             await bonusStore.clickOn(bonusStore.cashTab)
-            const cashBonuses = EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS.filter(bonus => bonus.type === 'cash');
+            const cashBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS.filter(bonus => bonus.type === 'cash');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(cashBonuses));
         })
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.KINGS_COINS.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('kingsCoins');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
@@ -431,24 +433,23 @@ test.describe('Bonus Store', () => {
         
         await test.step('Check fs bonuses', async () => {
             await bonusStore.clickOn(bonusStore.fsTab)
-            const fsBonuses = EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL.filter(bonus => bonus.type === 'fs');
+            const fsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL.filter(bonus => bonus.type === 'fs');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(fsBonuses));
         });
 
         await test.step('Check wheel bonuses', async () => {
             await bonusStore.clickOn(bonusStore.wheelTab)
-            const wheelBonuses = EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL.filter(bonus => bonus.type === 'wheel');
+            const wheelBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL.filter(bonus => bonus.type === 'wheel');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(wheelBonuses));
         });
 
         await test.step('Check tips bonuses', async () => {
             await bonusStore.clickOn(bonusStore.tipsTab)
-            const tipsBonuses = EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL.filter(bonus => bonus.type === 'tips');
+            const tipsBonuses = EU_EXPECTED_RESULTS_BONUS_STORE.KNIGHT.REAL.filter(bonus => bonus.type === 'tips');
             const receivedBonuses = await bonusStore.gatherBonusInfo('realMoney');
             expect.soft(receivedBonuses).toEqual(createComparisonMatcher(tipsBonuses));
         });
     });
-
 });

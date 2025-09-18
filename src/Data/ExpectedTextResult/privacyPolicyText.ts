@@ -1,4 +1,6 @@
-export const PRIVACY_POLICY_TEXT = `Effective from: 02.02.2024
+export const PRIVACY_POLICY_TEXT = `PRIVACY POLICY
+
+Effective from: 02.02.2024
 
 Definitions
 
@@ -140,109 +142,109 @@ Lawful Basis for Processing of Personal Data
 
 We have set out below, in a table format, a description of all the ways we plan to use your personal data, and which of the legal bases we rely on to do so. We have also identified what our legitimate interests are where appropriate. In regards to processing personal data based on a legal obligation, we refer to the provisions of the Anti-Money Laundering Directive (EU) 2015/849 of the European Parliament and the Council, and the Malta Gaming Act (Cap 583).
 
-Data collected\tHow do we collect your data?\tPurpose for collection\tLegal basis for processing data
-Identification data – full name, email, username of choice, date of birth, gender\tRequested upon registration\t
+Data collected	How do we collect your data?	Purpose for collection	Legal basis for processing data
+Identification data – full name, email, username of choice, date of birth, gender	Requested upon registration	
 Customer identification and creation of unique customer profile
 Customer verification for Anti-Money Laundering (“AML”) purposes
 Identification of customer when contact is made
-\t
+	
 Performance of contract
 Legal obligation
 Performance of contract
 
-Contact details – email address, home address, mobile phone number, Skype or any other available means of communication\tRequested upon registration and/or KYC procedure\t
+Contact details – email address, home address, mobile phone number, Skype or any other available means of communication	Requested upon registration and/or KYC procedure	
 Customer identification and creation of unique customer profile
 Contacting customers for support purposes
 Dissemination of marketing material of the brand
 Dissemination of marketing material of another Group brands
 Verification of player identity
-\t
+	
 Performance of contract
 Performance of contract
 Consent
 Consent
 Legal obligation
 
-Data required for verification purposes – identification documents, proof of address, and possibly source of funds, source of wealth.\tMust be uploaded on player profile upon request; may be requested either through pop up on website or via email.\t
+Data required for verification purposes – identification documents, proof of address, and possibly source of funds, source of wealth.	Must be uploaded on player profile upon request; may be requested either through pop up on website or via email.	
 Verification of player identity
 Required in order for us to comply with AML law
-\t
+	
 Legal obligation
 Legal obligation
 
-Financial data – bank details, payment card details, or all relevant details relating to the chosen payment methods.\tCollected upon deposit or withdrawal of funds into the player account. Could also be collected where we have queries via email / chat / calls\t
+Financial data – bank details, payment card details, or all relevant details relating to the chosen payment methods.	Collected upon deposit or withdrawal of funds into the player account. Could also be collected where we have queries via email / chat / calls	
 Required to provide you with the service (i.e. to deposit funds into player account)
 Required for Know-Your-Customer (“KYC”) checks (source of funds)
 Required for cybercrime checks
 To ensure a closed-loop policy
-\t
+	
 Performance of contract
 Legal obligation
 Legitimate interest
 Legal obligation
 
-Transaction data – details relating to payments made to and by you;\tAutomatically generated when deposits and withdrawals are made\t
+Transaction data – details relating to payments made to and by you;	Automatically generated when deposits and withdrawals are made	
 Required to provide you with the service
 Required to comply with AML law and gaming license requirements
 Required to track your activity for social responsibility measures
-\t
+	
 Performance of contract
 Legal obligation
 Legal obligation
 
-Gaming data – details relating to the games you play on our website (i.e. your gaming activity)\tAutomatically generated with gaming activity\t
+Gaming data – details relating to the games you play on our website (i.e. your gaming activity)	Automatically generated with gaming activity	
 Required to provide you with the service
 Required to comply with remote gaming law
-\t
+	
 Performance of contract
 Legal obligation
 
-Data relating to your communications with us (via email, live chat, phone call)\tEmail correspondence and live chat when contact is made, phone calls may be recorded for record-keeping requirements\t
+Data relating to your communications with us (via email, live chat, phone call)	Email correspondence and live chat when contact is made, phone calls may be recorded for record-keeping requirements	
 Required to provide you with the service (for customer queries, communicating necessary issues)
 May be used to manage risks, obtain professional advice, or to establish and defend our legal claims, whether in court or in an out-of-court procedure
-\t
+	
 Performance of contract
 Legitimate interest
 
-Profile data - Data relating to your gaming habits and your preferences\tAutomatically generated with game play, or using cookies to log preferences\t
+Profile data - Data relating to your gaming habits and your preferences	Automatically generated with game play, or using cookies to log preferences	
 May be used in aggregated and anonymized form to improve service
 May be used for a more personalized user experience
 Segmentation for AML and social responsibility measures
 Targeted marketing
-\t
+	
 Legitimate interest. Data in anonymized form is not personal data after that.
 Consent
 Legal obligation
 Consent
 
-Responsible Gaming Data - Self-assessment test\tSelf-assessment test\t
+Responsible Gaming Data - Self-assessment test	Self-assessment test	
 Responsible gaming profiling
 Identification and investigation of gaming activity for responsible gaming purposes
-\t
+	
 Legal obligation
 Legitimate interest
 
-Technical data - internet protocol (IP) address, login data, browser type and version, time zone setting and location, operating system and platform.\tAutomatically generated with website usage\t
+Technical data - internet protocol (IP) address, login data, browser type and version, time zone setting and location, operating system and platform.	Automatically generated with website usage	
 Location data / IP used to ensure customer is not from a restricted or high-risk country
 Location data / IP address also used to ensure that they do not use proxies or VPNs, to ensure that they do not abuse bonuses or defraud by application fraud
 All other data (including location and IP) is used to improve website functionality, troubleshoot technical issues, create more products for different platforms
-\t
+	
 Legal Obligation
 Legitimate interest
 Legitimate interest
 
-Usage data – includes data relating to how you use our website\tAutomatically generated with website usage\t
+Usage data – includes data relating to how you use our website	Automatically generated with website usage	
 Location data / IP used to ensure customer is not from a restricted or high-risk country
 Location data / IP address also used to ensure that they do not use proxies or VPNs, to ensure that they do not abuse bonuses or defraud by application fraud
 All other data (including location and IP) is used to improve website functionality, troubleshoot technical issues, create more products for different platforms
-\t
+	
 Legal Obligation
 Legitimate interest
 Legitimate interest
 
-My RTP data – hit rate, total number of spins, overall RTP on your account, your own RTP compared to the games’ RTPs, biggest win on specific games, and bet placed to achieve that win\tAutomatically generated with gameplay\t
+My RTP data – hit rate, total number of spins, overall RTP on your account, your own RTP compared to the games’ RTPs, biggest win on specific games, and bet placed to achieve that win	Automatically generated with gameplay	
 To ensure we are in line with all the relevant requirements regarding the RTP of our services
-\t
+	
 Legal Obligation
 
 Cookie data - Please see our Cookie Policy for further information on how and for which purposes we collect your cookies

@@ -66,7 +66,7 @@ test.describe('Log In', () => {
         })
 
         await test.step('Click on Sign In', async () => {
-            await signInModal.clickSignIn()
+            await signInModal.clickSignInNegative()
         })
 
         await test.step('Check invalid credentials error', async () => {
@@ -85,7 +85,7 @@ test.describe('Log In', () => {
         })
 
         await test.step('Click on Sign In', async () => {
-            await signInModal.clickSignIn()
+            await signInModal.clickSignInNegative()
         })
 
         await test.step('Check invalid credentials error', async () => {
