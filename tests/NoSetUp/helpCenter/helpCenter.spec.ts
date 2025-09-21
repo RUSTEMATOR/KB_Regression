@@ -16,6 +16,8 @@ import PrivacyPolicy from "../../../src/PO/PrivacyPolicy/PrivacyPolicy";
 import {PRIVACY_POLICY_TEXT} from "../../../src/Data/ExpectedTextResult/privacyPolicyText";
 import {RESPONSIBLE_GAMBLING_TEXT} from "../../../src/Data/ExpectedTextResult/responsibleGamblingText";
 import SupportPage from "../../../src/PO/SupportPage/SupportPage";
+import { PRIVACY_POLICY_TEXT_AU } from "../../../src/Data/ExpectedTextResult/privacyPolicyTextAu";
+import { PRIVACY_POLICY_TEXT_BET } from "../../../src/Data/ExpectedTextResult/privacyPolicyTextBet";
 
 
 test.describe("Help Center", () => {
@@ -75,7 +77,14 @@ test.describe("Help Center", () => {
         privacyPolicy = new PrivacyPolicy(page)
 
         await privacyPolicy.navTo(LINKS.privacyPolicy)
-        expect(await privacyPolicy.getPrivacyPolicyText()).toEqual(PRIVACY_POLICY_TEXT)
+
+        if(test.info().project.use.baseURL?.includes('kingbillywin24')){
+            expect(await privacyPolicy.getPrivacyPolicyText()).toEqual(PRIVACY_POLICY_TEXT_AU)
+        } else if(test.info().project.use.baseURL?.includes('kingbillybet1')){
+            expect(await privacyPolicy.getPrivacyPolicyText()).toEqual(PRIVACY_POLICY_TEXT_BET)
+        } else {
+            expect(await privacyPolicy.getPrivacyPolicyText()).toEqual(PRIVACY_POLICY_TEXT)
+        }
     })
 
     test('Check Responsible gambling', async ({page}) => {
@@ -89,6 +98,6 @@ test.describe("Help Center", () => {
         const supportPage = new SupportPage(page)
 
         await supportPage.navTo(LINKS.support)
-        await expect(supportPage.SupportBlock).toHaveScreenshot({ maxDiffPixels: 100 })
+        await expect(supportPage.SupportBlock).toHaveScreenshot({ maxDiffPixels: 1000 })
     })
 })

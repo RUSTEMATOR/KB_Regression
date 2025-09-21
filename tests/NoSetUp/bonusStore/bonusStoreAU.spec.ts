@@ -50,6 +50,7 @@ test.describe('Bonus Store - AU', () => {
             await signInModal.fillEmail(USERS.citizenUser.email)
             await signInModal.fillPassword(USERS.citizenUser.password)
             await signInModal.clickSignIn()
+            await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
             await bonusStore.clickOn(bonusStore.realMoneyButton)
 
             await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
@@ -62,6 +63,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(USERS.citizenUser.email)
         await signInModal.fillPassword(USERS.citizenUser.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton)
 
         await bonusStore.bonusCardKingsCoins.first().scrollIntoViewIfNeeded()
@@ -74,6 +76,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.king.email)
         await signInModal.fillPassword(VIP_USERS.king.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
 
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
@@ -86,6 +89,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.king.email)
         await signInModal.fillPassword(VIP_USERS.king.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
@@ -98,6 +102,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.duke.email)
         await signInModal.fillPassword(VIP_USERS.duke.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
@@ -109,6 +114,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.duke.email)
         await signInModal.fillPassword(VIP_USERS.duke.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
@@ -120,6 +126,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.baronet.email)
         await signInModal.fillPassword(VIP_USERS.baronet.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
@@ -131,6 +138,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.baronet.email)
         await signInModal.fillPassword(VIP_USERS.baronet.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
@@ -143,6 +151,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.knight.email)
         await signInModal.fillPassword(VIP_USERS.knight.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         await bonusStore.bonusCardReal.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('realMoney')
@@ -155,6 +164,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.knight.email)
         await signInModal.fillPassword(VIP_USERS.knight.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton) 
         await bonusStore.bonusCardKingsCoins.first().waitFor({state: 'visible'})
         const bonusInfo = await bonusStore.gatherBonusInfo('kingsCoins')
@@ -167,6 +177,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(USERS.citizenUser.email)
         await signInModal.fillPassword(USERS.citizenUser.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton)
 
         await test.step('Check cash bonuses', async () => {
@@ -196,6 +207,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(USERS.citizenUser.email)
         await signInModal.fillPassword(USERS.citizenUser.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         
         await test.step('Check fs bonuses', async () => {
@@ -226,6 +238,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.baronet.email)
         await signInModal.fillPassword(VIP_USERS.baronet.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton)
 
         await test.step('Check cash bonuses', async () => {
@@ -255,6 +268,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.baronet.email)
         await signInModal.fillPassword(VIP_USERS.baronet.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         
         await test.step('Check fs bonuses', async () => {
@@ -284,6 +298,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.duke.email)
         await signInModal.fillPassword(VIP_USERS.duke.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton)
 
         await test.step('Check cash bonuses', async () => {
@@ -313,6 +328,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.duke.email)
         await signInModal.fillPassword(VIP_USERS.duke.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         
         await test.step('Check fs bonuses', async () => {
@@ -343,6 +359,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.king.email)
         await signInModal.fillPassword(VIP_USERS.king.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton)
 
         await test.step('Check cash bonuses', async () => {
@@ -372,6 +389,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.king.email)
         await signInModal.fillPassword(VIP_USERS.king.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         
         await test.step('Check fs bonuses', async () => {
@@ -402,6 +420,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.knight.email)
         await signInModal.fillPassword(VIP_USERS.knight.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.kingsCoinsButton)
 
         await test.step('Check cash bonuses', async () => {
@@ -431,6 +450,7 @@ test.describe('Bonus Store - AU', () => {
         await signInModal.fillEmail(VIP_USERS.knight.email)
         await signInModal.fillPassword(VIP_USERS.knight.password)
         await signInModal.clickSignIn()
+        await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         await bonusStore.clickOn(bonusStore.realMoneyButton)
         
         await test.step('Check fs bonuses', async () => {

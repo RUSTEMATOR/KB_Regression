@@ -1,4 +1,5 @@
-export const RESPONSIBLE_GAMBLING_TEXT = `GENERAL
+export const RESPONSIBLE_GAMBLING_TEXT = `Responisble Gaming
+GENERAL
 
 Gambling at an online casino should always be aimed at entertainment. However, there is a certain percentage of people who lose control over themselves while gambling. Before starting to play, it is important to realise that gambling shall never be viewed as a source of income or means of recovery from debts. It is useful to keep track of the time and the amount of money spent at an online casino daily.
 

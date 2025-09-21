@@ -35,6 +35,8 @@ test.describe('Referral', () => {
             await signInModal.fillEmail(MAIN_USER.email)
             await signInModal.fillPassword(MAIN_USER.password)
             await signInModal.clickSignIn()
+            await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
+            
         })
 
         await test.step('Open sidebar menu', async () => {
@@ -65,6 +67,7 @@ test.describe('Referral', () => {
             await signInModal.fillEmail(USERS.referalUser.email)
             await signInModal.fillPassword(USERS.referalUser.password)
             await signInModal.clickSignIn()
+            await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
         })
 
         await test.step('Open sidebar menu', async () => {

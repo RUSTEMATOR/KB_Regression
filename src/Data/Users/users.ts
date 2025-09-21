@@ -1,8 +1,8 @@
 export const USERS = {
-    currencyUser: {
-        email: 'regression_currencies@kingbilly.xyz',
-        password: 'KingBilly123!'
-    },
+    // currencyUser: {
+    //     email: 'regression_currencies@kingbilly.xyz',
+    //     password: 'KingBilly123!'
+    // },
     
     citizenUser: {
         email: 'regression_new_citizen@kingbilly.xyz',

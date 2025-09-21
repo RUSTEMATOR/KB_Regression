@@ -25,6 +25,7 @@ test.describe('Log In', () => {
 
         await test.step('Open Sign in form', async () => {
             signInModal = await mainPage.header.clickSignIn()
+            
         })
     })
 

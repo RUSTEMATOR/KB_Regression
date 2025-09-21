@@ -133,7 +133,7 @@ export default class MainPage extends BasePage {
             },
             Slots: {
                 locator: this.slots,
-                title: 'Slots'
+                title: (this.page.url().includes('kingbillywin24')) ? 'Pokies' : 'Slots'  
             },
             Live: {
                 locator: this.live,

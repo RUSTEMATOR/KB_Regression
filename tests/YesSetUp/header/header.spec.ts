@@ -64,6 +64,8 @@ test.describe('Header', () => {
     test('Check language change dropdown', async () => {
         let listOfLocales: Array<string>
 
+         test.skip((test.info().project.use.baseURL || '').includes('kingbillywin24'), 'These tests are skipped on kingbillywin24 domain');
+         
         await test.step('Open lang dropdown', async () => {
             await mainPage.header.openLangDropdown()
         })

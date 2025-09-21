@@ -12,7 +12,7 @@ export default class Header extends BaseComponent {
     private searchField: Locator
     private createAccountButton: Locator
     private signInButton: Locator
-    private langDropdown: Locator
+    public langDropdown: Locator
     private filterButton: Locator
     private depositButton: Locator
     private gameItem: Locator

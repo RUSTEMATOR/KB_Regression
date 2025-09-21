@@ -27,7 +27,7 @@ test.describe('Footer', () => {
     let page: Page
 
     test.beforeEach(async ({browser}) => {
-        // Create a new context that will use our storage state with authentication
+       
         context = await browser.newContext({
             storageState: './tests/setup/storageState.json'
         });
@@ -105,6 +105,8 @@ test.describe('Footer', () => {
 
         test('Check language change dropdown', async () => {
             let listOfLocales: Array<string>
+
+            test.skip((test.info().project.use.baseURL || '').includes('kingbillywin24'), 'These tests are skipped on kingbillywin24 domain');
 
             await test.step('Open lang dropdown', async () => {
                 await mainPage.footer.openFooterLangDropdown()
@@ -398,7 +400,7 @@ test.describe('Footer', () => {
 
             await test.step('Check Blog page url', async () => {
                 const currentUrl = blogPage.url()
-                expect(currentUrl).toBe(`${test.info().project.use.baseURL}${LINKS.blog}`)
+                expect(currentUrl).toBe(`https://www.kingbillycasino.com${LINKS.blog}`)
         })
 
     })

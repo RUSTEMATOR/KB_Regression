@@ -1,8 +1,9 @@
 import { test as setup, request } from '@playwright/test';
 import { MAIN_USER } from '../../src/Data/Users/mainUser';
-import playwrightConfig from '../../playwright.config';
+import MainPage from '../../src/PO/MainPage/MainPage';
 
 setup.describe('Setup Session Storage', () => {
+  let mainPage: MainPage;
   setup('Set up session storage for main account via API', async ({baseURL}) => {
     console.log('Setting up session state for the main account via API...');
     

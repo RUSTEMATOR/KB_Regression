@@ -10,7 +10,7 @@ export default class PrivacyPolicy extends BasePage {
         super(page);
 
         this.privacyPolicyTitle = page.locator('h1')
-        this.infoBlock = page.locator('.content')
+        this.infoBlock = page.locator('.help-center__data')
     }
 
     

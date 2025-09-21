@@ -109,5 +109,12 @@ test.describe('Log In', () => {
     })
 
     test('Check "Sign in" functionality', async () => {
+        await test.step('Sign in', async () => {
+            await signInModal.fillEmail(MAIN_USER.email)
+            await signInModal.fillPassword(MAIN_USER.password)
+            await signInModal.clickSignIn()
+            await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
+            await expect(mainPage.header.getDepositButton).toBeVisible()
+        })
     })
 })

@@ -5,11 +5,9 @@ import {providersIE, providersIEFilter} from "../../../src/Data/Providers/Provid
 import {qase} from "playwright-qase-reporter";
 import {IGameCategories} from "../../../src/Interfaces/gameCategories";
 import {CATEGORY_DROPDOWN_PARAMS} from "../../../src/Data/Constants/CategoryDropdownsLocators";
-import {MAIN_USER} from "../../../src/Data/Users/mainUser";
 import SidebarMenu from "../../../src/Components/SidebarMenu";
-import {CATEGORIES_FILTER} from "../../../src/Data/Categories/Categories";
-import playwrightConfig from "../../../playwright.config";
-import { ADDRGETNETWORKPARAMS } from 'dns';
+import {CATEGORIES_FILTER, CATEGORIES_FILTER_AU} from "../../../src/Data/Categories/Categories";
+
 
 
 
@@ -379,7 +377,11 @@ test.describe('Main page', () => {
         await test.step('Check category names', async () => {
             const categoriesArray = await mainPage.header.getListOfFilterCategories()
 
-            expect(categoriesArray).toEqual(CATEGORIES_FILTER)
+                if ((test.info().project.use.baseURL || '').includes('kingbillywin24')) {
+                expect(categoriesArray).toEqual(CATEGORIES_FILTER_AU)
+            } else {
+                expect(categoriesArray).toEqual(CATEGORIES_FILTER)
+            }
         })
     })
 

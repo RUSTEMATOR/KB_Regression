@@ -18,6 +18,8 @@ for (const [status, creds] of Object.entries(VIP_USERS)) {
       await vipPage.navTo(LINKS.Vip)
       await vipPage.clickAcceptCookies()
       await vipPage.header.signIn(creds.email, creds.password);
+      await vipPage.changeLanguage('EN', test.info().project.use.baseURL);
+
     });
 
     test(`Current Status Image - ${status}`, async ({ baseURL }) => {

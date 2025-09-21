@@ -4,7 +4,7 @@ import {LINKS} from "../../../src/Data/Links/Links";
 import GamePage from "../../../src/PO/GamePage/GamePage";
 import SignInModal from "../../../src/PO/MainPage/Component/SignInModal";
 import {MAIN_USER} from "../../../src/Data/Users/mainUser";
-import {SLIDER_CATEGORIES} from "../../../src/Data/Categories/Categories";
+import {SLIDER_CATEGORIES, SLIDER_CATEGORIES_AU} from "../../../src/Data/Categories/Categories";
 import {CATEGORY_DROPDOWN_PARAMS} from "../../../src/Data/Constants/CategoryDropdownsLocators";
 import SupportMessanger from "../../../src/Components/SupportButton";
 
@@ -70,7 +70,11 @@ test.describe('Body', async () => {
         })
 
         await test.step('Check if the categories match the expected ones', async () => {
-            expect(actualCategories).toEqual(SLIDER_CATEGORIES)
+            if ((test.info().project.use.baseURL || '').includes('kingbillywin24')) {
+                expect(actualCategories).toEqual(SLIDER_CATEGORIES_AU)
+            } else {
+                expect(actualCategories).toEqual(SLIDER_CATEGORIES)
+            }
         })
     })
 

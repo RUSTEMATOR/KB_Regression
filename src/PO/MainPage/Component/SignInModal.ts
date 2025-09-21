@@ -48,7 +48,7 @@ export default class SignInModal extends BaseComponent {
     async clickSignIn(): Promise<void> {
         await this.signInButton.click()
         await this.header.getDepositButton.waitFor({state: 'visible', timeout: 10000})
-        await this.changeLanguage('EN', test.info().project.use.baseURL);
+
     }
 
     async clickSignInNegative(): Promise<void> {

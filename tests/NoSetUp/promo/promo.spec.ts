@@ -83,8 +83,11 @@ test.describe('Promos', () => {
     test('Check "Show more" button on the tournament banners', async ({ baseURL }) => {
         let href: string
 
+        await promoPage.page.waitForTimeout(5000)
+
+
         await test.step('Scroll the page to the bottom', async () => {
-            await promoPage.footer.getAskgamblersAwardsLocator.scrollIntoViewIfNeeded()
+            await promoPage.getShowMoreButton.scrollIntoViewIfNeeded()
             const hrefAttr = await promoPage.getTournShowMoreButton.getAttribute('href')
             if(hrefAttr !== null){
                 href = hrefAttr
@@ -109,6 +112,8 @@ test.describe('Promos', () => {
 
             await test.step('Sing in', async () => {
                 await promoPage.header.signIn(creds.email, creds.password)
+                await promoPage.changeLanguage('EN', test.info().project.use.baseURL);
+                
             })
 
             await test.step('Get all promos and sort', async () => {
@@ -140,6 +145,8 @@ test.describe('Promos', () => {
 
             await test.step('Sing in', async () => {
                 await promoPage.header.signIn(creds.email, creds.password)
+                await promoPage.changeLanguage('EN', test.info().project.use.baseURL);
+                
             })
 
             await test.step('Get all promos and sort', async () => {
@@ -169,6 +176,8 @@ test.describe('Promos', () => {
 
         await test.step('Login', async () => {
             await promoPage.header.signIn(MAIN_USER.email, MAIN_USER.password)
+            await promoPage.changeLanguage('EN', test.info().project.use.baseURL);
+            
         })
 
         await test.step('Open a promo card', async () => {

@@ -25,6 +25,14 @@ export default class BaseComponent {
 
     async changeLanguage(langValue: string = 'EN', domain?: string): Promise<void> {
         await this.page.waitForLoadState('load')
+
+        const depositModal = this.page.locator('.fast-deposit-modal')
+        const closeDepositModalButton = this.page.locator('.modal__close-button').first()
+
+        if (await depositModal.isVisible()) {
+            await closeDepositModalButton.click()
+        }
+        
         
         const currentUrl = await this.page.url();
         const currentDomain = new URL(currentUrl).hostname;
@@ -49,7 +57,7 @@ export default class BaseComponent {
                     await this.langItem(langValue).click();
                     console.log(`Language changed to ${langValue}`);
                     // Wait for page to load after language change
-                    await this.page.waitForLoadState('networkidle', { timeout: 10000 });
+                    await this.page.waitForLoadState('load', { timeout: 10000 });
                 }
             } catch (error) {
                 console.error(`Error changing language: ${error}`);

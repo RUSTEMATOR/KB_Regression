@@ -23,6 +23,8 @@ test.describe('Burger menu - Logout functionality', () => {
             await signInModal.fillEmail(MAIN_USER.email)
             await signInModal.fillPassword(MAIN_USER.password)
             await signInModal.clickSignIn()
+                    await signInModal.changeLanguage('EN', test.info().project.use.baseURL);
+            
             await mainPage.header.waitForSelector(mainPage.header.getDepositButton)
             await expect(mainPage.header.getDepositButton).toBeVisible()
         })
